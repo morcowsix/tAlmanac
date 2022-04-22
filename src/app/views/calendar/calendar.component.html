@@ -1,0 +1,52 @@
+<app-month-selector></app-month-selector>
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th>Пн</th>
+      <th>Вт</th>
+      <th>Ср</th>
+      <th>Чт</th>
+      <th>Пт</th>
+      <th>Сб</th>
+      <th>Вс</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let week of calendar">
+      <td *ngFor="let day of week.days"
+          [class.disabled]="day.disabled"
+          (click)="openDialog(day.disabled)"
+      >
+        <div class="td-container">
+          <ul class="date">
+            <li [class.date-selected]="day.selected"
+                [class.date-today]="day.today"
+            >
+              <div class="date-container">
+                <span [class.date-first-day]="day.monthStart">{{day.value | moment:'DD' }}</span>
+                <span *ngIf="day.monthStart" class="month-first-day">{{day.value | moment: 'MMMM' | titlecase}}</span>
+              </div>
+
+            </li>
+            <li class="measure" *ngFor="let measure of day.measures">
+              <div class="measure-icon" [ngClass]="{
+              'measure-icon-temperature': checkInstanceTemperature(measure),
+              'measure-icon-pressure': checkInstancePressure(measure),
+              'measure-icon-humidity': checkInstanceHumidity(measure)
+            }"
+              >
+
+              </div>
+              <div class="measure-text-container">
+                <span class="measure-count">{{measure.value}}</span>
+                <span class="measure-symbol">{{measure.symbol}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

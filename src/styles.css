@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --background-color: #2A3550;
+  --primary-color: #35415E;
+  --secondary-color: #1C2333;
+  --light-color: #ADB9D8;
+  --wight-color: #FFFFFF;
+  --acent-color: #EC4E6E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--background-color);
+  color: var(--wight-color);
+}

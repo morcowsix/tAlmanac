@@ -1,0 +1,21 @@
+.temp-block {
+  background-color: #38518b;
+  margin: auto;
+  height: 500px;
+  width: 800px;
+}
+
+.chart-container {
+  position: relative;
+  background-color: #35415E;
+  border: 1px solid #ADB9D8;
+  padding: 2rem;
+
+  .title {
+    color: var(--light-color);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}

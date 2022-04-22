@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24">
+  <defs>
+    <filter id="darkreader-image-filter">
+      <feColorMatrix type="matrix"
+                     values="0.249 -0.614 -0.672 0.000 1.035 -0.646 0.288 -0.664 0.000 1.020 -0.636 -0.609 0.250 0.000 0.994 0.000 0.000 0.000 1.000 0.000"/>
+    </filter>
+  </defs>
+  <image width="24" height="24" filter="url(#darkreader-image-filter)"
+         xlink:href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22%3E %3Cg fill=%22%23000%22 fill-rule=%22evenodd%22 id=%22%22%3E %3Cpath d=%22M9.25 12.602a4.5 4.5 0 1 0 4.5 0V5.75a2.25 2.25 0 1 0-4.5 0v6.852zm-1.5-.786V5.75a3.75 3.75 0 0 1 7.5 0v6.066a6 6 0 1 1-7.5 0z%22/%3E %3Ccircle cx=%2211.5%22 cy=%2216.5%22 r=%223%22/%3E %3Crect width=%221.5%22 height=%229%22 x=%2210.75%22 y=%228%22 rx=%22.75%22/%3E %3C/g%3E %3C/svg%3E"/>
+</svg>
