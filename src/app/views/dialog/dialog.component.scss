@@ -1,0 +1,29 @@
+.mat-dialog-content {
+  max-height: calc(100vh*0.8);
+  //border: 1px solid #FFFFFF;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  color: #FFFFFF;
+  background-color: var(--background-color);
+
+  .charts-title {
+    color: var(--acent-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 1rem 0 1.2rem 1rem;
+    //margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  .charts-container {
+    gap: 1rem;
+    margin: 1rem;
+    display: flex;
+  }
+
+  .table-container {
+    margin: 1rem;
+  }
+
+}
