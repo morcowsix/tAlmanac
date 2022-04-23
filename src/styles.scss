@@ -7,6 +7,7 @@
   --light-color: #ADB9D8;
   --wight-color: #FFFFFF;
   --acent-color: #EC4E6E;
+  --selected-color: rgba(16, 255, 0, 0.20);
 }
 
 * {
@@ -25,4 +26,27 @@ body {
   line-height: 1.6;
   background: var(--background-color);
   color: var(--wight-color);
+}
+
+mat-dialog-container, mat-dialog-content {
+  background-color: transparent !important;
+  padding: 0 0 0 0 !important;
+  overflow: hidden !important;
+}
+
+/* scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+
+  &-track {
+    background: var(--background-color);
+  }
+
+  &-thumb {
+    background: var(--primary-color);
+  }
+
+  &-thumb:hover {
+    background: var(--light-color);
+  }
 }
