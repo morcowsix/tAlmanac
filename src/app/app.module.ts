@@ -19,6 +19,7 @@ import { DialogComponent } from './views/dialog/dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MeasurementsTableComponent } from './views/measurements-table/measurements-table.component';
 import { MeasurementsChartComponent } from './views/measurements-chart/measurements-chart.component';
+import { SidebarComponent } from './views/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MeasurementsChartComponent } from './views/measurements-chart/measureme
     MonthSelectorComponent,
     DialogComponent,
     MeasurementsTableComponent,
-    MeasurementsChartComponent
+    MeasurementsChartComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

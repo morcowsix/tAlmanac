@@ -36,7 +36,7 @@ table {
     }
 
     &:hover:not(.disabled) {
-      background: rgba(16, 255, 0, 0.21);
+      background: rgba(16, 255, 0, 0.20);
       cursor: pointer;
     }
 
@@ -71,7 +71,7 @@ table {
 
     &-today {
       padding-bottom: 10px;
-      color: #f14aaa;
+      color: var(--acent-color);
       font-weight: bold;
       font-size: 20px;
     }
@@ -84,7 +84,7 @@ table {
 
 }
 
-.measure {
+.measure-container {
   display: flex;
   padding: 0 0.5rem 0 0.25rem;
   justify-content: space-between;
