@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ChartOptions, ChartType} from "chart.js";
 import {TestData} from "../../data/TestData";
 
@@ -46,7 +46,7 @@ export class MeasurementsChartComponent {
           color: ticksColor,
           font: {
             family: "'Roboto', 'sans-serif'",
-            size: 16
+            size: 10
           }
         }
       },
@@ -61,10 +61,9 @@ export class MeasurementsChartComponent {
           color: ticksColor,
           font: {
             family: "'Roboto', 'sans-serif'",
-            size: 16
+            size: 10
           },
-          padding: 16,
-          callback: function(value, index, ticks) {
+          callback: function(value) {
             return value + '℃';
           }
         }
