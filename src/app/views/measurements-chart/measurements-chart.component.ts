@@ -2,16 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
 import {ChartColors} from "../../model/MeasureDay";
 
-const ticksColor: string = '#ADB9D8'
-const gridColor: string = '#4E5677'
-// const backgroundOpacity: number = 0.30
-// const pointBorderColor: string = 'rgb(77,201,67)'
-// const pointBackgroundColor: string = 'rgb(22,144,13)'
-// const borderColor: string = 'rgb(77,201,67)'
-// const backgroundColor = alpha(pointBorderColor, backgroundOpacity)
 
-const tooltipTitlePrefix: string = 'Time: '
-
+export interface ChartDataset {
+  type: string,
+  symbol: string,
+  data: number[],
+  times: string[],
+  colors: ChartColors
+}
 
 @Component({
   selector: 'app-measurements-chart',
@@ -20,17 +18,21 @@ const tooltipTitlePrefix: string = 'Time: '
 })
 export class MeasurementsChartComponent implements OnInit{
 
-  @Input() dataset: {type: string, symbol: string, data: number[], times: string[], colors: ChartColors}
+  @Input() dataset: ChartDataset
 
-  public lineChartLabels: string[]
+  public lineChartLabels: string[];
   public lineChartType: ChartType = 'line';
-  public lineChartOptions: ChartOptions
-  public lineChartData: ChartConfiguration['data']['datasets']
+  public lineChartOptions: ChartOptions;
+  public lineChartData: ChartConfiguration['data']['datasets'];
 
   constructor() { }
 
   ngOnInit(): void {
+    const ticksColor: string = '#ADB9D8'
+    const gridColor: string = '#4E5677'
+    const tooltipTitlePrefix: string = 'Time: '
     let valueSymbol = this.dataset.symbol
+
     this.lineChartLabels = this.dataset.times
     this.lineChartData =
       [{
@@ -41,6 +43,7 @@ export class MeasurementsChartComponent implements OnInit{
         pointBackgroundColor: this.dataset.colors.pointBackgroundColor,
         fill: true
       }]
+
     this.lineChartOptions = {
       responsive: true,
       elements: {
