@@ -9,16 +9,21 @@ export interface Measurement {
   type: string
   value: number
   time: string
-  coordinates: string
+  coordinates: Coordinates
   symbol: string
   chartColors: ChartColors
+}
+
+export interface Coordinates {
+  latitude: number,
+  longitude: number
 }
 
 export class Temperature implements Measurement {
   type: string = 'Temperature'
   value: number
   time: string;
-  coordinates: string;
+  coordinates: Coordinates;
   symbol: string = '℃'
   chartColors: ChartColors = {
     pointBorderColor: 'rgb(77,201,67)',
@@ -27,7 +32,7 @@ export class Temperature implements Measurement {
     backgroundColor: 'rgba(77,201,67, 0.30)'
   }
 
-  constructor(value: number, time: string, coordinates: string) {
+  constructor(value: number, time: string, coordinates: Coordinates) {
     this.value = value;
     this.time = time;
     this.coordinates = coordinates;
@@ -38,7 +43,7 @@ export class Pressure implements Measurement {
   type: string = 'Pressure'
   value: number
   time: string;
-  coordinates: string;
+  coordinates: Coordinates;
   symbol: string = 'hPa'
   chartColors: ChartColors = {
     pointBorderColor: 'rgb(255,214,77)',
@@ -48,7 +53,7 @@ export class Pressure implements Measurement {
   }
 
 
-  constructor(value: number, time: string, coordinates: string) {
+  constructor(value: number, time: string, coordinates: Coordinates) {
     this.value = value;
     this.time = time;
     this.coordinates = coordinates;
@@ -59,7 +64,7 @@ export class Humidity implements Measurement {
   type: string = 'Humidity'
   value: number
   time: string;
-  coordinates: string;
+  coordinates: Coordinates;
   symbol: string = 'φ'
   chartColors: ChartColors = {
     pointBorderColor: 'rgb(64,114,238)',
@@ -68,7 +73,7 @@ export class Humidity implements Measurement {
     backgroundColor: 'rgba(64,114,238, 0.30)'
   }
 
-  constructor(value: number, time: string, coordinates: string) {
+  constructor(value: number, time: string, coordinates: Coordinates) {
     this.value = value;
     this.time = time;
     this.coordinates = coordinates;

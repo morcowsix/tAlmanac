@@ -13,13 +13,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CalendarComponent } from './views/calendar/calendar.component';
-import {MomentPipe} from "./views/calendar/moment.pipe";
+import {MomentPipe} from "./pipes/moment.pipe";
 import { MonthSelectorComponent } from './views/month-selector/month-selector.component';
 import { DialogComponent } from './views/dialog/dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MeasurementsTableComponent } from './views/measurements-table/measurements-table.component';
 import { MeasurementsChartComponent } from './views/measurements-chart/measurements-chart.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
+import { CoordinatesPipe } from './pipes/coordinates.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SidebarComponent } from './views/sidebar/sidebar.component';
     DialogComponent,
     MeasurementsTableComponent,
     MeasurementsChartComponent,
-    SidebarComponent
+    SidebarComponent,
+    CoordinatesPipe
   ],
   imports: [
     BrowserModule,

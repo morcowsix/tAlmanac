@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MeasureDay} from "../../model/MeasureDay";
+import {Coordinates, MeasureDay} from "../../model/MeasureDay";
 import {TableDataService} from "../../service/table-data.service";
 
 export interface TableRawDataset {
@@ -7,7 +7,7 @@ export interface TableRawDataset {
   temperature: number,
   pressure: number,
   humidity: number,
-  coordinates: string
+  coordinates: Coordinates
 }
 
 @Component({
