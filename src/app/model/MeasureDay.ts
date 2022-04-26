@@ -27,7 +27,6 @@ export class Temperature implements Measurement {
     backgroundColor: 'rgba(77,201,67, 0.30)'
   }
 
-
   constructor(value: number, time: string, coordinates: string) {
     this.value = value;
     this.time = time;
@@ -107,7 +106,6 @@ export class MeasureDay {
     )
 
     const avgMeasure = (m: Measurement): Measurement => {
-      console.log(typeof m)
       m.value = Math.round(sum / measures.length)
       return m
     }

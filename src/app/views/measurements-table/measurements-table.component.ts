@@ -1,5 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MeasureDay} from "../../model/MeasureDay";
+import {TableDataService} from "../../service/table-data.service";
+
+export interface TableRawDataset {
+  time: string,
+  temperature: number,
+  pressure: number,
+  humidity: number,
+  coordinates: string
+}
 
 @Component({
   selector: 'app-measurements-table',
@@ -9,10 +18,12 @@ import {MeasureDay} from "../../model/MeasureDay";
 export class MeasurementsTableComponent implements OnInit {
 
   @Input() clickedDay: MeasureDay
+  tableRaws: TableRawDataset[]
 
-  constructor() { }
+  constructor(private tableDataService: TableDataService) { }
 
   ngOnInit(): void {
+    this.tableRaws = this.tableDataService.getTableDataSets(this.clickedDay)
   }
 
 }
