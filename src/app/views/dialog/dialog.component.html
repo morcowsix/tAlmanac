@@ -1,11 +1,16 @@
 <div mat-dialog-content>
+  <div class="day-title">{{clickedDay.getFullDate()}}</div>
   <div class="charts-title">Measurement charts</div>
   <div class="charts-container">
-    <app-measurements-chart></app-measurements-chart>
-    <app-measurements-chart></app-measurements-chart>
-    <app-measurements-chart></app-measurements-chart>
+    <app-measurements-chart
+      *ngFor="let dataset of charDatasets"
+      [dataset]="dataset"
+
+    ></app-measurements-chart>
   </div>
   <div class="table-container">
-    <app-measurements-table></app-measurements-table>
+    <app-measurements-table
+
+    ></app-measurements-table>
   </div>
 </div>

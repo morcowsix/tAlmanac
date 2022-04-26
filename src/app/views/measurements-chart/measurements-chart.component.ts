@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {ChartOptions, ChartType} from "chart.js";
-import {TestData} from "../../data/TestData";
+import {Component, Input, OnInit} from '@angular/core';
+import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
+import {ChartColors} from "../../model/MeasureDay";
 
 const ticksColor: string = '#ADB9D8'
 const gridColor: string = '#4E5677'
@@ -12,93 +12,92 @@ const gridColor: string = '#4E5677'
 
 const tooltipTitlePrefix: string = 'Time: '
 
+
 @Component({
   selector: 'app-measurements-chart',
   templateUrl: './measurements-chart.component.html',
   styleUrls: ['./measurements-chart.component.scss']
 })
-export class MeasurementsChartComponent {
+export class MeasurementsChartComponent implements OnInit{
 
-  //TODO Need improve objects structure and put in files
-  temperatureMeasures = {
-    data: TestData.days[0].temperatures.map(t => t.value),
-    times: TestData.days[0].times,
-    colors: TestData.days[0].temperatures[0].chartColors
-  }
+  @Input() dataset: {type: string, symbol: string, data: number[], times: string[], colors: ChartColors}
 
-  public lineChartLabels = this.temperatureMeasures.times
-
+  public lineChartLabels: string[]
   public lineChartType: ChartType = 'line';
+  public lineChartOptions: ChartOptions
+  public lineChartData: ChartConfiguration['data']['datasets']
 
-  public lineChartOptions: ChartOptions = {
-    responsive: true,
-    elements: {
-      line: {
-        tension: 0.3
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false
+  constructor() { }
+
+  ngOnInit(): void {
+    let valueSymbol = this.dataset.symbol
+    this.lineChartLabels = this.dataset.times
+    this.lineChartData =
+      [{
+        data: this.dataset.data,
+        backgroundColor: this.dataset.colors.backgroundColor,
+        borderColor: this.dataset.colors.borderColor,
+        pointBorderColor: this.dataset.colors.pointBorderColor,
+        pointBackgroundColor: this.dataset.colors.pointBackgroundColor,
+        fill: true
+      }]
+    this.lineChartOptions = {
+      responsive: true,
+      elements: {
+        line: {
+          tension: 0.3
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: ticksColor,
+            font: {
+              family: "'Roboto', 'sans-serif'",
+              size: 10
+            }
+          }
         },
-        ticks: {
-          color: ticksColor,
-          font: {
-            family: "'Roboto', 'sans-serif'",
-            size: 10
+        y: {
+          grid: {
+            display: true,
+            drawTicks: false,
+            color: gridColor,
+            lineWidth: 1
+          },
+          ticks: {
+            color: ticksColor,
+            font: {
+              family: "'Roboto', 'sans-serif'",
+              size: 10
+            },
+            callback: function(value) {
+              return value + valueSymbol;
+            }
           }
         }
       },
-      y: {
-        grid: {
-          display: true,
-          drawTicks: false,
-          color: gridColor,
-          lineWidth: 1
-        },
-        ticks: {
-          color: ticksColor,
-          font: {
-            family: "'Roboto', 'sans-serif'",
-            size: 10
+      plugins: {
+        tooltip: {
+          displayColors: false,
+          bodyFont: {
+            weight: '600'
           },
-          callback: function(value) {
-            return value + '℃';
-          }
-        }
-      }
-    },
-    plugins: {
-      tooltip: {
-        displayColors: false,
-        bodyFont: {
-          weight: '600'
-        },
-        callbacks: {
-          label: function(tooltipItems) {
-            return 'Temp: ' + tooltipItems.formattedValue + '℃';
-          },
-          title: function(tooltipItems) {
-            return tooltipItems.map(i => tooltipTitlePrefix + i.label );
+          callbacks: {
+            label: function(tooltipItems) {
+              return 'Temp: ' + tooltipItems.formattedValue + ' ' + valueSymbol;
+            },
+            title: function(tooltipItems) {
+              return tooltipItems.map(i => tooltipTitlePrefix + i.label );
+            }
           }
         }
       }
     }
   }
-
-  public lineChartData = [
-    {
-      data: this.temperatureMeasures.data,
-      backgroundColor: this.temperatureMeasures.colors.backgroundColor,
-      borderColor: this.temperatureMeasures.colors.borderColor,
-      pointBorderColor: this.temperatureMeasures.colors.pointBorderColor,
-      pointBackgroundColor: this.temperatureMeasures.colors.pointBackgroundColor,
-      fill: true
-    }
-  ]
-
-  constructor() { }
 
 }
 

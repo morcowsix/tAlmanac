@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DateService} from "../../service/date.service";
 import * as moment from "moment";
 import 'moment/locale/ru'
@@ -7,7 +7,7 @@ import {MeasureDay, Humidity, Pressure, Temperature, Measurement} from "../../mo
 import {MatDialog} from '@angular/material/dialog'
 import {DialogComponent} from "../dialog/dialog.component";
 
-interface Day {
+interface CalendarDay {
   value: moment.Moment
   today: boolean
   disabled: boolean
@@ -17,7 +17,7 @@ interface Day {
 }
 
 interface Week {
-  days: Day[]
+  days: CalendarDay[]
 }
 
 @Component({
@@ -30,15 +30,19 @@ export class CalendarComponent implements OnInit {
   calendar: Week[] = [];
   //TODO This is inject (database) job
   measureDays = TestData.days
+
   constructor(private dateService: DateService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dateService.date.subscribe(this.generate.bind(this))
   }
 
-  openDialog(disabled: boolean) {
-    if (!disabled)
-      this.dialog.open(DialogComponent)
+  openDialog(disabled: boolean, day: CalendarDay) {
+    if (!disabled) {
+      let dialogRef = this.dialog.open(DialogComponent)
+      let instance = dialogRef.componentInstance
+      instance.clickedDay = this.findMeasurementDay(day.value, this.measureDays)!
+    }
   }
 
   generate(now: moment.Moment) {
@@ -76,11 +80,14 @@ export class CalendarComponent implements OnInit {
   }
 
   getAvailableMeasurementsForDate(value: moment.Moment): Measurement[] {
-    const foundMeasureDay = this.measureDays.find(date =>
-      //if the number of measure day and month is not equal to processing calendar day then return undefined
-      date.number === value.date() && date.month === value.format('MMMM') && date.year === value.year()
-    )
+    const foundMeasureDay = this.findMeasurementDay(value, this.measureDays)
     return (foundMeasureDay === undefined) ? [] as Measurement[] : foundMeasureDay.avgMeasures
+  }
+
+  findMeasurementDay(value: moment.Moment, measurementDays: MeasureDay[]): MeasureDay|undefined {
+    return measurementDays.find(date =>
+      //if the number of measure day and month is not equal to processing calendar day then return undefined
+      date.number === value.date() && date.month === value.format('MMMM') && date.year === value.year())
   }
 
   checkInstanceTemperature(object: any) {

@@ -16,7 +16,7 @@
     <tr *ngFor="let week of calendar">
       <td *ngFor="let day of week.days"
           [class.disabled]="day.disabled"
-          (click)="openDialog(day.disabled)"
+          (click)="openDialog(day.disabled, day)"
       >
         <div class="td-container">
           <ul class="date">

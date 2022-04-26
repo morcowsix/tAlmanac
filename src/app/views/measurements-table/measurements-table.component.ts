@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MeasureDay} from "../../model/MeasureDay";
 
 @Component({
   selector: 'app-measurements-table',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./measurements-table.component.scss']
 })
 export class MeasurementsTableComponent implements OnInit {
+
+  @Input() clickedDay: MeasureDay
 
   constructor() { }
 

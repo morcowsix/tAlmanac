@@ -7,6 +7,13 @@
   color: #FFFFFF;
   background-color: var(--background-color);
 
+  .day-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem 0 1.2rem 1rem;
+    text-transform: uppercase;
+  }
+
   .charts-title {
     color: var(--acent-color);
     font-weight: bold;
