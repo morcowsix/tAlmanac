@@ -1,0 +1,312 @@
+[{
+  "number": 18,
+  "month": "апрель",
+  "year": 2022,
+  "temperatures": [
+    {
+      "value": 4,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": -1,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 8,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 15,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 10,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 2,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ],
+  "pressures": [
+    {
+      "value": 636,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": 720,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 790,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 615,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 551,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 722,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ],
+  "humidities": [
+    {
+      "value": 59,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": 65,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 67,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 77,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 60,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 24,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ]
+},
+{
+  "number": 19,
+  "month": "май",
+  "year": 2022,
+  "temperatures": [
+    {
+      "value": 4,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": -1,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 8,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 15,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 10,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 2,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ],
+  "pressures": [
+    {
+      "value": 636,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": 720,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 790,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 615,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 551,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 722,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ],
+  "humidities": [
+    {
+      "value": 59,
+      "time": "03:24",
+      "coordinates": {
+        "latitude": 62.52084968,
+        "longitude": 172.3650415
+      }
+    },
+    {
+      "value": 65,
+      "time": "10:30",
+      "coordinates": {
+        "latitude": 6.466968332,
+        "longitude": -2.84971815
+      }
+    },
+    {
+      "value": 67,
+      "time": "14:40",
+      "coordinates": {
+        "latitude": -42.414464991,
+        "longitude": -124.12068037
+      }
+    },
+    {
+      "value": 77,
+      "time": "15:52",
+      "coordinates": {
+        "latitude": 2.50857943,
+        "longitude": -85.015141761
+      }
+    },
+    {
+      "value": 60,
+      "time": "22:40",
+      "coordinates": {
+        "latitude": 85.48177991,
+        "longitude": 99.177266776
+      }
+    },
+    {
+      "value": 24,
+      "time": "23:59",
+      "coordinates": {
+        "latitude": -8.796422837,
+        "longitude": 164.919311821
+      }
+    }
+  ]
+}
+]
+

@@ -80,14 +80,14 @@ export class Humidity implements Measurement {
   }
 }
 
-export class MeasureDay {
+export class MeasurementDay {
   number: number
   month: string
   year: number
   temperatures: Temperature[];
   pressures: Pressure[];
   humidities: Humidity[];
-  avgMeasures: Measurement[]
+  avgMeasurements: Measurement[]
 
   constructor(number: number, month: string, year: number,
               temperatures: Temperature[], pressures: Pressure[], humidities: Humidity[]) {
@@ -97,7 +97,16 @@ export class MeasureDay {
     this.temperatures = temperatures;
     this.pressures = pressures;
     this.humidities = humidities;
-    this.avgMeasures = [this.deriveAvg(temperatures), this.deriveAvg(pressures), this.deriveAvg(humidities)]
+    this.avgMeasurements = [this.deriveAvg(temperatures), this.deriveAvg(pressures), this.deriveAvg(humidities)]
+  }
+
+  static fromJsonFactory(obj: any): MeasurementDay {
+    return new MeasurementDay(
+      obj.number, obj.month, obj.year,
+      obj.temperatures.map((t: Temperature) => new Temperature(t.value, t.time, t.coordinates)),
+      obj.pressures.map((p: Pressure) => new Pressure(p.value, p.time, p.coordinates)),
+      obj.humidities.map((h: Humidity) => new Humidity(h.value, h.time, h.coordinates))
+    )
   }
 
   getFullDate() {
