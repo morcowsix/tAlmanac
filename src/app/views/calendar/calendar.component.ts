@@ -6,6 +6,7 @@ import {MeasurementDay, Humidity, Pressure, Temperature, Measurement} from "../.
 import {MatDialog} from '@angular/material/dialog'
 import {DialogComponent} from "../dialog/dialog.component";
 import {TestDataJson} from "../../data/TestDataJson";
+import {TestData} from "../../data/TestData";
 
 interface CalendarDay {
   value: moment.Moment
@@ -30,14 +31,14 @@ export class CalendarComponent implements OnInit {
   calendar: Week[] = [];
   //TODO This is inject (database) job
 
-  // measureDays = TestData.generateRandomData(6, 6)
+  // measurementDays = TestData.generateRandomData(6, 6)
   measurementDays = TestDataJson.getDataFromJson()
 
   constructor(private dateService: DateService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dateService.date.subscribe(this.generate.bind(this))
-    console.log(typeof this.measurementDays[0].number)
+    console.log(JSON.stringify(this.measurementDays))
   }
 
   openDialog(disabled: boolean, day: CalendarDay) {
