@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MeasureDay} from "../../model/MeasureDay";
+import {MeasurementDay} from "../../model/MeasurementDay";
 import {ChartDataService} from "../../service/chart-data.service";
 import {ChartDataset} from "../measurements-chart/measurements-chart.component";
 
@@ -12,7 +12,7 @@ import {ChartDataset} from "../measurements-chart/measurements-chart.component";
 })
 export class DialogComponent implements OnInit {
 
-  clickedDay: MeasureDay
+  clickedDay: MeasurementDay
   chartDatasets: ChartDataset[]
 
   constructor(private chartDataService: ChartDataService) { }

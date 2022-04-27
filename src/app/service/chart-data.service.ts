@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MeasureDay} from "../model/MeasureDay";
+import {MeasurementDay} from "../model/MeasurementDay";
 import {ChartDataset} from "../views/measurements-chart/measurements-chart.component";
 
 @Injectable({
@@ -7,7 +7,7 @@ import {ChartDataset} from "../views/measurements-chart/measurements-chart.compo
 })
 export class ChartDataService {
 
-  getChartDatasets(measurementDay: MeasureDay): ChartDataset[] {
+  getChartDatasets(measurementDay: MeasurementDay): ChartDataset[] {
     return [{
       type: measurementDay.temperatures[0].type,
       symbol: measurementDay.temperatures[0].symbol,

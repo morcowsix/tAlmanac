@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Coordinates, MeasureDay} from "../../model/MeasureDay";
+import {Coordinates, MeasurementDay} from "../../model/MeasurementDay";
 import {TableDataService} from "../../service/table-data.service";
 
 export interface TableRawDataset {
@@ -17,7 +17,7 @@ export interface TableRawDataset {
 })
 export class MeasurementsTableComponent implements OnInit {
 
-  @Input() clickedDay: MeasureDay
+  @Input() clickedDay: MeasurementDay
   tableRaws: TableRawDataset[]
 
   constructor(private tableDataService: TableDataService) { }

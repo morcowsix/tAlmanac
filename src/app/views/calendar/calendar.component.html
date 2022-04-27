@@ -29,7 +29,7 @@
               </div>
 
             </li>
-            <li class="measure-container" *ngFor="let measure of day.measures">
+            <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
               <div class="measure-icon" [ngClass]="{
               'measure-icon-temperature': checkInstanceTemperature(measure),
               'measure-icon-pressure': checkInstancePressure(measure),

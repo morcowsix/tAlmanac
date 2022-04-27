@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Coordinates, Humidity, MeasureDay} from "../model/MeasureDay";
+import {Coordinates, Humidity, MeasurementDay} from "../model/MeasurementDay";
 import {TableRawDataset} from "../views/measurements-table/measurements-table.component";
 
 @Injectable({
@@ -7,7 +7,7 @@ import {TableRawDataset} from "../views/measurements-table/measurements-table.co
 })
 export class TableDataService {
 
-  getTableDataSets(measurementDay: MeasureDay): TableRawDataset[] {
+  getTableDataSets(measurementDay: MeasurementDay): TableRawDataset[] {
     let tableRaws: TableRawDataset[] = []
 
     for (let i = 0; i < measurementDay.temperatures.length; i++) {

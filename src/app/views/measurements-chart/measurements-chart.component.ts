@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
-import {ChartColors} from "../../model/MeasureDay";
+import {ChartColors} from "../../model/MeasurementDay";
 
 
 export interface ChartDataset {
