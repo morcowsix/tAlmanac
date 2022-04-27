@@ -37,7 +37,7 @@ export class CalendarComponent implements OnInit {
   constructor(private dateService: DateService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.dateService.date.subscribe(this.generate.bind(this))
+    this.dateService.date.subscribe(this.generateCalendar.bind(this))
     console.log(JSON.stringify(this.measurementDays))
   }
 
@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  generate(now: moment.Moment) {
+  generateCalendar(now: moment.Moment) {
     const startOfMonth = now.clone().startOf('month')
     const startDay = startOfMonth.startOf('week')
     const endDay = now.clone().endOf('month').endOf('week')

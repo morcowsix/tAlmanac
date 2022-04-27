@@ -31,6 +31,7 @@ export class MeasurementsChartComponent implements OnInit{
     const ticksColor: string = '#ADB9D8'
     const gridColor: string = '#4E5677'
     const tooltipTitlePrefix: string = 'Time: '
+    const tooltipDataPrefix: string = this.dataset.type.slice(0, 4) + ': '
     let valueSymbol = this.dataset.symbol
 
     this.lineChartLabels = this.dataset.times
@@ -85,13 +86,17 @@ export class MeasurementsChartComponent implements OnInit{
       },
       plugins: {
         tooltip: {
+          //TODO add tooltip colors to colors of dataset variables
+          backgroundColor:  'rgba(28,35,51,0.95)',
+          titleColor: '#ADB9D8',
+          bodyColor: '#ADB9D8',
           displayColors: false,
           bodyFont: {
             weight: '600'
           },
           callbacks: {
             label: function(tooltipItems) {
-              return 'Temp: ' + tooltipItems.formattedValue + ' ' + valueSymbol;
+              return tooltipDataPrefix + tooltipItems.formattedValue + ' ' + valueSymbol;
             },
             title: function(tooltipItems) {
               return tooltipItems.map(i => tooltipTitlePrefix + i.label );
