@@ -1,9 +1,10 @@
-import {MeasureDay, Humidity, Pressure, Temperature} from "../model/MeasureDay";
+import {MeasurementDay, Humidity, Pressure, Temperature, Coordinates} from "../model/MeasurementDay";
+import moment from "moment";
 
 export class TestData {
 
-  static days: MeasureDay[] = [
-    new MeasureDay(
+  static days: MeasurementDay[] = [
+    new MeasurementDay(
       18,
       'апрель',
       2022,
@@ -32,7 +33,7 @@ export class TestData {
         new Humidity(24, '23:59', {latitude: -8.796422837, longitude: 164.919311821}),
       ] as Humidity[]
     ),
-    new MeasureDay(
+    new MeasurementDay(
       19,
       'май',
       2022,
@@ -43,7 +44,7 @@ export class TestData {
         new Temperature(17, '15:59', {latitude:40.67810521, longitude: 20.527521135}),
         new Temperature(12, '20:22', {latitude:74.086845487, longitude: -125.356701468}),
         new Temperature(-12, '22:31', {latitude:-19.997442946, longitude: -36.62551822})
-      ] as Temperature[],
+      ],
       [
         new Pressure(750, '06:12', {latitude: 67.043669757, longitude: -19.948693374}),
         new Pressure(793, '12:33', {latitude:19.53111973, longitude: 89.802604750}),
@@ -51,7 +52,7 @@ export class TestData {
         new Pressure(681, '15:59', {latitude:40.67810521, longitude: 20.527521135}),
         new Pressure(455, '20:22', {latitude:74.086845487, longitude: -125.356701468}),
         new Pressure(515, '22:31', {latitude:-19.997442946, longitude: -36.62551822}),
-      ] as Pressure[],
+      ],
       [
         new Humidity(34, '06:12', {latitude: 67.043669757, longitude: -19.948693374}),
         new Humidity(30, '12:33', {latitude:19.53111973, longitude: 89.802604750}),
@@ -59,9 +60,60 @@ export class TestData {
         new Humidity(57, '15:59', {latitude:40.67810521, longitude: 20.527521135}),
         new Humidity(11, '20:22', {latitude:74.086845487, longitude: -125.356701468}),
         new Humidity(66, '22:31', {latitude:-19.997442946, longitude: -36.62551822})
-      ] as Humidity[]
+      ]
     ),
   ]
+
+  static generateRandomData(numberRandomDays: number, numberMeasurements: number): MeasurementDay[] {
+    const randomData: MeasurementDay[] = []
+
+    for (let i = 0; i < numberMeasurements; i++) {
+      const temperatures: Temperature[] = []
+      const pressures: Pressure[] = []
+      const humidities: Humidity[] = []
+
+      let minTime = 5
+      let maxTime = 7
+      for (let j = 0; j < numberMeasurements; j++) {
+        const time = this.getRandomTimeInBetween(minTime+=2, maxTime+=2)
+        const coordinates: Coordinates = {
+          latitude: this.getRandomInt(-100.0000, 100.9999),
+          longitude: this.getRandomInt(-100.0000, 100.9999)
+        }
+
+        temperatures.push(new Temperature(this.getRandomInt(0, 30), time, coordinates))
+        pressures.push(new Pressure(this.getRandomInt(600, 750), time, coordinates))
+        humidities.push(new Humidity(this.getRandomInt(30, 80), time, coordinates))
+      }
+
+      randomData.push(
+        new MeasurementDay(
+          this.getRandomInt(1, 30),
+          moment().format('MMMM'),
+          moment().year(),
+          temperatures,
+          pressures,
+          humidities
+        )
+      )
+    }
+
+    return randomData
+  }
+
+  private static getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  private static getRandomTimeInBetween(start: number, end: number): string {
+    const hour = start + Math.random() * (end - start) | 0
+    const date = new Date()
+    date.setHours(hour)
+    date.setMinutes(this.getRandomInt(0, 60))
+    return moment(date).format('HH:mm')
+  }
 }
 
 
