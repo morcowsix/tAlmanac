@@ -1,32 +1,24 @@
 .sidebar-container {
-  margin-right: 2rem;
   display: flex;
   flex-direction: column;
-  height: 864px;
-  width: max-content;
+  //height: 864px;
+  height: 100%;
+  width: 100%;
   padding-bottom: 1.4rem;
   background-color: var(--primary-color);
   border: 1px solid var(--secondary-color);
 
-  .logo-container {
-    background-color: var(--secondary-color);
-    font-size: 2rem;
-
-    .logo {
-      display: block;
-      padding: 1.8rem 5.3rem 1.8rem 1.8rem;
-
-      .second-letter {
-        color: var(--acent-color);
-      }
-    }
+  .unknown-content {
+    //background-color: #ADB9D8;
+    height: 20%;
+    margin: 10% 10% 0 10%;
   }
 
   .sidebar-item {
     display: flex;
     align-items: center;
     font-size: 1.3rem;
-    padding: 1.4rem 0 0 2rem;
+    padding: 1.4rem 5.3rem 0 2rem;
     color: var(--wight-color);
 
     &:hover {

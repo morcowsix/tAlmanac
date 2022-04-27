@@ -1,19 +1,36 @@
-.main-container {
+.page {
   margin: 0 auto;
-  display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100vh;
+  max-width: 1250px;
+  max-height: 100vh;
   background: var(--background-color);
+
+  .header {
+
+  }
+
+  .content {
+    height: calc(100vh*0.90);
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+
+    .sidebar {
+      //width: 20%;
+    }
+
+    .calendar-card {
+      //height: 100%;
+      //min-width: 900px;
+      //max-width: 1000px;
+      //max-height: 864px;
+      background-color: var(--primary-color);
+      color: var(--wight-color);
+      padding: 0 30px 80px 30px;
+      margin: 2% 0 0 2%;
+    }
+  }
+
 }
 
-.calendar-card {
-  width: 100%;
-  height: 100%;
-  max-width: 1000px;
-  max-height: 864px;
-  background-color: var(--primary-color);
-  color: var(--wight-color);
-  box-sizing: border-box;
-  padding: 0 30px 80px 30px;
-}
+

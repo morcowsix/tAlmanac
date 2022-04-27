@@ -1,0 +1,17 @@
+.header-container {
+  margin: 0 auto;
+  background-color: var(--secondary-color);
+
+  .logo-container {
+    font-size: 2rem;
+
+    .logo {
+      display: block;
+      padding: 2% 0 2% 3%;
+
+      .second-letter {
+        color: var(--acent-color);
+      }
+    }
+  }
+}

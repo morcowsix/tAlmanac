@@ -21,6 +21,7 @@ import { MeasurementsTableComponent } from './views/measurements-table/measureme
 import { MeasurementsChartComponent } from './views/measurements-chart/measurements-chart.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { CoordinatesPipe } from './pipes/coordinates.pipe';
+import { HeaderComponent } from './views/header/header.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CoordinatesPipe } from './pipes/coordinates.pipe';
     MeasurementsTableComponent,
     MeasurementsChartComponent,
     SidebarComponent,
-    CoordinatesPipe
+    CoordinatesPipe,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

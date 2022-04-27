@@ -1,10 +1,11 @@
-<div class="main-container">
-  <app-sidebar></app-sidebar>
-  <mat-card class="calendar-card">
-    <app-calendar></app-calendar>
-<!--    <app-measurements-table></app-measurements-table>-->
-<!--    <app-measurements-chart></app-measurements-chart>-->
-  </mat-card>
+<div class="page">
+  <app-header class="header"></app-header>
+  <div class="content">
+    <app-sidebar class="sidebar"></app-sidebar>
+    <mat-card class="calendar-card">
+      <app-calendar></app-calendar>
+    </mat-card>
+  </div>
 </div>
 <router-outlet></router-outlet>
 
