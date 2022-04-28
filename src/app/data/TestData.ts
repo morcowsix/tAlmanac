@@ -67,7 +67,7 @@ export class TestData {
   static generateRandomData(numberRandomDays: number, numberMeasurements: number): MeasurementDay[] {
     const randomData: MeasurementDay[] = []
 
-    for (let i = 0; i < numberMeasurements; i++) {
+    for (let i = 0; i < numberRandomDays; i++) {
       const temperatures: Temperature[] = []
       const pressures: Pressure[] = []
       const humidities: Humidity[] = []
