@@ -1,0 +1,24 @@
+<div class="days-container">
+  <mat-card class="day-item" *ngFor="let day of calendarService.measurementDays | sortDaysAsc">
+    <ul class="date">
+      <li>
+        <div class="date-container">
+          <span>{{day.number}} {{day.month}} {{day.year}}</span>
+        </div>
+      </li>
+      <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
+        <div class="measure-icon" [ngClass]="{
+                'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
+                'measure-icon-pressure': calendarService.checkInstancePressure(measure),
+                'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
+              }"
+        >
+        </div>
+        <div class="measure-text-container">
+          <span class="measure-count">{{measure.value}}</span>
+          <span class="measure-symbol">{{measure.symbol}}</span>
+        </div>
+      </li>
+    </ul>
+  </mat-card>
+</div>
