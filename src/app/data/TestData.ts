@@ -1,5 +1,6 @@
 import {MeasurementDay, Humidity, Pressure, Temperature, Coordinates} from "../model/MeasurementDay";
 import moment from "moment";
+import Base = moment.unitOfTime.Base;
 
 export class TestData {
 
@@ -89,8 +90,8 @@ export class TestData {
       randomData.push(
         new MeasurementDay(
           this.getRandomInt(1, 30),
-          moment().format('MMMM'),
-          moment().year(),
+          this.getRandomMomentInBetween(-1, 1, 'month', 'MMMM'),
+          +this.getRandomMomentInBetween(0, 1, 'year', 'YYYY'),
           temperatures,
           pressures,
           humidities
@@ -113,6 +114,11 @@ export class TestData {
     date.setHours(hour)
     date.setMinutes(this.getRandomInt(0, 60))
     return moment(date).format('HH:mm')
+  }
+
+  private static getRandomMomentInBetween(min: number, max: number, unit: Base,
+                                          format: string): string {
+    return moment().clone().add(this.getRandomInt(min, max), unit).format(format)
   }
 }
 
