@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as moment from "moment";
 import {Humidity, Measurement, MeasurementDay, Pressure, Temperature} from "../model/MeasurementDay";
 import {DateService} from "./date.service";
-import {TestDataJson} from "../data/TestDataJson";
+import {TestData} from "../data/TestData";
 
 export interface CalendarDay {
   value: moment.Moment
@@ -23,8 +23,9 @@ export interface CalendarWeek {
 export class CalendarService {
 
   //TODO This is inject (database) job
-  measurementDays = TestDataJson.getDataFromJson()
-  // measurementDays = TestData.generateRandomData(6, 6)
+
+  // measurementDays: MeasurementDay[] = TestDataJson.getDataFromJson()
+  measurementDays = TestData.generateRandomData(20, 6)
   calendar: CalendarWeek[] = [];
 
   constructor(private dateService: DateService) {
@@ -61,6 +62,11 @@ export class CalendarService {
 
     this.calendar = calendar
   }
+
+  getDaysWithoutWeeks(): CalendarDay[] {
+    return this.calendar.flatMap(w => w.days)
+  }
+
 
   getAvgMeasurementsForDate(value: moment.Moment): Measurement[] {
     const foundMeasureDay = this.findMeasurementDay(value)

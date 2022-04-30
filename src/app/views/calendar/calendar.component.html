@@ -1,52 +1,51 @@
-<app-month-selector></app-month-selector>
-<div class="table-container">
-  <table>
-    <thead>
-    <tr>
-      <th>Пн</th>
-      <th>Вт</th>
-      <th>Ср</th>
-      <th>Чт</th>
-      <th>Пт</th>
-      <th>Сб</th>
-      <th>Вс</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let week of calendar">
-      <td *ngFor="let day of week.days"
-          [class.disabled]="day.disabled"
-          (click)="openDialog(day.disabled, day)"
-      >
-        <div class="td-container">
-          <ul class="date">
-            <li [class.date-selected]="day.selected"
-                [class.date-today]="day.today"
+<div class="calendar-container">
+  <div class="calendar-header">
+    <app-month-selector class="month-selector"></app-month-selector>
+    <div class="only-available-days">
+      <mat-slide-toggle class="only-available-days__toggle"
+                        checked="false"
+                        (change)="changeToggle()"
+      >Только доступные дни
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <ng-template #availableDays>
+    <app-only-available-days></app-only-available-days>
+  </ng-template>
+  <div class="table-grid"
+       *ngIf="!checked; else availableDays"
+  >
+    <div class="table-grid__item" *ngFor="let day of calendarService.getDaysWithoutWeeks()"
+        [class.table-grid__item_disabled]="day.disabled"
+        (click)="openDialog(day.disabled, day)"
+    >
+      <div class="td-container">
+        <ul class="date">
+          <li [class.date-selected]="day.selected"
+              [class.date-today]="day.today"
+          >
+            <div class="date-container">
+              <span [class.date-first-day]="day.monthStart">{{day.value | moment:'DD' }}</span>
+              <span *ngIf="day.monthStart" class="month-first-day">{{day.value | moment: 'MMMM' | titlecase}}</span>
+            </div>
+
+          </li>
+          <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
+            <div class="measure-icon" [ngClass]="{
+            'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
+            'measure-icon-pressure': calendarService.checkInstancePressure(measure),
+            'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
+          }"
             >
-              <div class="date-container">
-                <span [class.date-first-day]="day.monthStart">{{day.value | moment:'DD' }}</span>
-                <span *ngIf="day.monthStart" class="month-first-day">{{day.value | moment: 'MMMM' | titlecase}}</span>
-              </div>
 
-            </li>
-            <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
-              <div class="measure-icon" [ngClass]="{
-              'measure-icon-temperature': checkInstanceTemperature(measure),
-              'measure-icon-pressure': checkInstancePressure(measure),
-              'measure-icon-humidity': checkInstanceHumidity(measure)
-            }"
-              >
-
-              </div>
-              <div class="measure-text-container">
-                <span class="measure-count">{{measure.value}}</span>
-                <span class="measure-symbol">{{measure.symbol}}</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+            </div>
+            <div class="measure-text-container">
+              <span class="measure-count">{{measure.value}}</span>
+              <span class="measure-symbol">{{measure.symbol}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
