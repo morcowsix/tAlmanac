@@ -8,7 +8,7 @@ export interface CalendarDay {
   value: moment.Moment
   today: boolean
   disabled: boolean
-  selected: boolean
+  common: boolean
   avgMeasurements: Measurement[]
   monthStart: boolean
 }
@@ -48,13 +48,13 @@ export class CalendarService {
           .map(() => {
             const value = date.add(1, 'day').clone()
             const today = moment().isSame(value, 'date') && moment().isSame(value, 'month')
-            const selected = !now.isSame(value, 'date')
+            const common = !now.isSame(value, 'date')
             const avgMeasurements = this.getAvgMeasurementsForDate(value)
             const disabled = avgMeasurements.length == 0
             const monthStart = value.date() == 1
 
             return {
-              value, today, disabled, selected, avgMeasurements, monthStart
+              value, today, disabled, common, avgMeasurements, monthStart
             }
           })
       })

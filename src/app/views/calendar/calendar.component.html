@@ -12,40 +12,41 @@
   <ng-template #availableDays>
     <app-only-available-days></app-only-available-days>
   </ng-template>
-  <div class="table-grid"
+  <div class="calendar-grid"
        *ngIf="!checked; else availableDays"
   >
-    <div class="table-grid__item" *ngFor="let day of calendarService.getDaysWithoutWeeks()"
-        [class.table-grid__item_disabled]="day.disabled"
+    <div class="calendar-grid-item" *ngFor="let day of calendarService.getDaysWithoutWeeks()"
+        [class.calendar-grid-item_disabled]="day.disabled"
         (click)="openDialog(day.disabled, day)"
     >
-      <div class="td-container">
-        <ul class="date">
-          <li [class.date-selected]="day.selected"
-              [class.date-today]="day.today"
+      <ul class="calendar-grid-item__content">
+        <li>
+          <div class="date-line"
+               [class.date-line_today]="day.today"
+               [class.date-line_month_start]="day.monthStart"
           >
-            <div class="date-container">
-              <span [class.date-first-day]="day.monthStart">{{day.value | moment:'DD' }}</span>
-              <span *ngIf="day.monthStart" class="month-first-day">{{day.value | moment: 'MMMM' | titlecase}}</span>
-            </div>
-
-          </li>
-          <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
-            <div class="measure-icon" [ngClass]="{
-            'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
-            'measure-icon-pressure': calendarService.checkInstancePressure(measure),
-            'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
+            <span>
+              {{day.value | moment:'DD' }}
+            </span>
+            <span *ngIf="day.monthStart" class="date-line__month">
+              {{day.value | moment: 'MMMM' | titlecase}}
+            </span>
+          </div>
+        </li>
+        <li class="measure-box" *ngFor="let measure of day.avgMeasurements">
+          <div class="measure-box-icon" [ngClass]="{
+          'measure-box-icon_temperature': calendarService.checkInstanceTemperature(measure),
+          'measure-box-icon_pressure': calendarService.checkInstancePressure(measure),
+          'measure-box-icon_humidity': calendarService.checkInstanceHumidity(measure)
           }"
-            >
-
-            </div>
-            <div class="measure-text-container">
-              <span class="measure-count">{{measure.value}}</span>
-              <span class="measure-symbol">{{measure.symbol}}</span>
-            </div>
-          </li>
-        </ul>
-      </div>
+          >
+          </div>
+          <div class="measure-box-text">
+            <span class="measure-box-text__count">{{measure.value}}</span>
+            <span class="measure-box-text__symbol">{{measure.symbol}}</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
