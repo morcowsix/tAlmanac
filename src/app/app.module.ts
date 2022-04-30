@@ -22,6 +22,10 @@ import { MeasurementsChartComponent } from './views/measurements-chart/measureme
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { CoordinatesPipe } from './pipes/coordinates.pipe';
 import { HeaderComponent } from './views/header/header.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { OnlyAvailableDaysComponent } from './views/only-available-days/only-available-days.component';
+import { SortDaysAscendingPipe } from './pipes/sort-days-ascending.pipe';
+import { RussianMonthsDeclensionPipe } from './pipes/russian-months-declension.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,10 @@ import { HeaderComponent } from './views/header/header.component';
     MeasurementsChartComponent,
     SidebarComponent,
     CoordinatesPipe,
-    HeaderComponent
+    HeaderComponent,
+    OnlyAvailableDaysComponent,
+    SortDaysAscendingPipe,
+    RussianMonthsDeclensionPipe
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,8 @@ import { HeaderComponent } from './views/header/header.component';
     MatButtonModule,
     LayoutModule,
     MatDialogModule,
-    NgChartsModule
+    NgChartsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
