@@ -49,7 +49,8 @@ export class MeasurementsChartComponent implements OnInit{
       responsive: true,
       elements: {
         line: {
-          tension: 0.3
+          cubicInterpolationMode: 'monotone',
+          tension: 0.4
         }
       },
       scales: {
