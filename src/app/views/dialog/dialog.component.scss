@@ -6,6 +6,8 @@
   overflow: auto;
   color: #FFFFFF;
   background-color: var(--background-color);
+  scrollbar-color: var(--primary-color) var(--background-color) ;
+  scrollbar-width: thin;
 
   .day-title {
     font-weight: bold;
