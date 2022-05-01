@@ -25,7 +25,7 @@ export class CalendarService {
   //TODO This is inject (database) job
 
   // measurementDays: MeasurementDay[] = TestDataJson.getDataFromJson()
-  measurementDays = TestData.generateRandomData(20, 6)
+  measurementDays = TestData.generateRandomData(45, 15)
   calendar: CalendarWeek[] = [];
 
   constructor(private dateService: DateService) {

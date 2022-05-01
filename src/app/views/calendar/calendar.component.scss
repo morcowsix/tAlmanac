@@ -2,22 +2,27 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-height: 100%;
+  padding: 0 2% 2% 2%;
 
   .calendar-header {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
 
     .month-selector {
       width: 100%;
     }
 
     .only-available-days {
-      margin: 1.5% 3% 0 0;
+      margin: 1.5% 0 0 0;
       font-size: 1.3rem;
       position: absolute;
       top: 0;
       right: 0;
     }
+  }
+  .available-days-grid {
+    background-color: var(--background-color);
+    min-height: 0;
   }
 
   .calendar-grid {
@@ -33,6 +38,7 @@
 
 
     &-item {
+      outline: 1px solid #171717;
       overflow: hidden;
       min-width: 0;
       padding: 0.5rem 0.5rem;

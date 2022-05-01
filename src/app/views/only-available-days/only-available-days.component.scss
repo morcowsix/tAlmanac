@@ -1,21 +1,61 @@
-.days-container {
-  display: flex;
-  height: 90%;
-  align-content: flex-start;
-  justify-content: space-evenly;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+.available-days-box {
+  padding: 0 2% 2% 2%;
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-color: var(--background-color) var(--primary-color);
+  scrollbar-width: thin;
 
-  .day-item {
+  &::-webkit-scrollbar {
+
+    &-track {
+      background: var(--primary-color);
+
+    }
+
+    &-thumb {
+      background: var(--background-color);
+    }
+  }
+
+  .available-days-item {
+    margin-bottom: 2.5%;
+
+    &__title {
+      display: block;
+      font-size: 2rem;
+      font-weight: 500;
+
+      &::first-letter {
+        color: var(--acent-color);
+      }
+
+      &::after {
+        margin: 1% 0 2% 0;
+        content: '';
+        display: block;
+        width: 50%;
+        height: 2px;
+        background-color: var(--wight-color);
+      }
+    }
+  }
+}
+
+.days-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  //background-color: rgba(42, 53, 80, 0.65);
+
+  &-item {
+    //aspect-ratio: 16/14;
+    color: var(--wight-color);
     background-color: var(--secondary-color);
-    width: calc(100%/7);
-    height: calc(100%/6);
     padding: 0.5rem 0.5rem;
-    text-align: start;
-    vertical-align: top;
     transition: all .2s;
-    box-sizing: border-box;
-    overflow: hidden;
 
     &:hover:not(.disabled) {
       background: rgba(16, 255, 0, 0.21);
@@ -24,6 +64,11 @@
 
     .date {
       list-style-type: none;
+
+      .date-container {
+        font-size: 20px;
+        font-weight: 500;
+      }
 
       .date-first-day {
         font-weight: bold;

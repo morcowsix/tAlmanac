@@ -1,24 +1,34 @@
-<div class="days-container">
-  <mat-card class="day-item" *ngFor="let day of calendarService.measurementDays | sortDaysAsc">
-    <ul class="date">
-      <li>
-        <div class="date-container">
-          <span>{{day.number}} {{day.month}} {{day.year}}</span>
-        </div>
-      </li>
-      <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
-        <div class="measure-icon" [ngClass]="{
+<div class="available-days-box">
+  <div class="available-days-item" *ngFor="let month of year">
+    <span class="available-days-item__title">{{month.name | titlecase}}</span>
+    <div class="days-grid">
+      <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc">
+        <ul class="date">
+          <li>
+            <div class="date-container">
+          <span>
+            {{day.number | number:'2.0-0'}}
+            {{day.month | ruMonthDeclension | titlecase}}
+            {{day.year}}
+          </span>
+            </div>
+          </li>
+          <li class="measure-container" *ngFor="let measure of day.avgMeasurements">
+            <div class="measure-icon" [ngClass]="{
                 'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
                 'measure-icon-pressure': calendarService.checkInstancePressure(measure),
                 'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
               }"
-        >
-        </div>
-        <div class="measure-text-container">
-          <span class="measure-count">{{measure.value}}</span>
-          <span class="measure-symbol">{{measure.symbol}}</span>
-        </div>
-      </li>
-    </ul>
-  </mat-card>
+            >
+            </div>
+            <div class="measure-text-container">
+              <span class="measure-count">{{measure.value}}</span>
+              <span class="measure-symbol">{{measure.symbol}}</span>
+            </div>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </div>
 </div>
+
