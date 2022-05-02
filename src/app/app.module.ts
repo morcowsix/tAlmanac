@@ -26,6 +26,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { OnlyAvailableDaysComponent } from './views/only-available-days/only-available-days.component';
 import { SortDaysAscendingPipe } from './pipes/sort-days-ascending.pipe';
 import { RussianMonthsDeclensionPipe } from './pipes/russian-months-declension.pipe';
+import { YearSelectorComponent } from './views/year-selector/year-selector.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RussianMonthsDeclensionPipe } from './pipes/russian-months-declension.p
     HeaderComponent,
     OnlyAvailableDaysComponent,
     SortDaysAscendingPipe,
-    RussianMonthsDeclensionPipe
+    RussianMonthsDeclensionPipe,
+    YearSelectorComponent
   ],
   imports: [
     BrowserModule,

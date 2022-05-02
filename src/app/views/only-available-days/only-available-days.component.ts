@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CalendarService} from "../../service/calendar.service";
 import {MeasurementDay} from "../../model/MeasurementDay";
+import {OnlyAvailableDaysService} from "../../service/only-available-days.service";
 
 //TODO move to model and maybe find better name
 export interface Month {
@@ -8,9 +9,10 @@ export interface Month {
   days: MeasurementDay[]
 }
 
-//TODO move to another place, for instance: model
-const monthsTemplate = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
-  'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+export interface Year {
+  name: string
+  months: Month[]
+}
 
 @Component({
   selector: 'app-only-available-days',
@@ -19,15 +21,12 @@ const monthsTemplate = ['январь', 'февраль', 'март', 'апре�
 })
 export class OnlyAvailableDaysComponent implements OnInit {
 
-  year: Month[] = []
+  currentYear: Month[]
 
-  constructor(public calendarService: CalendarService) { }
-
-  ngOnInit(): void {
-    monthsTemplate.forEach(m => {
-      const month: Month = {name: m, days: (this.calendarService.measurementDays.filter(d => m === d.month))}
-      if (month.days.length > 0) this.year.push(month)
-    })
+  constructor(public calendarService: CalendarService,
+              private availableDaysService: OnlyAvailableDaysService) {
+    availableDaysService.currentYear.subscribe(value => this.currentYear = value.months)
   }
 
+  ngOnInit(): void {}
 }

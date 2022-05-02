@@ -1,6 +1,11 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <app-month-selector class="month-selector"></app-month-selector>
+    <ng-template #yearSelector>
+      <app-year-selector></app-year-selector>
+    </ng-template>
+    <app-month-selector class="month-selector"
+                        *ngIf="checked; else yearSelector"
+    ></app-month-selector>
     <div class="only-available-days">
       <mat-slide-toggle class="only-available-days__toggle"
                         checked="false"

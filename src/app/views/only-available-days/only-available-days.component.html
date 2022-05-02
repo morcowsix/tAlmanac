@@ -1,5 +1,5 @@
 <div class="available-days-box">
-  <div class="available-days-item" *ngFor="let month of year">
+  <div class="available-days-item" *ngFor="let month of currentYear">
     <span class="available-days-item__title">{{month.name | titlecase}}</span>
     <div class="days-grid">
       <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc">
