@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DateService} from "../../service/date.service";
 import 'moment/locale/ru'
 import {MatDialog} from '@angular/material/dialog'
 import {DialogComponent} from "../dialog/dialog.component";
 import {CalendarDay, CalendarService} from "../../service/calendar.service";
-import {MeasurementDay, Temperature} from "../../model/MeasurementDay";
+import {MeasurementDay} from "../../model/MeasurementDay";
 
 @Component({
   selector: 'app-calendar',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AvailableDaysService} from "../../service/available-days.service";
+import {OnlyAvailableDaysService} from "../../service/only-available-days.service";
 
 @Component({
   selector: 'app-year-selector',
@@ -16,7 +16,7 @@ export class YearSelectorComponent implements OnInit {
 
   year: string
 
-  constructor(public availableDaysService: AvailableDaysService) {
+  constructor(public availableDaysService: OnlyAvailableDaysService) {
     availableDaysService.currentYear.subscribe(value => this.year = value.name)
   }
 
