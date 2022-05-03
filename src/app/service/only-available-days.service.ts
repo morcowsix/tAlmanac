@@ -12,18 +12,23 @@ export class OnlyAvailableDaysService {
 
   years: Year[]
   currentYear: BehaviorSubject<Year>
+  currentIndex: BehaviorSubject<number>
 
   constructor(private calendarService: CalendarService) {
     const measurements = this.calendarService.measurementDays
     this.years = this.splitByYears(measurements).sort((a, b) => a.name < b.name ? -1 : 1)
     this.currentYear = new BehaviorSubject<Year>(this.deriveCurrentYear())
+    this.currentIndex = new BehaviorSubject<number>(this.years.indexOf(this.currentYear.value))
   }
 
   changeCurrentYear(direction: number) {
     const newIndex = this.years.indexOf(this.currentYear.value)+direction
 
-    if (newIndex < this.years.length && newIndex >= 0)
+    if (newIndex < this.years.length && newIndex >= 0) {
       this.currentYear.next(this.years[newIndex])
+      this.currentIndex.next(newIndex)
+    }
+
   }
 
   private deriveCurrentYear(): Year {

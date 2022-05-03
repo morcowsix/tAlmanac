@@ -1,7 +1,17 @@
-<div class="selector">
-  <i class="material-icons" (click)="changeYear(-1)">arrow_left</i>
-  <div class="span-container">
-    <span class="year">{{ year }}</span>
+<div class="selector-box">
+  <button mat-icon-button aria-label="left arrow button"
+          (click)="changeYear(-1)"
+          [disabled]="leftPointerEnd"
+  >
+    <mat-icon>arrow_left</mat-icon>
+  </button>
+  <div class="selector-box-title">
+    <span class="selector-box-title__year">{{ year.name }}</span>
   </div>
-  <i class="material-icons" (click)="changeYear(1)">arrow_right</i>
+  <button mat-icon-button aria-label="right arrow button"
+          (click)="changeYear(1)"
+          [disabled]="rightPointerEnd"
+  >
+    <mat-icon>arrow_right</mat-icon>
+  </button>
 </div>

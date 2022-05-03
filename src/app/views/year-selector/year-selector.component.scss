@@ -1,38 +1,33 @@
-.selector {
+.selector-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px;
+  margin: 0.5rem 0;
 
-  .available-year {
-    flex-direction: column;
-    margin: 0 2rem;
-    text-align: center;
-    width: 100px;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 5px;
-  }
-
-  .span-container {
+  &-title {
     display: flex;
     flex-direction: column;
 
-    .year {
+    &__year {
       flex-direction: column;
       margin: 0 2rem;
       text-align: center;
       width: 100px;
-      font-size: 20px;
+      font-size: 1.5rem;
       font-weight: 500;
-      padding: 5px;
     }
 
   }
 
-  i {
-    font-size: 30px;
-    cursor: pointer;
+  button {
+    &:disabled {
+      color: var(--acent-color);
+    }
+
+    mat-icon {
+      font-size: 30px;
+    }
   }
+
 }
 
