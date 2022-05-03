@@ -1,14 +1,4 @@
-export enum Months {
-  January = 'январь',
-  February = 'февраль',
-  March = 'март',
-  April = 'апрель',
-  May = 'май',
-  June = 'июнь',
-  July = 'июль',
-  August = 'август',
-  September = 'сентябрь',
-  October = 'октябрь',
-  November = 'ноябрь',
-  December = 'декабрь'
+export class Months {
+  static orderedList = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
 }

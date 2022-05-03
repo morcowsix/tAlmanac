@@ -4,6 +4,7 @@ import moment from "moment";
 import {MeasurementDay} from "../model/MeasurementDay";
 import {CalendarService} from "./calendar.service";
 import {BehaviorSubject} from "rxjs";
+import {Months} from "../model/Months";
 
 @Injectable({
   providedIn: 'root'
@@ -51,13 +52,9 @@ export class OnlyAvailableDaysService {
   }
 
   private sortMeasurementsByMonth(measurements: ReadonlyArray<MeasurementDay>): Month[] {
-    //TODO move to another place, for instance: model
-    const monthsTemplate = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
-      'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
-
     const year: Month[] = []
 
-    monthsTemplate.forEach(m => {
+    Months.orderedList.forEach(m => {
       const month: Month = {name: m, days: (measurements.filter(d => m === d.month))}
       if (month.days.length > 0) year.push(month)
     })
