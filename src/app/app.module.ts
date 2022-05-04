@@ -27,6 +27,7 @@ import { OnlyAvailableDaysComponent } from './views/only-available-days/only-ava
 import { SortDaysAscendingPipe } from './pipes/sort-days-ascending.pipe';
 import { RussianMonthsDeclensionPipe } from './pipes/russian-months-declension.pipe';
 import { YearSelectorComponent } from './views/year-selector/year-selector.component';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -45,20 +46,21 @@ import { YearSelectorComponent } from './views/year-selector/year-selector.compo
     RussianMonthsDeclensionPipe,
     YearSelectorComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule,
-    MatDialogModule,
-    NgChartsModule,
-    MatSlideToggleModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        LayoutModule,
+        MatDialogModule,
+        NgChartsModule,
+        MatSlideToggleModule,
+        MatDividerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -9,11 +9,6 @@ import {Year} from "../only-available-days/only-available-days.component";
 })
 export class YearSelectorComponent implements OnInit {
 
-  //TODO improve css design:
-  // -css file of component duplicate another css file it's not good
-  // -common style enchants
-  // -fix grid CSS item height (now items of others months have different height, especially - May)
-
   year: Year
   rightPointerEnd: boolean = false
   leftPointerEnd: boolean = false

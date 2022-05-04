@@ -21,11 +21,11 @@ export interface Year {
 })
 export class OnlyAvailableDaysComponent implements OnInit {
 
-  currentYear: Month[]
+  currentYear: Year
 
   constructor(public calendarService: CalendarService,
               private availableDaysService: OnlyAvailableDaysService) {
-    availableDaysService.currentYear.subscribe(value => this.currentYear = value.months)
+    availableDaysService.currentYear.subscribe(value => this.currentYear = value)
   }
 
   ngOnInit(): void {}
