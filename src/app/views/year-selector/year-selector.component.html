@@ -3,7 +3,7 @@
           (click)="changeYear(-1)"
           [disabled]="leftPointerEnd"
   >
-    <mat-icon>arrow_left</mat-icon>
+    <mat-icon inline=true>arrow_left</mat-icon>
   </button>
   <div class="selector-box-title">
     <span class="selector-box-title__year">{{ year.name }}</span>
@@ -12,6 +12,6 @@
           (click)="changeYear(1)"
           [disabled]="rightPointerEnd"
   >
-    <mat-icon>arrow_right</mat-icon>
+    <mat-icon inline=true>arrow_right</mat-icon>
   </button>
 </div>
