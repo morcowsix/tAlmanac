@@ -90,7 +90,7 @@ export class TestData {
       randomData.push(
         new MeasurementDay(
           this.getRandomInt(1, 30),
-          this.getRandomMomentInBetween(-2, 2, 'month', 'MMMM'),
+          this.getRandomMomentInBetween(-6, 6, 'month', 'MMMM'),
           +this.getRandomMomentInBetween(-1, 1, 'year', 'YYYY'),
           temperatures,
           pressures,

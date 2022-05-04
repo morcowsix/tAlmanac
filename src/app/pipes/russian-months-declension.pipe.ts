@@ -9,7 +9,7 @@ export class RussianMonthsDeclensionPipe implements PipeTransform {
     'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
 
   transform(month: string): string {
-    return (month === this.months[2] || month === this.months[8]) ? month+'а' : month.slice(0, -1)+'я'
+    return (month === this.months[2] || month === this.months[7]) ? month+'а' : month.slice(0, -1)+'я'
   }
 
 }
