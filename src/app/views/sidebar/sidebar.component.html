@@ -1,12 +1,21 @@
 <div class="sidebar-container">
   <div class="unknown-content"></div>
-  <div class="sidebar-item">
-    <span class="material-icons">calendar_month</span>
-    <span class="item-title">Calendar</span>
+  <div class="sidebar-item" >
+    <a class="sidebar-item__link" aria-label="calendar link"
+       [routerLink]="['/calendar']"
+       routerLinkActive="active"
+     >
+      <mat-icon class="sidebar-item__icon">calendar_month</mat-icon>
+      <span class="sidebar-item__title">Calendar</span>
+    </a>
   </div>
   <div class="sidebar-item">
-    <span class="material-icons">gps_fixed</span>
-    <span class="item-title">Map</span>
+    <a class="sidebar-item__link" aria-label="map link"
+       routerLinkActive="active"
+       [routerLink]="['/map']"
+    >
+      <mat-icon class="sidebar-item__icon" >gps_fixed</mat-icon>
+      <span class="sidebar-item__title">Map</span>
+    </a>
   </div>
-
 </div>

@@ -6,8 +6,10 @@
     font-size: 2rem;
 
     .logo {
-      display: block;
-      padding: 1.5% 0 1.5% 3%;
+      margin: 1.5% 0 1.5% 3%;
+      color: var(--wight-color);
+      display: inline-block;
+      text-decoration: none;
 
       .second-letter {
         color: var(--acent-color);
