@@ -28,6 +28,8 @@ import { SortDaysAscendingPipe } from './pipes/sort-days-ascending.pipe';
 import { RussianMonthsDeclensionPipe } from './pipes/russian-months-declension.pipe';
 import { YearSelectorComponent } from './views/year-selector/year-selector.component';
 import {MatDividerModule} from "@angular/material/divider";
+import { YaMapComponent } from './views/ya-map/ya-map.component';
+import {AngularYandexMapsModule} from "angular8-yandex-maps";
 
 @NgModule({
   declarations: [
@@ -44,23 +46,25 @@ import {MatDividerModule} from "@angular/material/divider";
     OnlyAvailableDaysComponent,
     SortDaysAscendingPipe,
     RussianMonthsDeclensionPipe,
-    YearSelectorComponent
+    YearSelectorComponent,
+    YaMapComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        LayoutModule,
-        MatDialogModule,
-        NgChartsModule,
-        MatSlideToggleModule,
-        MatDividerModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    MatDialogModule,
+    NgChartsModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    AngularYandexMapsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
