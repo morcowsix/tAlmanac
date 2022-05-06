@@ -12,7 +12,7 @@ export class SortDaysAscendingPipe implements PipeTransform {
 
   transform(days: MeasurementDay[]): MeasurementDay[] {
     const sortingArray: MeasurementDay[] = [];
-    days.forEach(val => sortingArray.push(Object.assign({}, val)))
+    days.forEach(val => sortingArray.push(val))
 
     return sortingArray.sort(
       (a, b): number => {
