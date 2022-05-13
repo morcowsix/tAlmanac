@@ -50,3 +50,10 @@ mat-dialog-container, mat-dialog-content {
     background: var(--light-color);
   }
 }
+
+//yandex map dark mode
+.ymaps-2-1-79-ground-pane {
+  filter: grayscale(100%) brightness(60%) invert(100%);
+  -webkit-filter: grayscale(100%) brightness(60%) invert(100%);
+}
+

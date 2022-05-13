@@ -73,25 +73,30 @@ export class TestData {
       const pressures: Pressure[] = []
       const humidities: Humidity[] = []
 
+      // [[50.61412751351062,99.36913671112116],[53.807963145401345,109.91601171112114]] irk obl
+      const coordinates: Coordinates = this.getRandomCoordinates(
+        50.61412751351062, 53.807963145401345,
+        99.36913671112116, 109.91601171112114
+      )
+
       let minTime = 5
       let maxTime = 7
       for (let j = 0; j < numberMeasurements; j++) {
         const time = this.getRandomTimeInBetween(minTime+=2, maxTime+=2)
-        const coordinates: Coordinates = {
-          latitude: this.getRandomInt(-100.0000, 100.9999),
-          longitude: this.getRandomInt(-100.0000, 100.9999)
-        }
+        let startRange = 0.000000
+        const rangeStep = 0.100000
+        const nearlyRandomCoords = this.getRandomNearlyCoordinates(coordinates, startRange+=rangeStep)
 
-        temperatures.push(new Temperature(this.getRandomInt(0, 30), time, coordinates))
-        pressures.push(new Pressure(this.getRandomInt(600, 750), time, coordinates))
-        humidities.push(new Humidity(this.getRandomInt(30, 80), time, coordinates))
+        temperatures.push(new Temperature(this.getRandomInt(0, 30), time, nearlyRandomCoords))
+        pressures.push(new Pressure(this.getRandomInt(600, 750), time, nearlyRandomCoords))
+        humidities.push(new Humidity(this.getRandomInt(30, 80), time, nearlyRandomCoords))
       }
 
       randomData.push(
         new MeasurementDay(
           this.getRandomInt(1, 30),
-          this.getRandomMomentInBetween(-6, 6, 'month', 'MMMM'),
-          +this.getRandomMomentInBetween(-1, 1, 'year', 'YYYY'),
+          this.getRandomMomentInBetween(0, 1, 'month', 'MMMM'),
+          +this.getRandomMomentInBetween(0, 0, 'year', 'YYYY'),
           temperatures,
           pressures,
           humidities
@@ -108,6 +113,12 @@ export class TestData {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
+  private static getRandomNotRoundInt(min: number, max: number): number {
+    // min = Math.ceil(min);
+    // max = Math.floor(max);
+    return Math.random() * (max - min + 0.00000000000000) + min
+  }
+
   private static getRandomTimeInBetween(start: number, end: number): string {
     const hour = start + Math.random() * (end - start) | 0
     const date = new Date()
@@ -119,6 +130,23 @@ export class TestData {
   private static getRandomMomentInBetween(min: number, max: number, unit: Base,
                                           format: string): string {
     return moment().clone().add(this.getRandomInt(min, max), unit).format(format)
+  }
+
+  private static getRandomCoordinates(latFrom: number, latTo: number, longFrom: number, longTo: number): Coordinates {
+    return {latitude: this.getRandomNotRoundInt(latFrom, latTo), longitude: this.getRandomNotRoundInt(longFrom, longTo)}
+  }
+
+  //52.192880, 105.775862
+  //52.214565, 105.656646
+  //range 0.100000
+  private static getRandomNearlyCoordinates(coordinates: Coordinates, range: number): Coordinates {
+    // console.group(`coords`)
+    // console.log(`basic latitude: ${coordinates.latitude}`)
+    // console.log(`corrected latitude: ${coordinates.latitude-range}`)
+    // console.log(`randomized latitude: ${this.getRandomNotRoundInt(coordinates.latitude-range, coordinates.latitude+range)}`)
+    // console.groupEnd()
+    return this.getRandomCoordinates(coordinates.latitude-range, coordinates.latitude+range,
+      coordinates.longitude-range, coordinates.longitude+range)
   }
 }
 

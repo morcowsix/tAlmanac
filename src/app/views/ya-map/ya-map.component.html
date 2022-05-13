@@ -1,0 +1,40 @@
+<div class="map-container">
+  <ng-lottie class="lottie-loading-spinner"
+             *ngIf="mapIsReady == false"
+             [options]="options"
+             (animationCreated)="animationCreated($event)"
+             (loopComplete)="loopComplete($event)"
+  >
+  </ng-lottie >
+
+<!--  <mat-spinner *ngIf="mapIsReady == false" class="lottie-loading-spinner" color="accent"></mat-spinner>-->
+
+  <div class="map-wrapper"
+
+       [class.map-wrapper__hidden]="!mapIsReady"
+       [class.map-wrapper__visible]="mapIsReady"
+  >
+    <div class="blend-mode-overlay"></div>
+    <ya-map class="ya-map"
+            [center]="[52.07240,105.39563]"
+            [zoom]="8"
+            (ready)="onMapReady($event)"
+    >
+<!--      <ya-clusterer-->
+<!--        *ngFor="let cluster of clusters"-->
+<!--        [options]="clustererOptions">-->
+<!--        <ya-placemark-->
+<!--          *ngFor="let placemark of cluster"-->
+<!--          [geometry]="placemark.geometry"-->
+<!--          [properties]="placemark.properties"-->
+<!--          [options]="placemark.options"-->
+<!--        ></ya-placemark>-->
+<!--      </ya-clusterer>-->
+<!--      <ya-geoobject-->
+<!--        *ngFor="let polyline of polylines"-->
+<!--        [feature]="polyline.feature"-->
+<!--        [options]="polyline.options"-->
+<!--      ></ya-geoobject>-->
+    </ya-map>
+  </div>
+</div>
