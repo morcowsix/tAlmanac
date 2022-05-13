@@ -18,6 +18,12 @@
       color: var(--wight-color);
       margin: 2% 0 0 2%;
       border: 1px solid var(--secondary-color);
+      overflow: hidden;
+
+      position:  relative;
+      height:  calc(100% - 1.4rem);
+      perspective:  1200px;
+      transform-style:  preserve-3d;
     }
   }
 

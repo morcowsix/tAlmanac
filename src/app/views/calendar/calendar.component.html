@@ -4,7 +4,7 @@
       <app-year-selector></app-year-selector>
     </ng-template>
     <app-month-selector class="month-selector"
-                        *ngIf="checked; else yearSelector"
+                        *ngIf="!checked; else yearSelector"
     ></app-month-selector>
     <div class="only-available-days">
       <mat-slide-toggle class="only-available-days__toggle"
@@ -18,7 +18,7 @@
     <app-only-available-days class="available-days-grid"></app-only-available-days>
   </ng-template>
   <div class="calendar-grid"
-       *ngIf="checked; else availableDays"
+       *ngIf="!checked; else availableDays"
   >
     <div class="calendar-grid-item" *ngFor="let day of calendarService.getDaysWithoutWeeks()"
         [class.calendar-grid-item_disabled]="day.disabled"

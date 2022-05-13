@@ -6,8 +6,8 @@ import {MeasurementsTableComponent} from "./views/measurements-table/measurement
 
 const routes: Routes = [
   {path: '', component: MeasurementsTableComponent},
-  {path: 'calendar', component: CalendarComponent},
-  {path: 'map', component: YaMapComponent}
+  {path: 'calendar', component: CalendarComponent, data: {state: 'calendar'}},
+  {path: 'map', component: YaMapComponent, data: {state: 'map'}}
 ]
 
 @NgModule({

@@ -30,6 +30,11 @@ import { YearSelectorComponent } from './views/year-selector/year-selector.compo
 import {MatDividerModule} from "@angular/material/divider";
 import { YaMapComponent } from './views/ya-map/ya-map.component';
 import {AngularYandexMapsModule} from "angular8-yandex-maps";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+export function playerFactory() {return player;}
 
 @NgModule({
   declarations: [
@@ -49,22 +54,24 @@ import {AngularYandexMapsModule} from "angular8-yandex-maps";
     YearSelectorComponent,
     YaMapComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule,
-    MatDialogModule,
-    NgChartsModule,
-    MatSlideToggleModule,
-    MatDividerModule,
-    AngularYandexMapsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        LayoutModule,
+        MatDialogModule,
+        NgChartsModule,
+        MatSlideToggleModule,
+        MatDividerModule,
+        AngularYandexMapsModule,
+        MatProgressSpinnerModule,
+        [LottieModule.forRoot({ player: playerFactory })],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

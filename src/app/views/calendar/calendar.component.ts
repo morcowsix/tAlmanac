@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DateService} from "../../service/date.service";
 import 'moment/locale/ru'
 import {MatDialog} from '@angular/material/dialog'
 import {DialogComponent} from "../dialog/dialog.component";
@@ -12,14 +11,13 @@ import {MeasurementDay} from "../../model/MeasurementDay";
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-
   checked = false;
 
   constructor(public calendarService: CalendarService,
-              private dateService: DateService,
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
   changeToggle() {
