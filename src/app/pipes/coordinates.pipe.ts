@@ -7,8 +7,8 @@ import {Coordinates} from "../model/MeasurementDay";
 export class CoordinatesPipe implements PipeTransform {
 
   transform(coordinates: Coordinates): string {
-    const latitude = coordinates.latitude.toFixed(4)
-    const longitude = coordinates.longitude.toFixed(4)
+    const latitude = coordinates.latitude.toFixed(5)
+    const longitude = coordinates.longitude.toFixed(5)
     return `${latitude}, ${longitude}`;
   }
 

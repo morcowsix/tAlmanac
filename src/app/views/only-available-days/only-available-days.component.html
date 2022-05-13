@@ -7,7 +7,9 @@
       </div>
       <div class="available-days-item-divider"></div>
       <div class="days-grid">
-        <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc">
+        <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc"
+                  (click)="openDialog(day)"
+        >
           <div class="date-container">
                 <span>
                   {{day.number | number:'2.0-0'}}

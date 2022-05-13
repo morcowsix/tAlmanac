@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CalendarService} from "../../service/calendar.service";
 import {MeasurementDay} from "../../model/MeasurementDay";
 import {OnlyAvailableDaysService} from "../../service/only-available-days.service";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 //TODO move to model and maybe find better name
 export interface Month {
@@ -24,9 +26,17 @@ export class OnlyAvailableDaysComponent implements OnInit {
   currentYear: Year
 
   constructor(public calendarService: CalendarService,
-              private availableDaysService: OnlyAvailableDaysService) {
+              private availableDaysService: OnlyAvailableDaysService,
+              private dialog: MatDialog) {
     availableDaysService.currentYear.subscribe(value => this.currentYear = value)
   }
 
   ngOnInit(): void {}
+
+  openDialog(day: MeasurementDay) {
+    let dialogRef = this.dialog.open(DialogComponent)
+    let instance = dialogRef.componentInstance
+    instance.clickedDay = day
+  }
+
 }
