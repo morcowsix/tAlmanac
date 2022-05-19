@@ -1,187 +1,126 @@
-import {ApplicationRef, Component, OnInit} from '@angular/core';
-import {CalendarService} from "../../service/calendar.service";
-import {TableDataService} from "../../service/table-data.service";
-import {TableRawDataset} from "../measurements-table/measurements-table.component";
+import {Component, OnInit} from '@angular/core';
 import {YaReadyEvent} from "angular8-yandex-maps";
-import {AnimationOptions, BMCompleteLoopEvent} from "ngx-lottie";
-import {AnimationItem} from "lottie-web";
-
-interface Placemark {
-  geometry: number[];
-  properties: ymaps.IPlacemarkProperties;
-  options: ymaps.IPlacemarkOptions;
-}
-
-interface GeoObjectConstructor {
-  feature: ymaps.IGeoObjectFeature;
-  options: ymaps.IGeoObjectOptions;
-}
-
-export interface MapDataset {
-  coordinates: number[]
-  date: string
-  time: string
-  balloonContent: string
-  color: string
-}
+import {AnimationOptions} from "ngx-lottie";
+import {YaMapService} from "./ya-map.service";
+import {DayDataset, DayPlacemark, Feature, FeatureCollection, MapDataset} from "./ya-map.model";
 
 @Component({
   selector: 'app-ya-map',
   templateUrl: './ya-map.component.html',
   styleUrls: ['./ya-map.component.scss'],
-  // animations: [
-  //   trigger('rollIn', [
-  //     state('start', style({})),
-  //     state('end', style({})),
-  //     transition('start => end', useAnimation(zoomIn))
-  //   ]),
-  //   // trigger('fadeOut', [transition('* => *', useAnimation(fadeOut))]),
-  // ]
 
 })
 export class YaMapComponent implements OnInit {
-  rollIn: any
-  fadeOut: any
-
-  mapAnimationState = 'start'
-  mapIsReady: boolean = false
-
-  loadingAnimation?: AnimationItem
   map?: ymaps.Map
-  animationComplete: boolean = false
   options: AnimationOptions = {
     path: '/assets/lottie/map_loading_animation.json',
   };
 
-  constructor(private calendarService: CalendarService,
-              private tableDataService: TableDataService,
-              ) { }
+  constructor(private yaMapService: YaMapService) {}
 
   clustererOptions: ymaps.IClustererOptions = {
-    gridSize: 84,
+    gridSize: 24,
     // clusterDisableClickZoom: true,
     // preset: 'islands#greenClusterIcons',
     clusterIconLayout: 'default#pieChart',
-    // Radius of the diagram, in pixels.
     clusterIconPieChartRadius: 25,
-    // The radius of the central part of the layout.
     clusterIconPieChartCoreRadius: 10,
-    // Width of the sector dividing lines and diagram outline.
     clusterIconPieChartStrokeWidth: 3,
   };
 
-  placemarks: Placemark[] = [];
-  datas: MapDataset[][] = []
-  clusters: Placemark[][] = []
-  polylines: GeoObjectConstructor[] = []
-  dataset = this.getCord()
+  objectManagerOptions: ymaps.IObjectManagerOptions = {
+    clusterize: true,
+    gridSize: 1024,
+    maxZoom: 8,
+    clusterDisableClickZoom: true,
+    // clusterIconLayout: 'default#pieChart',
+    showInAlphabeticalOrder: true
+  }
 
+  dayPlacemarks: DayPlacemark[] = []
+  featureCollections: FeatureCollection[] = []
 
   ngOnInit(): void {
-    this.datas.forEach((d) => {
-      d.forEach(dataset => {
-        this.placemarks.push({
-          geometry: dataset.coordinates,
-          properties: {
-            balloonContentHeader: `${dataset.time} ${dataset.date}`,
-            balloonContent: `${dataset.coordinates} <br><br> ${dataset.balloonContent}`,
-            hintContent: `${dataset.time} ${dataset.date}`
-          },
-          options: {
-            preset: 'islands#dotIcon',
-            iconColor: dataset.color
-          }
-        });
-      })
-    });
+    // this.createPlacemarks()
+    // this.getAverageCoordinates()
+    const datasets: MapDataset[][] = this.yaMapService.getCoordinatesForEveryMeasurement()
+    this.featureCollections.concat(this.createGeoObjectCollections(datasets))
   }
 
-  getCord(): MapDataset[] {
-    const data: MapDataset[] = []
+  private createGeoObjectCollections(datasets: MapDataset[][]): FeatureCollection[] {
+    let date: string = ''
+    let color: string = ''
+    const featureCollections: FeatureCollection[] = []
 
-    this.calendarService.measurementDays.forEach(day => {
-      const tableRawDataset: TableRawDataset[] = this.tableDataService.getTableDataSets(day)
-
-      const dayCoordinates: number[][] = []
-      const dayColor = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
-
-      tableRawDataset.forEach(raw => {
-        const coordinates = [raw.coordinates.latitude, raw.coordinates.longitude]
-        const mapDataset: MapDataset = {
-          date: day.getFullDate(),
-          time: raw.time,
-          coordinates: coordinates,
-          balloonContent: `Temperature: ${raw.temperature} <br> Pressure: ${raw.pressure} <br> Humidity: ${raw.humidity} <br>`,
-          color: dayColor
-        }
-
-        data.push(mapDataset)
-        dayCoordinates.push(coordinates)
+    datasets.forEach((d) => {
+      let index: number = 0
+      const features: Feature[] = []
+      d.forEach((dataset) => {
+        features.push(this.createFeature(index++, dataset))
+        date = dataset.date
+        color = dataset.color
       })
 
-      this.datas.push(data)
-      // this.polylines.push(this.createPolyline(dayCoordinates, dayColor))
+      this.featureCollections.push({type: "FeatureCollection", features: features, date: date, color: color})
+    });
+    return featureCollections
+  }
+
+  private createPlacemarks() {
+    const dayDatasets: DayDataset[] = this.yaMapService.separateCoordinatesByDay()
+    dayDatasets.forEach(dayDataset => {
+      this.dayPlacemarks.push( this.createDayPlacemark(dayDataset))
+    })
+  }
+
+  private createDayPlacemark(dayDataset: DayDataset): DayPlacemark {
+    let index: number = 0
+    const features: Feature[] = []
+    dayDataset.timeDatasets.forEach(timeDataset => {
+      features.push(this.createFeature(index++, timeDataset))
     })
 
-    return data
-  }
-
-  private createPolyline(coordinates: number[][], color: string): GeoObjectConstructor {
     return {
-      feature: {
-        geometry: {
-          // The "Polyline" geometry type.
-          type: 'LineString',
-          // Specifying the coordinates of the vertices of the polyline.
-          coordinates: coordinates,
-        },
-        properties: {
-          /**
-           * Describing the properties of the geo object.
-           *  The contents of the balloon.
-           */
-          balloonContent: 'Polyline',
-        },
+      geometry: {type: 'Point', coordinates: dayDataset.coordinates},
+      properties: {
+        balloonContentHeader: `${dayDataset.date}`,
+        balloonContent: `Coordinates: <br> ${dayDataset.coordinates} <br><br> ${dayDataset.balloonContent}`,
+        hintContent: `${dayDataset.time} ${dayDataset.date}`
       },
       options: {
-        /**
-         * Setting options for the geo object. Disabling the close button on a balloon.
-         *
-         */
-        balloonCloseButton: false,
-        // The line color.
-        strokeColor: color,
-        // Line width.
-        strokeWidth: 4,
-        // The transparency coefficient.
-        strokeOpacity: 0.5,
+        preset: 'islands#circleDotIcon',
+        iconColor: dayDataset.color
       },
-    };
+      timePlacemarks: features
+    }
   }
 
-  animationCreated(event: AnimationItem) {
-    // event.playSpeed = 2
-    // event.loop = 3
-    // event.autoplay = false
-
-    this.loadingAnimation = event
-  }
-
-  loopComplete(event: BMCompleteLoopEvent) {
-    // this.animationComplete = true
-    // this.ref.tick()
-    // this.loadingAnimation?.destroy()
+  private createFeature(index: number, dataset: MapDataset): Feature {
+    return {
+      type: "Feature",
+      id: index,
+      geometry: {type: 'Point', coordinates: dataset.coordinates},
+      properties: {
+        balloonContentHeader: `${dataset.time} ${dataset.date}`,
+        balloonContent: `Coordinates: <br> ${dataset.coordinates} <br><br> ${dataset.balloonContent}`,
+        hintContent: `${dataset.time} ${dataset.date}`
+      },
+      options: {
+        preset: 'islands#icon',
+        iconColor: dataset.color
+      }
+    }
   }
 
   onMapReady(event: YaReadyEvent<ymaps.Map>) {
     this.map = event.target
-
-    this.mapIsReady = true
-    this.mapAnimationState = 'end'
   }
 
-  animate() {
-    this.mapAnimationState = this.mapAnimationState === 'end' ? 'start' : 'end'
+  onObjectManagerReady(target : YaReadyEvent<ymaps.ObjectManager>, collection?: FeatureCollection): void {
+    const objectManager = target.target
+    // target.objects.options.set('preset', 'islands#dotIcon');
+    objectManager.clusters.options.set('clusterIconColor', collection?.color)
+    objectManager.add(collection ?? [])
   }
 }
 

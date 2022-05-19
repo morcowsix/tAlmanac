@@ -1,33 +1,30 @@
 <div class="map-container">
   <ng-lottie class="lottie-loading-spinner"
-             *ngIf="mapIsReady == false"
              [options]="options"
-             (animationCreated)="animationCreated($event)"
-             (loopComplete)="loopComplete($event)"
   >
   </ng-lottie >
 
 <!--  <mat-spinner *ngIf="mapIsReady == false" class="lottie-loading-spinner" color="accent"></mat-spinner>-->
 
-  <div class="map-wrapper"
-
-       [class.map-wrapper__hidden]="!mapIsReady"
-       [class.map-wrapper__visible]="mapIsReady"
-  >
+  <div class="map-wrapper">
     <div class="blend-mode-overlay"></div>
     <ya-map class="ya-map"
             [center]="[52.07240,105.39563]"
-            [zoom]="8"
+            [zoom]="7"
             (ready)="onMapReady($event)"
     >
+      <ya-object-manager *ngFor="let collection of featureCollections"
+        [options]="objectManagerOptions"
+        (ready)="onObjectManagerReady($event, collection)"
+      ></ya-object-manager>
 <!--      <ya-clusterer-->
-<!--        *ngFor="let cluster of clusters"-->
 <!--        [options]="clustererOptions">-->
 <!--        <ya-placemark-->
-<!--          *ngFor="let placemark of cluster"-->
+<!--          *ngFor="let placemark of dayPlacemarks"-->
 <!--          [geometry]="placemark.geometry"-->
 <!--          [properties]="placemark.properties"-->
 <!--          [options]="placemark.options"-->
+<!--          (yaclick)="onPlacemarkClick($event, placemark)"-->
 <!--        ></ya-placemark>-->
 <!--      </ya-clusterer>-->
 <!--      <ya-geoobject-->
