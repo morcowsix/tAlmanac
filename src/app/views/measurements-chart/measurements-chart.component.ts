@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
 import {ChartColors} from "../../model/MeasurementDay";
 
-
+//TODO move to model
 export interface ChartDataset {
   type: string,
   symbol: string,

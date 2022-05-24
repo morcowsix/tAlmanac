@@ -8,6 +8,8 @@ import {DateService} from "../../service/date.service";
 })
 export class MonthSelectorComponent {
 
+  //TODO make same right and left arrows pointers as in year selector (mat-icon-button)
+
   constructor(public dateService: DateService) { }
 
   changeMonth(direction: number) {

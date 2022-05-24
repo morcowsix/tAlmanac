@@ -12,6 +12,8 @@ import {ChartDataset} from "../measurements-chart/measurements-chart.component";
 })
 export class DialogComponent implements OnInit {
 
+  //TODO add close dialog button to right top corner
+
   clickedDay: MeasurementDay
   chartDatasets: ChartDataset[]
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Coordinates, MeasurementDay} from "../../model/MeasurementDay";
 import {TableDataService} from "../../service/table-data.service";
 
+//TODO move to model
 export interface TableRawDataset {
   time: string,
   temperature: number,
@@ -9,6 +10,8 @@ export interface TableRawDataset {
   humidity: number,
   coordinates: Coordinates
 }
+
+//TODO make coordinate icon in table clickable and guiding to map component with appropriate coordinates placemark
 
 @Component({
   selector: 'app-measurements-table',
