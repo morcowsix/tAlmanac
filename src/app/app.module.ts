@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import {DecimalPipe} from "@angular/common";
 export function playerFactory() {return player;}
 
 @NgModule({
@@ -72,7 +73,10 @@ export function playerFactory() {return player;}
         MatProgressSpinnerModule,
         [LottieModule.forRoot({ player: playerFactory })],
     ],
-  providers: [],
+  providers: [
+    DecimalPipe,
+    RussianMonthsDeclensionPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
