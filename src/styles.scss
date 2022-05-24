@@ -34,26 +34,55 @@ mat-dialog-container, mat-dialog-content {
   overflow: hidden !important;
 }
 
-/* scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
-
-  &-track {
-    background: var(--background-color);
-  }
-
-  &-thumb {
-    background: var(--primary-color);
-  }
-
-  &-thumb:hover {
-    background: var(--light-color);
-  }
-}
-
 //yandex map dark mode
 .ymaps-2-1-79-ground-pane {
   filter: grayscale(100%) brightness(60%) invert(100%);
   -webkit-filter: grayscale(100%) brightness(60%) invert(100%);
 }
+
+//yandex map balloon style
+.ymaps-2-1-79-balloon {
+  &__layout, &__content {
+    background: #747474 !important;
+    color: #f3f6ff;
+  }
+
+  &__tail::after {
+    background: #747474 !important;
+  }
+
+  .balloon-content-container {
+    .close {
+      position: absolute;
+      right: 5px;
+      top: 1px;
+      text-decoration: none;
+      font-size: 25px;
+      line-height: 20px;
+      color: #f3f6ff;
+      opacity: .5;
+
+      &:hover {
+        opacity: 1
+      }
+    }
+
+    .menu-item {
+      border-radius: 5px 0 0 5px;
+      padding: 5px 5px;
+
+      &:hover:not(&__active) {
+        color: #EC4E6E;
+      }
+
+      &__active {
+        background-color:  #b1b1b3;
+      }
+    }
+  }
+}
+
+
+
+
 

@@ -12,21 +12,27 @@
             [center]="[52.07240,105.39563]"
             [zoom]="7"
             (ready)="onMapReady($event)"
+            (boundschange)="onSizeChange($event)"
     >
-      <ya-object-manager *ngFor="let collection of featureCollections"
+      <ya-object-manager
         [options]="objectManagerOptions"
-        (ready)="onObjectManagerReady($event, collection)"
+        (ready)="onObjectManagerReadyTest($event)"
       ></ya-object-manager>
-<!--      <ya-clusterer-->
-<!--        [options]="clustererOptions">-->
-<!--        <ya-placemark-->
-<!--          *ngFor="let placemark of dayPlacemarks"-->
-<!--          [geometry]="placemark.geometry"-->
-<!--          [properties]="placemark.properties"-->
-<!--          [options]="placemark.options"-->
+      <ya-clusterer
+        [options]="clustererOptions"
+        (ready)="onClustererReady($event)"
+      >
+        <ya-placemark
+          *ngFor="let placemark of dayPlacemarks"
+          [geometry]="placemark.geometry"
+          [properties]="placemark.properties"
+          [options]="placemark.options"
+          (ready)="onPlacemarkReady($event, placemark)"
+
+        >
 <!--          (yaclick)="onPlacemarkClick($event, placemark)"-->
-<!--        ></ya-placemark>-->
-<!--      </ya-clusterer>-->
+        </ya-placemark>
+      </ya-clusterer>
 <!--      <ya-geoobject-->
 <!--        *ngFor="let polyline of polylines"-->
 <!--        [feature]="polyline.feature"-->

@@ -37,8 +37,14 @@ export interface DayDataset extends MapDataset {
 
 export interface MapDataset {
   coordinates: number[]
-  date: string
+  date: Date
   time?: string
   balloonContent: string
   color: string
+}
+
+export interface Date {
+  number: number
+  month: string
+  year: number
 }

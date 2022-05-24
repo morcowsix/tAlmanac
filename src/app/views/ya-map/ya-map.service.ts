@@ -21,11 +21,12 @@ export class YaMapService {
       tableRawDataset.forEach(raw => {
         const coordinates = [raw.coordinates.latitude, raw.coordinates.longitude]
         const mapDataset: MapDataset = {
-          date: day.getFullDate(),
+          date: {number: day.number, month: day.month, year: day.year},
           time: raw.time,
           coordinates: coordinates,
           balloonContent: `Temperature: ${raw.temperature} <br> Pressure: ${raw.pressure} <br> Humidity: ${raw.humidity} <br>`,
           color: dayColor
+          // color: '#2A3550'
         }
 
         dayDataset.push(mapDataset)
@@ -48,7 +49,7 @@ export class YaMapService {
       tableRawDataset.forEach(raw => {
         const coordinates = [raw.coordinates.latitude, raw.coordinates.longitude]
         const dataset: MapDataset = {
-          date: day.getFullDate(),
+          date: {number: day.number, month: day.month, year: day.year},
           time: raw.time,
           coordinates: coordinates,
           balloonContent: `Temperature: ${raw.temperature} <br> Pressure: ${raw.pressure} <br> Humidity: ${raw.humidity} <br>`,
@@ -72,7 +73,7 @@ export class YaMapService {
 
     return {
       timeDatasets: [],
-      date: day.getFullDate(),
+      date: {number: day.number, month: day.month, year: day.year},
       coordinates: avgCoordinates,
       balloonContent: `
                           Avg. Temperature: ${day.avgMeasurements[0].value}
@@ -86,7 +87,7 @@ export class YaMapService {
     }
   }
 
-  private getAverageCoordinates(): MapDataset[][] {
+  public getAverageCoordinates(): MapDataset[][] {
     const datasets: MapDataset[][] = []
     this.calendarService.measurementDays.forEach(day => {
       const dayDataset: MapDataset[] = []
@@ -99,7 +100,7 @@ export class YaMapService {
         .map(value => value/tableRawDataset.length)
 
       const mapDataset: MapDataset = {
-        date: day.getFullDate(),
+        date: {number: day.number, month: day.month, year: day.year},
         coordinates: avgCoordinates,
         balloonContent: `
                           Avg. Temperature: ${day.avgMeasurements[0].value}
