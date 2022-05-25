@@ -2,10 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
-import {Date, DayDataset, DayPlacemark, Feature, FeatureCollection, MapDataset} from "./ya-map.model";
+import {
+  Date,
+  DayPlacemark,
+  DayPlacemarkDataset,
+  Feature,
+  FeatureCollection,
+  TimePlacemarkDataset
+} from "./ya-map.model";
 import {RussianMonthsDeclensionPipe} from "../../pipes/russian-months-declension.pipe";
 import {DecimalPipe} from "@angular/common";
-import Clusterer = ymaps.Clusterer;
+import IGeoObject = ymaps.IGeoObject;
 
 @Component({
   selector: 'app-ya-map',
@@ -14,9 +21,11 @@ import Clusterer = ymaps.Clusterer;
 
 })
 export class YaMapComponent implements OnInit {
-  map?: ymaps.Map
-  objectManagersMap: Map<ymaps.ObjectManager, FeatureCollection> = new Map<ymaps.ObjectManager, FeatureCollection>()
-  objManager: ymaps.ObjectManager
+  mapClusterer?: ymaps.Clusterer
+  previousZoom: number = 7
+  mapZoomOut: boolean = true
+  dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
+  objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
   options: AnimationOptions = {
     path: '/assets/lottie/map_loading_animation.json',
   };
@@ -28,63 +37,34 @@ export class YaMapComponent implements OnInit {
     ) {}
 
   clustererOptions: ymaps.IClustererOptions = {
-    gridSize: 24,
-    // clusterDisableClickZoom: true,
-    // preset: 'islands#greenClusterIcons',
+    gridSize: 48,
     clusterIconLayout: 'default#pieChart',
     clusterIconPieChartRadius: 25,
     clusterIconPieChartCoreRadius: 10,
     clusterIconPieChartStrokeWidth: 3,
-  };
-
-  objectManagerOptions: ymaps.IObjectManagerOptions = {
-    clusterize: true,
-    gridSize: 5024,
-    maxZoom: 8,
-    clusterDisableClickZoom: true,
-    // clusterIconLayout: 'default#pieChart',
-    showInAlphabeticalOrder: true,
-    clusterHideIconOnBalloonOpen: true
+    hasHint: true
   }
 
-  dayPlacemarks: DayPlacemark[] = []
-  featureCollections: FeatureCollection[] = []
+  objectManagerOptions: ymaps.IObjectManagerOptions = {
+    clusterize: false
+  }
+
+  public dayPlacemarks: DayPlacemark[] = []
+  public featureCollections: FeatureCollection[] = []
 
   //TODO move to special service working with date and separate on methods
-  declensionDate = (date: Date): string => {
+  private declensionDate = (date: Date): string => {
     return `${this.decimalPipe.transform(date.number, '2.0-0')}
               ${this.monthDeclensionPipe.transform(date.month)}
               ${date.year}`
   }
 
   ngOnInit(): void {
-    // const datasets: MapDataset[][] = this.yaMapService.getCoordinatesForEveryMeasurement()
-    // this.featureCollections.concat(this.createGeoObjectCollections(datasets))
-
-    const dataset: DayDataset[] = this.yaMapService.separateCoordinatesByDay()
-    this.dayPlacemarks = this.dayPlacemarks.concat(this.createPlacemarks(dataset))
+    const dataset: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
+    this.dayPlacemarks = this.dayPlacemarks.concat(this.createAllGeoObjects(dataset))
   }
 
-  private createGeoObjectCollections(datasets: MapDataset[][]): FeatureCollection[] {
-    let date: string = ''
-    let color: string = ''
-    const featureCollections: FeatureCollection[] = []
-
-    datasets.forEach((d) => {
-      let index: number = 0
-      const features: Feature[] = []
-      d.forEach((dataset) => {
-        features.push(this.createFeature(index++, dataset))
-        date = dataset.date.month
-        color = dataset.color
-      })
-
-      this.featureCollections.push({type: "FeatureCollection", features: features, date: date, color: color})
-    });
-    return featureCollections
-  }
-
-  private createPlacemarks(dayDatasets: DayDataset[]): DayPlacemark[] {
+  private createAllGeoObjects(dayDatasets: DayPlacemarkDataset[]): DayPlacemark[] {
     const dayPlacemarks: DayPlacemark[] = []
     dayDatasets.forEach(dayDataset => {
       dayPlacemarks.push(this.createDayPlacemark(dayDataset))
@@ -92,27 +72,12 @@ export class YaMapComponent implements OnInit {
     return dayPlacemarks
   }
 
-  private createDayPlacemark(dayDataset: DayDataset): DayPlacemark {
-    let index: number = 0
-    const features: Feature[] = []
-    dayDataset.timeDatasets.forEach(timeDataset => {
-      features.push(this.createFeature(index++, timeDataset))
-    })
-
-
+  private createDayPlacemark(dayDataset: DayPlacemarkDataset): DayPlacemark {
     return {
       geometry: {type: 'Point', coordinates: dayDataset.coordinates},
       properties: {
         balloonContentHeader: this.declensionDate(dayDataset.date),
-        balloonContent: `
-                        Coordinates:
-                        <br>
-                        ${dayDataset.coordinates[0].toFixed(5)},
-                        ${dayDataset.coordinates[1].toFixed(5)}
-                        <br>
-                        <br>
-                        ${dayDataset.balloonContent}
-                        `,
+        balloonContent: this.getDayPlacemarkBalloonContent(dayDataset),
         iconCaption: this.declensionDate(dayDataset.date)
       },
       options: {
@@ -122,90 +87,67 @@ export class YaMapComponent implements OnInit {
         balloonPanelMaxMapArea: 0,
         balloonCloseButton: false
       },
-      timePlacemarks: features
+      timePlacemarks: this.createTimePlacemarksFromDataset(dayDataset)
     }
   }
 
-  private createFeature(index: number, dataset: MapDataset): Feature {
+  private createTimePlacemarksFromDataset(dayDataset: DayPlacemarkDataset): Feature[] {
+    let index: number = 0
+    const timePlacemarks: Feature[] = []
+    dayDataset.timeDatasets.forEach(timeDataset => {
+      timePlacemarks.push(this.createTimePlacemark(index++, timeDataset))
+    })
+    return timePlacemarks
+  }
+
+  private getDayPlacemarkBalloonContent(dayDataset: DayPlacemarkDataset): string {
+    return  `
+            Coordinates:
+            <br>
+            ${dayDataset.coordinates[0].toFixed(5)},
+            ${dayDataset.coordinates[1].toFixed(5)}
+            <br>
+            <br>
+            ${dayDataset.balloonContent}
+            `
+  }
+
+  private createTimePlacemark(index: number, timeDataset: TimePlacemarkDataset): Feature {
     return {
       type: "Feature",
       id: index,
-      geometry: {type: 'Point', coordinates: dataset.coordinates},
+      geometry: {type: 'Point', coordinates: timeDataset.coordinates},
       properties: {
-        balloonContentHeader: `${dataset.time} ${this.declensionDate(dataset.date)}`,
-        balloonContent: `
-                        Coordinates:
-                        <br>
-                        ${dataset.coordinates[0].toFixed(5)},
-                        ${dataset.coordinates[1].toFixed(5)}
-                        <br>
-                        <br>
-                        ${dataset.balloonContent}
-                        `,
-        hintContent: `${dataset.time} ${dataset.date}`,
+        balloonContentHeader: `${timeDataset.time} ${this.declensionDate(timeDataset.date)}`,
+        balloonContent: this.getTimePlacemarkBalloonContent(timeDataset),
+        hintContent: `${timeDataset.time} ${this.declensionDate(timeDataset.date)}`,
       },
       options: {
-        preset: 'islands#icon',
-        // preset: 'islands#dotIcon',
-        iconColor: dataset.color,
+        preset: 'islands#dotIcon',
+        iconColor: timeDataset.color,
       }
     }
   }
 
-  onMapReady(event: YaReadyEvent<ymaps.Map>) {
-    this.map = event.target
+  private getTimePlacemarkBalloonContent(dataset: TimePlacemarkDataset): string {
+    return  `
+            Coordinates:
+            <br>
+            ${dataset.coordinates[0].toFixed(5)},
+            ${dataset.coordinates[1].toFixed(5)}
+            <br>
+            <br>
+            ${dataset.balloonContent}
+            `
   }
 
-  onPlacemarkClick({target}: YaEvent<ymaps.Placemark>, placemark: DayPlacemark) {
-    this.objManager.removeAll()
-    this.objManager.add(placemark.timePlacemarks)
-
-    const clusters: Clusterer[] = this.objManager.clusters.getAll().map(object => object as Clusterer)
-    const firstCluster: Clusterer | undefined = clusters.shift()
-    clusters.forEach(cluster => {
-      firstCluster?.add(cluster.getGeoObjects())
-      cluster.removeAll()
-    })
-
-    const objectState = this.objManager.getObjectState(1);
-
-    if (objectState.isClustered) {
-      // Making sure that the specified object has been "selected" in the balloon.
-      this.objManager.clusters.state.set('activeObject', this.objManager.objects.getById(1));
-
-      /**
-       * All the generated clusters have unique identifiers.
-       * This identifier must be passed to the balloon manager to specify
-       * which cluster to show the balloon on.
-       */
-
-      this.objManager.clusters.balloon.open((objectState.cluster as Record<string, any>)['id'])
-    } else {
-      this.objManager.objects.balloon.open(1);
-    }
-
+  public onClustererReady({target}: YaReadyEvent<ymaps.Clusterer>) {
+    this.mapClusterer = target
+    this.setClustersHint(target?.getClusters())
   }
 
-  onObjectManagerReadyTest({target}: YaReadyEvent<ymaps.ObjectManager>) {
-    this.objManager = target
-  }
-
-  onObjectManagerReady(target: YaReadyEvent<ymaps.ObjectManager>, collection: FeatureCollection): void {
-    const objectManager = target.target
-    // target.objects.options.set('preset', 'islands#dotIcon');
-    objectManager.clusters.options.set('clusterIconColor', collection?.color)
-    objectManager.clusters.options.set('hasHint', true)
-
-    objectManager.objects.events.add(['mouseenter', 'mouseleave'],
-        event => this.onObjectEvent(event, objectManager, collection.color ?? '#000'))
-
-    objectManager.add(collection ?? [])
-
-    this.changeClusterHint(collection, objectManager.clusters)
-
-    // this.setHoverColorListener(objectManager.events)
-
-    this.objectManagersMap.set(objectManager, collection)
+  public onObjectManagerReady({target}: YaReadyEvent<ymaps.ObjectManager>, placemark: DayPlacemark): void {
+    this.objectManagersMap.set(target, placemark)
   }
 
   private onObjectEvent(event: ymaps.Event, objectManager: ymaps.ObjectManager, color: string): void {
@@ -231,22 +173,63 @@ export class YaMapComponent implements OnInit {
     target.clusters.options.set('clusterIconColor', collection.color)
   }
 
-  onSizeChange(event: YaEvent<ymaps.Map>) {
-    // this.objectManagersMap.forEach((collection, objectManager) => {
-    //   this.changeClusterHint(collection, objectManager.clusters)
-    // })
-    console.log(`zoom: `, event.target.getZoom())
+  public onSizeChange(event: YaEvent<ymaps.Map>) {
+    const currentZoom: number = event.target.getZoom()
+    if (currentZoom != this.previousZoom) {
+      this.onMapZoomChanged(currentZoom)
+    }
   }
 
-  private changeClusterHint(collection: FeatureCollection, clusters: ymaps.objectManager.ClusterCollection) {
-    clusters.each(cluster => {
-      const assignedCluster = cluster as Feature
-      assignedCluster.properties.hintContent = collection?.date
+  private onMapZoomChanged(currentZoom: number): void {
+    console.log('MapZoomChanged')
+    this.previousZoom = currentZoom
+
+    this.setClustersHint(this.mapClusterer?.getClusters())
+
+    if (currentZoom >= 9 && this.mapZoomOut) {
+      this.changeMapPlacemarksToZoomInState()
+
+    } else if (currentZoom < 9 && !this.mapZoomOut) {
+      this.changeMapPlacemarksToZoomOutState()
+    }
+  }
+
+  private setClustersHint(clusters?: IGeoObject[]): void {
+    clusters?.forEach(cluster => {
+      const clusterObjects = this.sortGeoObjectsByCluster(cluster)
+      const clusterHint: string = this.createClusterHint(clusterObjects)
+      cluster.properties.set('hintContent', clusterHint)
     })
   }
 
-  onClustererReady({target}: YaReadyEvent<ymaps.Clusterer>) {
-    target.options.set('preset', 'islands#stretchyIcon');
+  private sortGeoObjectsByCluster(cluster: IGeoObject<ymaps.IGeometry>): ymaps.IGeoObject<ymaps.IGeometry>[] {
+    const clusterObjects: ymaps.IGeoObject<ymaps.IGeometry>[] = []
+    this.mapClusterer?.getGeoObjects().forEach(value => {
+      const objectState = this.mapClusterer?.getObjectState(value)
+      if (objectState?.cluster === cluster) clusterObjects.push(value)
+    })
+    return clusterObjects
+  }
+
+  private createClusterHint(clusterObjects: ymaps.IGeoObject<ymaps.IGeometry>[]): string {
+    return 'Contains:<br>' + clusterObjects.map(object => object.properties.get('iconCaption')).join('<br>')
+  }
+
+  private changeMapPlacemarksToZoomInState(): void {
+    console.log('MapChangedToZoomInState')
+    this.mapZoomOut = false
+    this.dayPlacemarksMap.forEach((value, key) => {
+      key.options.set('visible', false)
+      this.objectManagersMap.forEach((mark, manager) =>
+        manager.add(mark.timePlacemarks))
+    })
+  }
+
+  private changeMapPlacemarksToZoomOutState(): void {
+    console.log('MapChangedToZoomOutState')
+    this.mapZoomOut = true
+    this.dayPlacemarksMap.forEach((value, key) => key.options.set('visible', true))
+    this.objectManagersMap.forEach((mark, manager) => manager.removeAll())
   }
 
   onPlacemarkReady(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark) {
@@ -337,6 +320,7 @@ export class YaMapComponent implements OnInit {
       });
 
     event.target.options.set('balloonContentLayout', balloonContentLayout)
+    this.dayPlacemarksMap.set(event.target, placemark)
   }
 }
 

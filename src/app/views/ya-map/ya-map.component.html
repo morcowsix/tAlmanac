@@ -4,20 +4,13 @@
   >
   </ng-lottie >
 
-<!--  <mat-spinner *ngIf="mapIsReady == false" class="lottie-loading-spinner" color="accent"></mat-spinner>-->
-
   <div class="map-wrapper">
     <div class="blend-mode-overlay"></div>
     <ya-map class="ya-map"
             [center]="[52.07240,105.39563]"
             [zoom]="7"
-            (ready)="onMapReady($event)"
             (boundschange)="onSizeChange($event)"
     >
-      <ya-object-manager
-        [options]="objectManagerOptions"
-        (ready)="onObjectManagerReadyTest($event)"
-      ></ya-object-manager>
       <ya-clusterer
         [options]="clustererOptions"
         (ready)="onClustererReady($event)"
@@ -28,16 +21,13 @@
           [properties]="placemark.properties"
           [options]="placemark.options"
           (ready)="onPlacemarkReady($event, placemark)"
-
         >
-<!--          (yaclick)="onPlacemarkClick($event, placemark)"-->
+          <ya-object-manager
+            [options]="objectManagerOptions"
+            (ready)="onObjectManagerReady($event, placemark)"
+          ></ya-object-manager>
         </ya-placemark>
       </ya-clusterer>
-<!--      <ya-geoobject-->
-<!--        *ngFor="let polyline of polylines"-->
-<!--        [feature]="polyline.feature"-->
-<!--        [options]="polyline.options"-->
-<!--      ></ya-geoobject>-->
     </ya-map>
   </div>
 </div>

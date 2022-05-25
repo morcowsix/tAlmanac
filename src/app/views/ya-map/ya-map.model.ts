@@ -31,11 +31,11 @@ export interface GeoObjectConstructor {
   options: ymaps.IGeoObjectOptions;
 }
 
-export interface DayDataset extends MapDataset {
-  timeDatasets: MapDataset[]
+export interface DayPlacemarkDataset extends TimePlacemarkDataset {
+  timeDatasets: TimePlacemarkDataset[]
 }
 
-export interface MapDataset {
+export interface TimePlacemarkDataset {
   coordinates: number[]
   date: Date
   time?: string

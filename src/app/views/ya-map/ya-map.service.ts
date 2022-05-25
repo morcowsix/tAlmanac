@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {TableRawDataset} from "../measurements-table/measurements-table.component";
 import {CalendarService} from "../../service/calendar.service";
 import {TableDataService} from "../../service/table-data.service";
-import {DayDataset, MapDataset} from "./ya-map.model";
+import {DayPlacemarkDataset, TimePlacemarkDataset} from "./ya-map.model";
 import {MeasurementDay} from "../../model/MeasurementDay";
 
 @Injectable({
@@ -11,16 +11,16 @@ import {MeasurementDay} from "../../model/MeasurementDay";
 export class YaMapService {
   constructor(private calendarService: CalendarService, private tableDataService: TableDataService) { }
 
-  public getCoordinatesForEveryMeasurement(): MapDataset[][] {
-    const datasets: MapDataset[][] = []
+  public getCoordinatesForEveryMeasurement(): TimePlacemarkDataset[][] {
+    const datasets: TimePlacemarkDataset[][] = []
     this.calendarService.measurementDays.forEach(day => {
-      const dayDataset: MapDataset[] = []
+      const dayDataset: TimePlacemarkDataset[] = []
       const tableRawDataset: TableRawDataset[] = this.tableDataService.getTableDataSets(day)
       const dayColor = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
 
       tableRawDataset.forEach(raw => {
         const coordinates = [raw.coordinates.latitude, raw.coordinates.longitude]
-        const mapDataset: MapDataset = {
+        const mapDataset: TimePlacemarkDataset = {
           date: {number: day.number, month: day.month, year: day.year},
           time: raw.time,
           coordinates: coordinates,
@@ -38,17 +38,17 @@ export class YaMapService {
     return datasets
   }
 
-  public separateCoordinatesByDay(): DayDataset[] {
-    const dayDatasets: DayDataset[] = []
+  public separateCoordinatesByDay(): DayPlacemarkDataset[] {
+    const dayDatasets: DayPlacemarkDataset[] = []
     this.calendarService.measurementDays.forEach(day => {
-      const timeDatasets: MapDataset[] = []
+      const timeDatasets: TimePlacemarkDataset[] = []
       const tableRawDataset: TableRawDataset[] = this.tableDataService.getTableDataSets(day)
       const dayColor = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
-      const dayDataset: Readonly<DayDataset> = this.deriveDayDataset(tableRawDataset, day, dayColor)
+      const dayDataset: Readonly<DayPlacemarkDataset> = this.deriveDayDataset(tableRawDataset, day, dayColor)
 
       tableRawDataset.forEach(raw => {
         const coordinates = [raw.coordinates.latitude, raw.coordinates.longitude]
-        const dataset: MapDataset = {
+        const dataset: TimePlacemarkDataset = {
           date: {number: day.number, month: day.month, year: day.year},
           time: raw.time,
           coordinates: coordinates,
@@ -65,7 +65,7 @@ export class YaMapService {
     return dayDatasets
   }
 
-  private deriveDayDataset(tableRawDataset: TableRawDataset[], day: MeasurementDay, dayColor: string): DayDataset {
+  private deriveDayDataset(tableRawDataset: TableRawDataset[], day: MeasurementDay, dayColor: string): DayPlacemarkDataset {
     const avgCoordinates = tableRawDataset.map(raw => [raw.coordinates.latitude, raw.coordinates.longitude])
       .reduce((previousValue, currentValue) =>
         [previousValue[0]+currentValue[0], previousValue[1]+currentValue[1]])
@@ -87,10 +87,10 @@ export class YaMapService {
     }
   }
 
-  public getAverageCoordinates(): MapDataset[][] {
-    const datasets: MapDataset[][] = []
+  public getAverageCoordinates(): TimePlacemarkDataset[][] {
+    const datasets: TimePlacemarkDataset[][] = []
     this.calendarService.measurementDays.forEach(day => {
-      const dayDataset: MapDataset[] = []
+      const dayDataset: TimePlacemarkDataset[] = []
       const tableRawDataset: TableRawDataset[] = this.tableDataService.getTableDataSets(day)
       const dayColor = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
 
@@ -99,7 +99,7 @@ export class YaMapService {
           [previousValue[0]+currentValue[0], previousValue[1]+currentValue[1]])
         .map(value => value/tableRawDataset.length)
 
-      const mapDataset: MapDataset = {
+      const mapDataset: TimePlacemarkDataset = {
         date: {number: day.number, month: day.month, year: day.year},
         coordinates: avgCoordinates,
         balloonContent: `
