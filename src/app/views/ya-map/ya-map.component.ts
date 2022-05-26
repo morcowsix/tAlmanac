@@ -2,17 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
-import {
-  Date,
-  DayPlacemark,
-  DayPlacemarkDataset,
-  Feature,
-  FeatureCollection,
-  TimePlacemarkDataset
-} from "./ya-map.model";
+import {Date, DayPlacemark, DayPlacemarkDataset, Feature, FeatureCollection, TimePlacemarkDataset} from "./ya-map.model";
 import {RussianMonthsDeclensionPipe} from "../../pipes/russian-months-declension.pipe";
 import {DecimalPipe} from "@angular/common";
 import IGeoObject = ymaps.IGeoObject;
+import balloonHtmlTemplate from "./balloon-templete.html"
+import {CustomCloseButtonManager} from "./CustomCloseButtonManager";
 
 @Component({
   selector: 'app-ya-map',
@@ -21,36 +16,35 @@ import IGeoObject = ymaps.IGeoObject;
 
 })
 export class YaMapComponent implements OnInit {
-  mapClusterer?: ymaps.Clusterer
-  previousZoom: number = 7
-  mapZoomOut: boolean = true
-  dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
-  objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
-  options: AnimationOptions = {
+  public options: AnimationOptions = {
     path: '/assets/lottie/map_loading_animation.json',
   };
-
-  constructor(
-    private yaMapService: YaMapService,
-    private decimalPipe: DecimalPipe,
-    private monthDeclensionPipe: RussianMonthsDeclensionPipe
-    ) {}
-
-  clustererOptions: ymaps.IClustererOptions = {
+  public clustererOptions: ymaps.IClustererOptions = {
     gridSize: 48,
+    maxZoom: 8,
     clusterIconLayout: 'default#pieChart',
     clusterIconPieChartRadius: 25,
     clusterIconPieChartCoreRadius: 10,
     clusterIconPieChartStrokeWidth: 3,
     hasHint: true
   }
-
-  objectManagerOptions: ymaps.IObjectManagerOptions = {
+  public objectManagerOptions: ymaps.IObjectManagerOptions = {
     clusterize: false
   }
-
   public dayPlacemarks: DayPlacemark[] = []
   public featureCollections: FeatureCollection[] = []
+
+  private mapClusterer?: ymaps.Clusterer
+  private previousZoom: number = 7
+  private mapZoomOut: boolean = true
+  private dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
+  private objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
+
+  constructor(
+    private yaMapService: YaMapService,
+    private decimalPipe: DecimalPipe,
+    private monthDeclensionPipe: RussianMonthsDeclensionPipe
+    ) {}
 
   //TODO move to special service working with date and separate on methods
   private declensionDate = (date: Date): string => {
@@ -125,6 +119,7 @@ export class YaMapComponent implements OnInit {
       options: {
         preset: 'islands#dotIcon',
         iconColor: timeDataset.color,
+        // balloonCloseButton: false
       }
     }
   }
@@ -232,6 +227,17 @@ export class YaMapComponent implements OnInit {
     this.objectManagersMap.forEach((mark, manager) => manager.removeAll())
   }
 
+  public onBalloonOpen({target}: YaEvent<ymaps.Map>) {
+    if (CustomCloseButtonManager.balloonCloseElementIsExist()) {
+      CustomCloseButtonManager.changeDefaultCloseButton()
+    }
+    CustomCloseButtonManager.attachCloseButtonEvent(target.balloon)
+  }
+
+  public onBalloonClose() {
+    CustomCloseButtonManager.detachCloseButtonEvent()
+  }
+
   onPlacemarkReady(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark) {
     let picked: number = 0
     const content = (picked: number): string => {
@@ -252,63 +258,18 @@ export class YaMapComponent implements OnInit {
     }
     const formList = (picked: number): string => placemark.timePlacemarks.map(value => pick(value, picked)).join('')
 
-    const balloonHtmlTemplate =
-      '<div class="balloon-content-container" style="\n' +
-      '            display: flex;\n' +
-      '            width: 400px;\n' +
-      '            height: 200px;\n' +
-      '            overflow: hidden;\n' +
-      '            "\n' +
-      '>\n' +
-      '  <a class="close" href="#">&times;</a>' +
-      '  <div class="menu-container" style="\n' +
-      '              width: max-content;' +
-      '              height: 100%;' +
-      '              overflow: auto; ' +
-      '              text-align: left;\n' +
-      // '              border: 1px solid #000;\n' +
-      '              "\n' +
-      '  >\n' +
-      '    <ul id="list" style="\n' +
-      '                list-style-type: none;\n' +
-      // '                margin-left: 10px;\n' +
-      '                padding: 0;\n' +
-      '              "\n' +
-      '    >\n'
-      +
-        formList(picked)
-      +
-      '    </ul>\n' +
-      '  </div>\n' +
-      '  <div id="content" style="\n' +
-      '              padding: 0 10px 10px 10px;\n' +
-      '              width: 60%;\n' +
-      '              flex-grow: 1;\n' +
-      '             "\n' +
-      '  >\n' +
-      // content
-      // +
-      '  </div>\n' +
-      '</div>'
-
     const balloonContentLayout = event.ymaps.templateLayoutFactory.createClass(
       balloonHtmlTemplate, {
         build: function () {
           balloonContentLayout.superclass.build.call(this);
-          $('.balloon-content-container').find('.close')
-            .on('click', this.onCloseClick.bind(this));
+          $('#menu-items-list').html(formList(picked))
+          $('#content-container').html(content(picked));
           $('.menu-item').on('click', this.onMenuItemClick)
-          $('#content').html(content(picked));
         },
 
         clear: function () {
-          $('#counter-button').off('click', this.onMenuItemClick);
+          $('.menu-item').off('click', this.onMenuItemClick);
           balloonContentLayout.superclass.clear.call(this);
-        },
-
-        onCloseClick(e: Event) {
-          e.preventDefault();
-          event.target.balloon.close()
         },
 
         onMenuItemClick: function () {

@@ -10,6 +10,8 @@
             [center]="[52.07240,105.39563]"
             [zoom]="7"
             (boundschange)="onSizeChange($event)"
+            (balloonopen)="onBalloonOpen($event)"
+            (balloonclose)="onBalloonClose()"
     >
       <ya-clusterer
         [options]="clustererOptions"

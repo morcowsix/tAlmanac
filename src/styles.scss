@@ -47,25 +47,26 @@ mat-dialog-container, mat-dialog-content {
     color: #f3f6ff;
   }
 
+  .close-button {
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: 20px;
+    color: #f3f6ff;
+    opacity: .5;
+
+    &:hover {
+      opacity: 1
+    }
+  }
+
   &__tail::after {
     background: #747474 !important;
   }
 
   .balloon-content-container {
-    .close {
-      position: absolute;
-      right: 5px;
-      top: 1px;
-      text-decoration: none;
-      font-size: 25px;
-      line-height: 20px;
-      color: #f3f6ff;
-      opacity: .5;
-
-      &:hover {
-        opacity: 1
-      }
-    }
 
     .menu-item {
       border-radius: 5px 0 0 5px;
