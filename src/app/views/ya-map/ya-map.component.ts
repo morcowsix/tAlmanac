@@ -6,8 +6,8 @@ import {Date, DayPlacemark, DayPlacemarkDataset, Feature, FeatureCollection, Tim
 import {RussianMonthsDeclensionPipe} from "../../pipes/russian-months-declension.pipe";
 import {DecimalPipe} from "@angular/common";
 import IGeoObject = ymaps.IGeoObject;
-import balloonHtmlTemplate from "./balloon-templete.html"
 import {CustomCloseButtonManager} from "./CustomCloseButtonManager";
+import {CustomDayPlacemarkBalloon} from "./CustomDayPlacemarkBalloon";
 
 @Component({
   selector: 'app-ya-map',
@@ -41,21 +41,58 @@ export class YaMapComponent implements OnInit {
   private objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
 
   constructor(
-    private yaMapService: YaMapService,
-    private decimalPipe: DecimalPipe,
-    private monthDeclensionPipe: RussianMonthsDeclensionPipe
+    private readonly yaMapService: YaMapService,
+    private readonly decimalPipe: DecimalPipe,
+    private readonly monthDeclensionPipe: RussianMonthsDeclensionPipe
     ) {}
+
+  public ngOnInit(): void {
+    const dayPlacemarkDatasets: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
+    this.initDayPlacemarksArray(dayPlacemarkDatasets);
+  }
+
+  public onSizeChange(event: YaEvent<ymaps.Map>): void {
+    const currentZoom: number = event.target.getZoom()
+    if (currentZoom != this.previousZoom) {
+      this.ifMapZoomChanged(currentZoom)
+    }
+  }
+
+  public onBalloonOpen({target}: YaEvent<ymaps.Map>): void {
+    if (CustomCloseButtonManager.balloonCloseElementIsExist()) {
+      CustomCloseButtonManager.changeDefaultCloseButton()
+    }
+    CustomCloseButtonManager.attachCloseButtonEvent(target.balloon)
+  }
+
+  public onBalloonClose(): void {
+    CustomCloseButtonManager.detachCloseButtonEvent()
+  }
+
+  public onClustererReady({target}: YaReadyEvent<ymaps.Clusterer>): void {
+    this.mapClusterer = target
+    this.setClustersHint(target?.getClusters())
+  }
+
+  public onPlacemarkReady(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark): void {
+    const customBalloonFactory = new CustomDayPlacemarkBalloon(event, placemark)
+    event.target.options.set('balloonContentLayout', customBalloonFactory.create())
+    this.dayPlacemarksMap.set(event.target, placemark)
+  }
+
+  public onObjectManagerReady({target}: YaReadyEvent<ymaps.ObjectManager>, placemark: DayPlacemark): void {
+    this.objectManagersMap.set(target, placemark)
+  }
+
+  private initDayPlacemarksArray(dataset: DayPlacemarkDataset[]) {
+    this.dayPlacemarks = this.dayPlacemarks.concat(this.createAllGeoObjects(dataset))
+  }
 
   //TODO move to special service working with date and separate on methods
   private declensionDate = (date: Date): string => {
     return `${this.decimalPipe.transform(date.number, '2.0-0')}
               ${this.monthDeclensionPipe.transform(date.month)}
               ${date.year}`
-  }
-
-  ngOnInit(): void {
-    const dataset: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
-    this.dayPlacemarks = this.dayPlacemarks.concat(this.createAllGeoObjects(dataset))
   }
 
   private createAllGeoObjects(dayDatasets: DayPlacemarkDataset[]): DayPlacemark[] {
@@ -136,49 +173,8 @@ export class YaMapComponent implements OnInit {
             `
   }
 
-  public onClustererReady({target}: YaReadyEvent<ymaps.Clusterer>) {
-    this.mapClusterer = target
-    this.setClustersHint(target?.getClusters())
-  }
-
-  public onObjectManagerReady({target}: YaReadyEvent<ymaps.ObjectManager>, placemark: DayPlacemark): void {
-    this.objectManagersMap.set(target, placemark)
-  }
-
-  private onObjectEvent(event: ymaps.Event, objectManager: ymaps.ObjectManager, color: string): void {
-    const objectId = event?.get('objectId');
-
-    if (event?.get('type') === 'mouseenter') {
-      // The setObjectOptions method allows you to set object options "on the fly".
-      objectManager.objects.setObjectOptions(objectId, {
-        iconColor: '#EC4E6E',
-      });
-    } else {
-      objectManager.objects.setObjectOptions(objectId, {
-        iconColor: color,
-      });
-    }
-  }
-
-  onMouseHover({target} : YaReadyEvent<ymaps.ObjectManager>): void {
-    target.clusters.options.set('clusterIconColor', '#EC4E6E')
-  }
-
-  onMouseLeave({target} : YaReadyEvent<ymaps.ObjectManager>, collection: FeatureCollection): void {
-    target.clusters.options.set('clusterIconColor', collection.color)
-  }
-
-  public onSizeChange(event: YaEvent<ymaps.Map>) {
-    const currentZoom: number = event.target.getZoom()
-    if (currentZoom != this.previousZoom) {
-      this.onMapZoomChanged(currentZoom)
-    }
-  }
-
-  private onMapZoomChanged(currentZoom: number): void {
-    console.log('MapZoomChanged')
+  private ifMapZoomChanged(currentZoom: number): void {
     this.previousZoom = currentZoom
-
     this.setClustersHint(this.mapClusterer?.getClusters())
 
     if (currentZoom >= 9 && this.mapZoomOut) {
@@ -225,63 +221,6 @@ export class YaMapComponent implements OnInit {
     this.mapZoomOut = true
     this.dayPlacemarksMap.forEach((value, key) => key.options.set('visible', true))
     this.objectManagersMap.forEach((mark, manager) => manager.removeAll())
-  }
-
-  public onBalloonOpen({target}: YaEvent<ymaps.Map>) {
-    if (CustomCloseButtonManager.balloonCloseElementIsExist()) {
-      CustomCloseButtonManager.changeDefaultCloseButton()
-    }
-    CustomCloseButtonManager.attachCloseButtonEvent(target.balloon)
-  }
-
-  public onBalloonClose() {
-    CustomCloseButtonManager.detachCloseButtonEvent()
-  }
-
-  onPlacemarkReady(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark) {
-    let picked: number = 0
-    const content = (picked: number): string => {
-      const properties = placemark.timePlacemarks[picked].properties
-      return `<h2>${properties.balloonContentHeader ?? ''}</h2> <span>${properties.balloonContent ?? ''}</span>`
-    }
-    const pick = (value: Feature, picked: number): string => {
-      const index: number = placemark.timePlacemarks.indexOf(value)
-      if (index != picked) {
-        return `<li class="menu-item" id="${index}" style="cursor: pointer;">
-                  ${value.properties.balloonContentHeader}
-                </li>`
-      } else {
-        return `<li class="menu-item menu-item__active" id="${index}" style="cursor: pointer;">
-                  ${value.properties.balloonContentHeader}
-                </li>`
-      }
-    }
-    const formList = (picked: number): string => placemark.timePlacemarks.map(value => pick(value, picked)).join('')
-
-    const balloonContentLayout = event.ymaps.templateLayoutFactory.createClass(
-      balloonHtmlTemplate, {
-        build: function () {
-          balloonContentLayout.superclass.build.call(this);
-          $('#menu-items-list').html(formList(picked))
-          $('#content-container').html(content(picked));
-          $('.menu-item').on('click', this.onMenuItemClick)
-        },
-
-        clear: function () {
-          $('.menu-item').off('click', this.onMenuItemClick);
-          balloonContentLayout.superclass.clear.call(this);
-        },
-
-        onMenuItemClick: function () {
-          $('.menu-item').removeClass('menu-item__active')
-          $(this).addClass('menu-item__active')
-          picked = Number($(this).attr('id'))
-          $('#content').html(content(picked));
-        }
-      });
-
-    event.target.options.set('balloonContentLayout', balloonContentLayout)
-    this.dayPlacemarksMap.set(event.target, placemark)
   }
 }
 
