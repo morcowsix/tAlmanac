@@ -2,23 +2,24 @@ import {Component, OnInit} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
-import {Date, DayPlacemark, DayPlacemarkDataset, Feature, FeatureCollection, TimePlacemarkDataset} from "./ya-map.model";
-import {RussianMonthsDeclensionPipe} from "../../pipes/russian-months-declension.pipe";
-import {DecimalPipe} from "@angular/common";
+import {DayPlacemark, DayPlacemarkDataset, Feature, FeatureCollection, TimePlacemarkDataset} from "./ya-map.model";
 import IGeoObject = ymaps.IGeoObject;
 import {CustomCloseButtonManager} from "./CustomCloseButtonManager";
 import {CustomDayPlacemarkBalloon} from "./CustomDayPlacemarkBalloon";
+import {DateService} from "../../service/date.service";
+
+type MapState = 'zoomIn' | 'zoomOut'
 
 @Component({
   selector: 'app-ya-map',
   templateUrl: './ya-map.component.html',
-  styleUrls: ['./ya-map.component.scss'],
-
+  styleUrls: ['./ya-map.component.scss']
 })
+
 export class YaMapComponent implements OnInit {
   public options: AnimationOptions = {
-    path: '/assets/lottie/map_loading_animation.json',
-  };
+    path: '/assets/lottie/map_loading_animation.json'
+  }
   public clustererOptions: ymaps.IClustererOptions = {
     gridSize: 48,
     maxZoom: 8,
@@ -34,17 +35,15 @@ export class YaMapComponent implements OnInit {
   public dayPlacemarks: DayPlacemark[] = []
   public featureCollections: FeatureCollection[] = []
 
-  private mapClusterer?: ymaps.Clusterer
+  private mapClusterer?: ymaps.Clusterer = undefined
   private previousZoom: number = 7
-  private mapZoomOut: boolean = true
+  private mapState: MapState = "zoomOut"
   private dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
   private objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
+  private dayPlacemarkBalloonFactory = new CustomDayPlacemarkBalloon()
 
-  constructor(
-    private readonly yaMapService: YaMapService,
-    private readonly decimalPipe: DecimalPipe,
-    private readonly monthDeclensionPipe: RussianMonthsDeclensionPipe
-    ) {}
+  constructor(private readonly yaMapService: YaMapService,
+              private readonly dateService: DateService) {}
 
   public ngOnInit(): void {
     const dayPlacemarkDatasets: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
@@ -75,8 +74,7 @@ export class YaMapComponent implements OnInit {
   }
 
   public onPlacemarkReady(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark): void {
-    const customBalloonFactory = new CustomDayPlacemarkBalloon(event, placemark)
-    event.target.options.set('balloonContentLayout', customBalloonFactory.create())
+    this.setDayPlacemarkBalloonLayout(event, placemark)
     this.dayPlacemarksMap.set(event.target, placemark)
   }
 
@@ -84,15 +82,13 @@ export class YaMapComponent implements OnInit {
     this.objectManagersMap.set(target, placemark)
   }
 
-  private initDayPlacemarksArray(dataset: DayPlacemarkDataset[]) {
+  private initDayPlacemarksArray(dataset: DayPlacemarkDataset[]): void {
     this.dayPlacemarks = this.dayPlacemarks.concat(this.createAllGeoObjects(dataset))
   }
 
-  //TODO move to special service working with date and separate on methods
-  private declensionDate = (date: Date): string => {
-    return `${this.decimalPipe.transform(date.number, '2.0-0')}
-              ${this.monthDeclensionPipe.transform(date.month)}
-              ${date.year}`
+  private setDayPlacemarkBalloonLayout(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark): void {
+    const balloonContentLayout = this.dayPlacemarkBalloonFactory.create(event, placemark)
+    event.target.options.set('balloonContentLayout', balloonContentLayout)
   }
 
   private createAllGeoObjects(dayDatasets: DayPlacemarkDataset[]): DayPlacemark[] {
@@ -107,9 +103,9 @@ export class YaMapComponent implements OnInit {
     return {
       geometry: {type: 'Point', coordinates: dayDataset.coordinates},
       properties: {
-        balloonContentHeader: this.declensionDate(dayDataset.date),
+        balloonContentHeader: this.dateService.declensionDate(dayDataset.date),
         balloonContent: this.getDayPlacemarkBalloonContent(dayDataset),
-        iconCaption: this.declensionDate(dayDataset.date)
+        iconCaption: this.dateService.declensionDate(dayDataset.date)
       },
       options: {
         preset: 'islands#circleDotIcon',
@@ -149,14 +145,13 @@ export class YaMapComponent implements OnInit {
       id: index,
       geometry: {type: 'Point', coordinates: timeDataset.coordinates},
       properties: {
-        balloonContentHeader: `${timeDataset.time} ${this.declensionDate(timeDataset.date)}`,
+        balloonContentHeader: `${timeDataset.time} ${this.dateService.declensionDate(timeDataset.date)}`,
         balloonContent: this.getTimePlacemarkBalloonContent(timeDataset),
-        hintContent: `${timeDataset.time} ${this.declensionDate(timeDataset.date)}`,
+        hintContent: `${timeDataset.time} ${this.dateService.declensionDate(timeDataset.date)}`,
       },
       options: {
         preset: 'islands#dotIcon',
         iconColor: timeDataset.color,
-        // balloonCloseButton: false
       }
     }
   }
@@ -177,10 +172,10 @@ export class YaMapComponent implements OnInit {
     this.previousZoom = currentZoom
     this.setClustersHint(this.mapClusterer?.getClusters())
 
-    if (currentZoom >= 9 && this.mapZoomOut) {
+    if (currentZoom >= 9 && this.mapState == 'zoomOut') {
       this.changeMapPlacemarksToZoomInState()
 
-    } else if (currentZoom < 9 && !this.mapZoomOut) {
+    } else if (currentZoom < 9 && this.mapState == 'zoomIn') {
       this.changeMapPlacemarksToZoomOutState()
     }
   }
@@ -207,8 +202,7 @@ export class YaMapComponent implements OnInit {
   }
 
   private changeMapPlacemarksToZoomInState(): void {
-    console.log('MapChangedToZoomInState')
-    this.mapZoomOut = false
+    this.mapState = 'zoomIn'
     this.dayPlacemarksMap.forEach((value, key) => {
       key.options.set('visible', false)
       this.objectManagersMap.forEach((mark, manager) =>
@@ -217,8 +211,7 @@ export class YaMapComponent implements OnInit {
   }
 
   private changeMapPlacemarksToZoomOutState(): void {
-    console.log('MapChangedToZoomOutState')
-    this.mapZoomOut = true
+    this.mapState = 'zoomOut'
     this.dayPlacemarksMap.forEach((value, key) => key.options.set('visible', true))
     this.objectManagersMap.forEach((mark, manager) => manager.removeAll())
   }

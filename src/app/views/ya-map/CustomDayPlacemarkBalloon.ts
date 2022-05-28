@@ -12,11 +12,13 @@ export class CustomDayPlacemarkBalloon {
 
   private pickedMenuItem: number = 0
   private balloonContentLayout: ymaps.IClassConstructor<any>
+  private placemark: DayPlacemark
 
-  constructor(private event: YaReadyEvent<ymaps.Placemark>, private placemark: DayPlacemark) {}
+  constructor() {}
 
-  public create(): ymaps.IClassConstructor<any> {
-    this.balloonContentLayout = this.event.ymaps.templateLayoutFactory.createClass(
+  public create(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark): ymaps.IClassConstructor<any> {
+    this.placemark = placemark
+    this.balloonContentLayout = event.ymaps.templateLayoutFactory.createClass(
       balloonHtmlTemplate, this.getOverridesFunctions()
     )
     return this.balloonContentLayout
@@ -27,37 +29,47 @@ export class CustomDayPlacemarkBalloon {
     return this.getContentContainerHtmlTemplate(properties);
   }
 
-  private getMenuItem(timePlacemark: Feature): string {
-    const timePlacemarkIndex: number = this.placemark.timePlacemarks.indexOf(timePlacemark)
-    const balloonContentHeader: string = timePlacemark.properties.balloonContentHeader ?? ''
-    return this.getMenuItemHtmlTemplate(timePlacemarkIndex, this.pickedMenuItem, balloonContentHeader);
-  }
-
   private getMenuItemList(): string {
     return this.placemark.timePlacemarks.map(timePlacemark => this.getMenuItem(timePlacemark)).join('')
   }
 
+  private getMenuItem(timePlacemark: Feature): string {
+    const timePlacemarkIndex: number = this.placemark.timePlacemarks.indexOf(timePlacemark)
+    const balloonContentHeader: string = timePlacemark.properties.balloonContentHeader ?? ''
+    return this.getMenuItemHtmlTemplate(timePlacemarkIndex, balloonContentHeader);
+  }
+
+  private getMenuItemHtmlTemplate (timePlacemarkIndex: number, balloonContentHeader: string): string {
+    return `<li class="menu-item" id="${timePlacemarkIndex}" style="cursor: pointer;">
+                ${balloonContentHeader}
+              </li>`
+  }
+
+  private getContentContainerHtmlTemplate(properties: ymaps.IPlacemarkProperties): string {
+    return `<h2>${properties.balloonContentHeader ?? ''}</h2> <span>${properties.balloonContent ?? ''}</span>`
+  }
+
   private getOverridesFunctions(): OverridesFunctions {
-    const self = this
+    const context = this
 
     return {
       build: function () {
-        self.balloonContentLayout.superclass.build.call(this);
-        self.setMenuItemsListContent()
-        self.setContentContainerContent()
-        self.addClickEventListenerToMenuItem(this.onMenuItemClick)
-        self.activateFirstItem()
+        context.balloonContentLayout.superclass.build.call(this);
+        context.setMenuItemsListContent()
+        context.setContentContainerContent()
+        context.addClickEventListenerToMenuItem(this.onMenuItemClick)
+        context.activateFirstItem()
       },
 
       clear: function () {
-        self.removeClickEventListenerFromMenuItem(this.onMenuItemClick)
-        self.balloonContentLayout.superclass.clear.call(this);
+        context.removeClickEventListenerFromMenuItem(this.onMenuItemClick)
+        context.balloonContentLayout.superclass.clear.call(this);
       },
 
       onMenuItemClick: function (e: JQuery.TriggeredEvent) {
         const clickedElement: JQuery<HTMLElement> = $(e.target)
-        self.setPickedMenuItemByClickedElementId(clickedElement)
-        self.activatePickedItem(clickedElement)
+        context.setPickedMenuItemByClickedElementId(clickedElement)
+        context.activatePickedItem(clickedElement)
       }
     }
   }
@@ -93,23 +105,6 @@ export class CustomDayPlacemarkBalloon {
     $('.menu-item').removeClass('menu-item__active')
     clickedElement.addClass('menu-item__active')
     this.setContentContainerContent()
-  }
-
-  //TODO move selection logic to jquery methods
-  private getMenuItemHtmlTemplate (timePlacemarkIndex: number, pickedMenuItem: number, balloonContentHeader: string): string {
-    if (timePlacemarkIndex != pickedMenuItem) {
-      return `<li class="menu-item" id="${timePlacemarkIndex}" style="cursor: pointer;">
-                  ${balloonContentHeader}
-                </li>`
-    } else {
-      return `<li class="menu-item menu-item__active" id="${timePlacemarkIndex}" style="cursor: pointer;">
-                  ${balloonContentHeader}
-                </li>`
-    }
-  }
-
-  private getContentContainerHtmlTemplate(properties: ymaps.IPlacemarkProperties): string {
-    return `<h2>${properties.balloonContentHeader ?? ''}</h2> <span>${properties.balloonContent ?? ''}</span>`
   }
 
 }
