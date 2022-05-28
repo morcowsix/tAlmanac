@@ -5,10 +5,10 @@ import {BehaviorSubject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class DateService {
-  public date: BehaviorSubject<moment.Moment> = new BehaviorSubject(moment())
+export class MonthSelectorService {
+  public readonly date: BehaviorSubject<moment.Moment> = new BehaviorSubject(moment())
 
-  changeMonth(direction: number) {
+  public changeMonth(direction: number): void {
     const value = this.date.value.add(direction, 'month')
     this.date.next(value)
   }

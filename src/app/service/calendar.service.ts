@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as moment from "moment";
 import {Humidity, Measurement, MeasurementDay, Pressure, Temperature} from "../model/MeasurementDay";
-import {DateService} from "./date.service";
+import {MonthSelectorService} from "./month-selector.service";
 import {TestData} from "../data/TestData";
 
 export interface CalendarDay {
@@ -25,10 +25,10 @@ export class CalendarService {
   //TODO This is inject (database) job
 
   // measurementDays: Readonly<MeasurementDay[]> = TestDataJson.getDataFromJson()
-  measurementDays: Readonly<MeasurementDay[]> = TestData.generateRandomData(100, 10)
+  measurementDays: Readonly<MeasurementDay[]> = TestData.generateRandomData(30, 10)
   calendar: CalendarWeek[] = [];
 
-  constructor(private dateService: DateService) {
+  constructor(private dateService: MonthSelectorService) {
     this.dateService.date.subscribe(this.generateCalendar.bind(this))
   }
 

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DateService} from "../../service/date.service";
+import {MonthSelectorService} from "../../service/month-selector.service";
 
 @Component({
   selector: 'app-month-selector',
@@ -10,7 +10,7 @@ export class MonthSelectorComponent {
 
   //TODO make same right and left arrows pointers as in year selector (mat-icon-button)
 
-  constructor(public dateService: DateService) { }
+  constructor(public dateService: MonthSelectorService) { }
 
   changeMonth(direction: number) {
     this.dateService.changeMonth(direction)
