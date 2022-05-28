@@ -1,3 +1,5 @@
+import {Date} from "../../service/date.service";
+
 export interface FeatureCollection {
   type: string
   features: Feature[]
@@ -41,10 +43,4 @@ export interface TimePlacemarkDataset {
   time?: string
   balloonContent: string
   color: string
-}
-
-export interface Date {
-  number: number
-  month: string
-  year: number
 }
