@@ -1,8 +1,12 @@
-<div class="selector">
-  <i class="material-icons" (click)="changeMonth(-1)">arrow_left</i>
+<div class="selector-container">
+  <button mat-icon-button aria-label="left arrow button" (click)="changeMonth(-1)">
+    <mat-icon inline=true>arrow_left</mat-icon>
+  </button>
   <div class="span-container">
     <span class="month">{{ dateService.date | async | moment | titlecase }}</span>
     <span class="year">{{ dateService.date | async | moment: 'YYYY'}}</span>
   </div>
-  <i class="material-icons" (click)="changeMonth(1)">arrow_right</i>
+  <button mat-icon-button aria-label="right arrow button" (click)="changeMonth(1)">
+    <mat-icon inline=true>arrow_right</mat-icon>
+  </button>
 </div>

@@ -1,4 +1,4 @@
-.selector {
+.selector-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +30,14 @@
 
   }
 
-  i {
-    font-size: 30px;
-    cursor: pointer;
+  button {
+    &:disabled {
+      color: var(--acent-color);
+    }
+
+    mat-icon {
+      transform: scale(3);
+    }
   }
 }
 
