@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import {Month, Year} from "../views/only-available-days/only-available-days.component";
 import moment from "moment";
 import {MeasurementDay} from "../model/MeasurementDay";
 import {CalendarService} from "./calendar.service";
 import {BehaviorSubject} from "rxjs";
 import {Months} from "../model/Months";
+import {Month, Year} from '../views/only-available-days/only-available-days.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnlyAvailableDaysService {
 
-  years: Year[]
-  currentYear: BehaviorSubject<Year>
-  currentIndex: BehaviorSubject<number>
+  public years: Year[]
+  public currentYear: BehaviorSubject<Year>
+  public currentIndex: BehaviorSubject<number>
 
   constructor(private calendarService: CalendarService) {
     const measurements = this.calendarService.measurementDays
@@ -22,7 +22,7 @@ export class OnlyAvailableDaysService {
     this.currentIndex = new BehaviorSubject<number>(this.years.indexOf(this.currentYear.value))
   }
 
-  changeCurrentYear(direction: number) {
+  public changeCurrentYear(direction: number): void {
     const newIndex = this.years.indexOf(this.currentYear.value)+direction
 
     if (newIndex < this.years.length && newIndex >= 0) {

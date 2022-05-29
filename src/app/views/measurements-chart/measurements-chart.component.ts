@@ -1,15 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
-import {ChartColors} from "../../model/MeasurementDay";
-
-//TODO move to model
-export interface ChartDataset {
-  type: string,
-  symbol: string,
-  data: number[],
-  times: string[],
-  colors: ChartColors
-}
+import {ChartDataset} from "./measurements-chart.model";
 
 @Component({
   selector: 'app-measurements-chart',
@@ -27,7 +18,7 @@ export class MeasurementsChartComponent implements OnInit{
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const ticksColor: string = '#ADB9D8'
     const gridColor: string = '#4E5677'
     const tooltipTitlePrefix: string = 'Time: '

@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import 'moment/locale/ru'
 import {MatDialog} from '@angular/material/dialog'
 import {DialogComponent} from "../dialog/dialog.component";
-import {CalendarDay, CalendarService} from "../../service/calendar.service";
+import {CalendarService} from "../../service/calendar.service";
 import {MeasurementDay} from "../../model/MeasurementDay";
+import {CalendarDay} from "./calendar.model";
 
 @Component({
   selector: 'app-calendar',

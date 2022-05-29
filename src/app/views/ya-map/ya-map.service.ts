@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {TableRawDataset} from "../measurements-table/measurements-table.component";
 import {CalendarService} from "../../service/calendar.service";
 import {TableDataService} from "../../service/table-data.service";
 import {DayPlacemarkDataset, TimePlacemarkDataset} from "./ya-map.model";
 import {MeasurementDay} from "../../model/MeasurementDay";
+import {TableRawDataset} from "../measurements-table/measurements-table.model";
 
 @Injectable({
   providedIn: 'root'

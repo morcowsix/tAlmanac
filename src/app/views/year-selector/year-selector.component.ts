@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OnlyAvailableDaysService} from "../../service/only-available-days.service";
-import {Year} from "../only-available-days/only-available-days.component";
+import {Year} from "../only-available-days/only-available-days.model";
 
 @Component({
   selector: 'app-year-selector',
@@ -9,9 +9,9 @@ import {Year} from "../only-available-days/only-available-days.component";
 })
 export class YearSelectorComponent implements OnInit {
 
-  year: Year
-  rightPointerEnd: boolean = false
-  leftPointerEnd: boolean = false
+  public year: Year
+  public rightPointerEnd: boolean = false
+  public leftPointerEnd: boolean = false
 
   constructor(public availableDaysService: OnlyAvailableDaysService) {
     availableDaysService.currentYear.subscribe(value => this.year = value)
@@ -21,10 +21,9 @@ export class YearSelectorComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 
-  changeYear(direction: number) {
+  public changeYear(direction: number): void {
     this.availableDaysService.changeCurrentYear(direction)
   }
 

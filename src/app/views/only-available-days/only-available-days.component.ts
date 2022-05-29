@@ -4,17 +4,7 @@ import {MeasurementDay} from "../../model/MeasurementDay";
 import {OnlyAvailableDaysService} from "../../service/only-available-days.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-
-//TODO move to model and maybe find better name
-export interface Month {
-  name: string
-  days: MeasurementDay[]
-}
-
-export interface Year {
-  name: string
-  months: Month[]
-}
+import {Year} from "./only-available-days.model";
 
 @Component({
   selector: 'app-only-available-days',

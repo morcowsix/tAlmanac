@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Coordinates} from "../model/MeasurementDay";
+import {Coordinates} from "../model/coordinates.model";
 
 @Pipe({
   name: 'coordinates'

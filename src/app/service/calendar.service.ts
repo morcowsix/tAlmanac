@@ -1,21 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as moment from "moment";
-import {Humidity, Measurement, MeasurementDay, Pressure, Temperature} from "../model/MeasurementDay";
 import {MonthSelectorService} from "./month-selector.service";
 import {TestData} from "../data/TestData";
-
-export interface CalendarDay {
-  value: moment.Moment
-  today: boolean
-  disabled: boolean
-  common: boolean
-  avgMeasurements: Measurement[]
-  monthStart: boolean
-}
-
-export interface CalendarWeek {
-  days: CalendarDay[]
-}
+import {CalendarDay, CalendarWeek} from "../views/calendar/calendar.model";
+import {MeasurementDay} from "../model/MeasurementDay";
+import {Temperature} from "../model/Temperature";
+import {Pressure} from "../model/Pressure";
+import {Humidity} from "../model/Humidity";
+import {Measurement} from "../model/measurement.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +17,36 @@ export class CalendarService {
   //TODO This is inject (database) job
 
   // measurementDays: Readonly<MeasurementDay[]> = TestDataJson.getDataFromJson()
-  measurementDays: Readonly<MeasurementDay[]> = TestData.generateRandomData(30, 10)
-  calendar: CalendarWeek[] = [];
+  public measurementDays: Readonly<MeasurementDay[]> = TestData.generateRandomData(30, 10)
+  public calendar: CalendarWeek[] = [];
 
   constructor(private dateService: MonthSelectorService) {
     this.dateService.date.subscribe(this.generateCalendar.bind(this))
   }
 
-  generateCalendar(now: moment.Moment): void  {
+  public getDaysWithoutWeeks(): CalendarDay[] {
+    return this.calendar.flatMap(w => w.days)
+  }
+
+  public findMeasurementDay(value: moment.Moment): MeasurementDay | undefined {
+    return this.measurementDays.find((date: MeasurementDay) =>
+      //if the number of measure day and month is not equal to processing calendar day then return undefined
+      date.number === value.date() && date.month === value.format('MMMM') && date.year === value.year())
+  }
+
+  public checkInstanceTemperature(object: any): boolean {
+    return object instanceof Temperature
+  }
+
+  public checkInstancePressure(object: any): boolean {
+    return object instanceof Pressure
+  }
+
+  public checkInstanceHumidity(object: any): boolean {
+    return object instanceof Humidity
+  }
+
+  private generateCalendar(now: moment.Moment): void  {
     const startOfMonth = now.clone().startOf('month')
     const startDay = startOfMonth.startOf('week')
     const endDay = now.clone().endOf('month').endOf('week')
@@ -63,31 +77,8 @@ export class CalendarService {
     this.calendar = calendar
   }
 
-  getDaysWithoutWeeks(): CalendarDay[] {
-    return this.calendar.flatMap(w => w.days)
-  }
-
-
-  getAvgMeasurementsForDate(value: moment.Moment): Measurement[] {
+  private getAvgMeasurementsForDate(value: moment.Moment): Measurement[] {
     const foundMeasureDay = this.findMeasurementDay(value)
     return (foundMeasureDay === undefined) ? [] as Measurement[] : foundMeasureDay.avgMeasurements
-  }
-
-  findMeasurementDay(value: moment.Moment): MeasurementDay|undefined {
-    return this.measurementDays.find((date: MeasurementDay) =>
-      //if the number of measure day and month is not equal to processing calendar day then return undefined
-      date.number === value.date() && date.month === value.format('MMMM') && date.year === value.year())
-  }
-
-  checkInstanceTemperature(object: any) {
-    return object instanceof Temperature
-  }
-
-  checkInstancePressure(object: any) {
-    return object instanceof Pressure
-  }
-
-  checkInstanceHumidity(object: any) {
-    return object instanceof Humidity
   }
 }

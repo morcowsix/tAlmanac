@@ -1,6 +1,10 @@
-import {MeasurementDay, Humidity, Pressure, Temperature, Coordinates} from "../model/MeasurementDay";
 import moment from "moment";
 import Base = moment.unitOfTime.Base;
+import {MeasurementDay} from "../model/MeasurementDay";
+import {Temperature} from "../model/Temperature";
+import {Pressure} from "../model/Pressure";
+import {Humidity} from "../model/Humidity";
+import {Coordinates} from "../model/coordinates.model";
 
 export class TestData {
 
@@ -114,9 +118,7 @@ export class TestData {
   }
 
   private static getRandomNotRoundInt(min: number, max: number): number {
-    // min = Math.ceil(min);
-    // max = Math.floor(max);
-    return Math.random() * (max - min + 0.00000000000000) + min
+    return Math.random() * (max - min) + min
   }
 
   private static getRandomTimeInBetween(start: number, end: number): string {
@@ -136,15 +138,7 @@ export class TestData {
     return {latitude: this.getRandomNotRoundInt(latFrom, latTo), longitude: this.getRandomNotRoundInt(longFrom, longTo)}
   }
 
-  //52.192880, 105.775862
-  //52.214565, 105.656646
-  //range 0.100000
   private static getRandomNearlyCoordinates(coordinates: Coordinates, range: number): Coordinates {
-    // console.group(`coords`)
-    // console.log(`basic latitude: ${coordinates.latitude}`)
-    // console.log(`corrected latitude: ${coordinates.latitude-range}`)
-    // console.log(`randomized latitude: ${this.getRandomNotRoundInt(coordinates.latitude-range, coordinates.latitude+range)}`)
-    // console.groupEnd()
     return this.getRandomCoordinates(coordinates.latitude-range, coordinates.latitude+range,
       coordinates.longitude-range, coordinates.longitude+range)
   }

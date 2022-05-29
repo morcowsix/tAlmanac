@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MeasurementDay} from "../model/MeasurementDay";
-import {ChartDataset} from "../views/measurements-chart/measurements-chart.component";
+import {ChartDataset} from "../views/measurements-chart/measurements-chart.model";
 
 @Injectable({
   providedIn: 'root'

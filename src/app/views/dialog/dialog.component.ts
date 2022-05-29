@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MeasurementDay} from "../../model/MeasurementDay";
 import {ChartDataService} from "../../service/chart-data.service";
-import {ChartDataset} from "../measurements-chart/measurements-chart.component";
 import {DateService, Date} from "../../service/date.service";
 import {MatDialogRef} from "@angular/material/dialog";
+import {ChartDataset} from "../measurements-chart/measurements-chart.model";
 
 @Component({
   selector: 'app-dialog',
