@@ -31,9 +31,9 @@ export class OnlyAvailableDaysComponent implements OnInit {
     availableDaysService.currentYear.subscribe(value => this.currentYear = value)
   }
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
-  openDialog(day: MeasurementDay) {
+  public openDialog(day: MeasurementDay): void {
     let dialogRef = this.dialog.open(DialogComponent)
     let instance = dialogRef.componentInstance
     instance.clickedDay = day

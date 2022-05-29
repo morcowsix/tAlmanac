@@ -13,18 +13,16 @@ import {MeasurementDay} from "../../model/MeasurementDay";
 export class CalendarComponent implements OnInit {
   checked = false;
 
-  constructor(public calendarService: CalendarService,
-              private dialog: MatDialog) { }
+  constructor(public readonly calendarService: CalendarService,
+              private readonly dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {}
 
-  }
-
-  changeToggle() {
+  public changeToggle(): void {
     this.checked = !this.checked
   }
 
-  openDialog(disabled: boolean, day: CalendarDay) {
+  public openDialog(disabled: boolean, day: CalendarDay): void {
     if (!disabled) {
       let dialogRef = this.dialog.open(DialogComponent)
       let instance = dialogRef.componentInstance

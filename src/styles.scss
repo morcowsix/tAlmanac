@@ -34,6 +34,11 @@ mat-dialog-container, mat-dialog-content {
   overflow: hidden !important;
 }
 
+//dialog close button relative position
+.cdk-overlay-pane {
+  position: relative !important;
+}
+
 //yandex map dark mode
 .ymaps-2-1-79-ground-pane {
   filter: grayscale(100%) brightness(60%) invert(100%);

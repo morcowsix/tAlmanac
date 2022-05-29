@@ -3,6 +3,7 @@ import {MeasurementDay} from "../../model/MeasurementDay";
 import {ChartDataService} from "../../service/chart-data.service";
 import {ChartDataset} from "../measurements-chart/measurements-chart.component";
 import {DateService, Date} from "../../service/date.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-dialog',
@@ -11,18 +12,21 @@ import {DateService, Date} from "../../service/date.service";
 })
 export class DialogComponent implements OnInit {
 
-  //TODO add close dialog button to right top corner
-
   public clickedDay: MeasurementDay
   public clickedDayFullDate: string
   public chartDatasets: ChartDataset[]
 
   constructor(private readonly chartDataService: ChartDataService,
-              private readonly dateService: DateService) { }
+              private readonly dateService: DateService,
+              private readonly dialogRef: MatDialogRef<DialogComponent>) { }
 
   public ngOnInit(): void {
     this.chartDatasets = this.chartDataService.getChartDatasets(this.clickedDay)
     this.clickedDayFullDate = this.getClickedDayFullDate()
+  }
+
+  public onCloseClick(): void {
+    this.dialogRef.close()
   }
 
   private getClickedDayFullDate(): string {
