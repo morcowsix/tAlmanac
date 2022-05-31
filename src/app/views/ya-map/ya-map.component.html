@@ -7,8 +7,9 @@
   <div class="map-wrapper">
     <div class="blend-mode-overlay"></div>
     <ya-map class="ya-map"
-            [center]="[52.07240,105.39563]"
-            [zoom]="7"
+            [center]=center
+            [zoom]="zoom"
+            (ready)="onMapReady($event)"
             (boundschange)="onSizeChange($event)"
             (balloonopen)="onBalloonOpen($event)"
             (balloonclose)="onBalloonClose()"

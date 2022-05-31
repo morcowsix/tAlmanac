@@ -7,8 +7,13 @@ import IGeoObject = ymaps.IGeoObject;
 import {CustomCloseButtonManager} from "./CustomCloseButtonManager";
 import {CustomDayPlacemarkBalloon} from "./CustomDayPlacemarkBalloon";
 import {DateService} from "../../service/date.service";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 type MapState = 'zoomIn' | 'zoomOut'
+type FoundPlacemark = {manager: ymaps.ObjectManager, placemarkId: number}
+
+const BASIC_CENTER: number[] = [52.07240,105.39563]
+const BASIC_ZOOM: number = 7
 
 @Component({
   selector: 'app-ya-map',
@@ -17,6 +22,8 @@ type MapState = 'zoomIn' | 'zoomOut'
 })
 
 export class YaMapComponent implements OnInit {
+  public center: number[] = BASIC_CENTER
+  public zoom: number = BASIC_ZOOM
   public options: AnimationOptions = {
     path: '/assets/lottie/map_loading_animation.json'
   }
@@ -36,24 +43,32 @@ export class YaMapComponent implements OnInit {
   public featureCollections: FeatureCollection[] = []
 
   private mapClusterer?: ymaps.Clusterer = undefined
-  private previousZoom: number = 7
+  private previousZoom: number = this.zoom
   private mapState: MapState = "zoomOut"
   private dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
   private objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
   private dayPlacemarkBalloonFactory = new CustomDayPlacemarkBalloon()
 
   constructor(private readonly yaMapService: YaMapService,
-              private readonly dateService: DateService) {}
+              private readonly dateService: DateService,
+              private readonly route: ActivatedRoute) {}
 
   public ngOnInit(): void {
     const dayPlacemarkDatasets: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
     this.initDayPlacemarksArray(dayPlacemarkDatasets);
+    this.initCenterAndZoomByQueryParams();
+  }
+
+  public onMapReady(event: YaReadyEvent<ymaps.Map>): void {
+    const currentZoom: number = event.target.getZoom()
+    this.displayPlacemarksDependingOnZoom(currentZoom)
+    this.openCentralMarkBalloonIfExists()
   }
 
   public onSizeChange(event: YaEvent<ymaps.Map>): void {
     const currentZoom: number = event.target.getZoom()
     if (currentZoom != this.previousZoom) {
-      this.ifMapZoomChanged(currentZoom)
+      this.displayPlacemarksDependingOnZoom(currentZoom)
     }
   }
 
@@ -152,6 +167,7 @@ export class YaMapComponent implements OnInit {
       options: {
         preset: 'islands#dotIcon',
         iconColor: timeDataset.color,
+        hideIconOnBalloonOpen: false
       }
     }
   }
@@ -168,7 +184,7 @@ export class YaMapComponent implements OnInit {
             `
   }
 
-  private ifMapZoomChanged(currentZoom: number): void {
+  private displayPlacemarksDependingOnZoom(currentZoom: number): void {
     this.previousZoom = currentZoom
     this.setClustersHint(this.mapClusterer?.getClusters())
 
@@ -214,6 +230,55 @@ export class YaMapComponent implements OnInit {
     this.mapState = 'zoomOut'
     this.dayPlacemarksMap.forEach((value, key) => key.options.set('visible', true))
     this.objectManagersMap.forEach((mark, manager) => manager.removeAll())
+  }
+
+  private initCenterAndZoomByQueryParams(): void {
+    const queryParamMap: ParamMap = this.route.snapshot.queryParamMap
+    if (this.hasCenterParams(queryParamMap))  {
+      this.center = [Number(queryParamMap.get('latitude')), Number(queryParamMap.get('longitude'))]
+    }
+    if (this.hasZoomParams(queryParamMap)) {
+      this.zoom = Number(queryParamMap.get('zoom'))
+    }
+  }
+
+  private hasQueryParams(): boolean {
+    const queryParamMap: ParamMap = this.route.snapshot.queryParamMap
+    return this.hasCenterParams(queryParamMap) && this.hasZoomParams(queryParamMap)
+  }
+
+  private hasCenterParams(queryParamMap: ParamMap): boolean {
+    return queryParamMap.has('latitude') && queryParamMap.has('longitude')
+  }
+
+  private hasZoomParams(queryParamMap: ParamMap): boolean {
+    return queryParamMap.has('zoom')
+  }
+
+  private openCentralMarkBalloonIfExists(): void {
+    if (this.hasQueryParams()) {
+      const centralObjectManager: FoundPlacemark | undefined = this.searchPlacemarkByCoordinates(this.center)
+      centralObjectManager?.manager.objects.balloon.open(centralObjectManager.placemarkId)
+    }
+  }
+
+  private searchPlacemarkByCoordinates(coordinates: number[]): FoundPlacemark | undefined {
+    let result: FoundPlacemark | undefined = undefined
+
+    for (const key of this.objectManagersMap.keys()) {
+      for (const object of key.objects.getAll()) {
+        const assignedObject = object as Feature
+        const assignedCoordinates = assignedObject.geometry.coordinates
+
+        if (JSON.stringify(assignedCoordinates) === JSON.stringify(coordinates)) {
+          result = {manager: key, placemarkId: assignedObject.id}
+          break
+        }
+      }
+      if (result != undefined) break
+    }
+
+    return result
   }
 }
 
