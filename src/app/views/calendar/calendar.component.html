@@ -1,25 +1,8 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <ng-template #yearSelector>
-      <app-year-selector></app-year-selector>
-    </ng-template>
-    <app-month-selector class="month-selector"
-                        *ngIf="!checked; else yearSelector"
-    ></app-month-selector>
-    <div class="only-available-days">
-      <mat-slide-toggle class="only-available-days__toggle"
-                        checked="false"
-                        (change)="changeToggle()"
-      >Только доступные дни
-      </mat-slide-toggle>
-    </div>
+    <app-month-selector class="month-selector"></app-month-selector>
   </div>
-  <ng-template #availableDays>
-    <app-only-available-days class="available-days-grid"></app-only-available-days>
-  </ng-template>
-  <div class="calendar-grid"
-       *ngIf="!checked; else availableDays"
-  >
+  <div class="calendar-grid">
     <div class="calendar-grid-item" *ngFor="let day of calendarService.getDaysWithoutWeeks()"
         [class.calendar-grid-item_disabled]="day.disabled"
         (click)="openDialog(day.disabled, day)"

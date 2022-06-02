@@ -8,44 +8,31 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
   max-height: 100%;
   padding: 0 2% 2% 2%;
 
   .calendar-header {
     position: relative;
-
-    .month-selector {
-      width: 100%;
-    }
-
-    .only-available-days {
-      margin: 1.5% 0 0 0;
-      font-size: 1.3rem;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-
-  .available-days-grid {
-    min-height: 0;
   }
 
   .calendar-grid {
+    aspect-ratio: 20 / 16;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-template-rows: repeat(6, minmax(0, 1fr));
-    width: 100%;
     height: 100%;
     gap: 1px;
     background: var(--secondary-color);
     min-height: 0;
     min-width: 0;
 
-
     &-item {
       outline: 1px solid #171717;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       min-width: 0;
       padding: 0.5rem 0.5rem;

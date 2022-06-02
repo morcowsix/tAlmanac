@@ -1,22 +1,23 @@
 .page {
   margin: 0 auto;
   justify-content: center;
+  width: 100%;
   max-width: 1250px;
-  max-height: 100vh;
+  height: 100vh;
+  max-height: 1120px;
   background: var(--background-color);
+  display: flex;
+  flex-direction: column;
 
   .content {
-    height: calc(100vh*0.90);
-    margin: 0 auto;
-    justify-content: center;
-    display: flex;
+    height: 100%;
 
     .calendar-card {
-      width: 1000px;
-      max-width: 1000px;
+      width: 100%;
+      //max-width: 100%;
       background-color: var(--primary-color);
       color: var(--wight-color);
-      margin: 2% 0 0 2%;
+      //margin: 2% 0 0 2%;
       border: 1px solid var(--secondary-color);
       overflow: hidden;
 
@@ -28,5 +29,13 @@
   }
 
 }
+
+@media all and (min-width: 1300px) {
+  .page {
+
+  }
+}
+
+
 
 

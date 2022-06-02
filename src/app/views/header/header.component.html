@@ -1,5 +1,37 @@
 <div class="header-container">
   <div class="logo-container">
-    <a class="logo" [routerLink]="['/']">t<span class="second-letter">A</span>lmanac</a>
+    <span class="logo">t<span class="second-letter">A</span>lmanac</span>
+  </div>
+  <div class="nav-container">
+    <div class="nav-item">
+      <a class="nav-item__link" aria-label="calendar link"
+         [routerLink]="['/calendar']"
+         routerLinkActive="active"
+      >
+        <mat-icon class="nav-item__icon">calendar_month</mat-icon>
+        <span class="nav-item__title">Calendar</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-item__link" aria-label="measurements link"
+         [routerLink]="['/measurements']"
+         routerLinkActive="active"
+      >
+        <mat-icon class="nav-item__icon">subject</mat-icon>
+        <span class="nav-item__title">Measurements</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-item__link" aria-label="map link"
+         [routerLink]="['/map']"
+         routerLinkActive="active"
+      >
+        <mat-icon class="nav-item__icon">gps_fixed</mat-icon>
+        <span class="nav-item__title">Map</span>
+      </a>
+    </div>
+  </div>
+  <div class="settings-container">
+      <mat-icon>settings</mat-icon>
   </div>
 </div>
