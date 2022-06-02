@@ -1,41 +1,44 @@
-<div class="wrapper">
-  <div class="available-days-box">
-    <div class="available-days-item" *ngFor="let month of currentYear.months">
-      <div class="available-days-item__title">
-        <span class="available-days-item__month">{{month.name | titlecase}}</span>
-<!--        <span>{{currentYear.name}}</span>-->
-      </div>
-      <div class="available-days-item-divider"></div>
-      <div class="days-grid">
-        <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc"
-                  (click)="openDialog(day)"
-        >
-          <div class="date-container">
-                <span>
-                  {{day.number | number:'2.0-0'}}
-                  {{day.month | ruMonthDeclension | titlecase}}
-                </span>
-          </div>
-          <div class="days-grid-item__divider"></div>
-          <div class="measure-box">
-            <div class="measure-box-item" *ngFor="let measure of day.avgMeasurements">
-              <div class="measure-icon" [ngClass]="{
-                  'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
-                  'measure-icon-pressure': calendarService.checkInstancePressure(measure),
-                  'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
-                }"
-              >
-              </div>
-              <div class="measure-text-container">
-                <span class="measure-count">{{measure.value}}</span>
-                <span class="measure-symbol">{{measure.symbol}}</span>
+<div class="available-days__page-container">
+  <app-year-selector></app-year-selector>
+  <div class="available-days__rounded-scrollbar-wrapper">
+    <div class="available-days-box">
+      <div class="available-days-item" *ngFor="let month of currentYear.months">
+        <div class="available-days-item__title">
+          <span class="available-days-item__month">{{month.name | titlecase}}</span>
+<!--          <span>{{currentYear.name}}</span>-->
+        </div>
+        <div class="available-days-item-divider"></div>
+        <div class="days-grid">
+          <mat-card class="days-grid-item" *ngFor="let day of month.days | sortDaysAsc"
+                    (click)="openDialog(day)"
+          >
+            <div class="date-container">
+                  <span>
+                    {{day.number | number:'2.0-0'}}
+                    {{day.month | ruMonthDeclension | titlecase}}
+                  </span>
+            </div>
+            <div class="days-grid-item__divider"></div>
+            <div class="measure-box">
+              <div class="measure-box-item" *ngFor="let measure of day.avgMeasurements">
+                <div class="measure-icon" [ngClass]="{
+                    'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
+                    'measure-icon-pressure': calendarService.checkInstancePressure(measure),
+                    'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
+                  }"
+                >
+                </div>
+                <div class="measure-text-container">
+                  <span class="measure-count">{{measure.value}}</span>
+                  <span class="measure-symbol">{{measure.symbol}}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </mat-card>
+          </mat-card>
+        </div>
+  <!--      <div class="available-days-item__footer">{{currentYear.name}}</div>-->
+  <!--      <div class="available-days-item-divider available-days-item-divider__footer"></div>-->
       </div>
-<!--      <div class="available-days-item__footer">{{currentYear.name}}</div>-->
-<!--      <div class="available-days-item-divider available-days-item-divider__footer"></div>-->
     </div>
   </div>
 </div>

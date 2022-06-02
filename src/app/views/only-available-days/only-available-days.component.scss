@@ -1,12 +1,27 @@
-.wrapper {
+:host  {
+  display: block;
+  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 0.5rem;
+}
+
+.available-days__page-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2% 2% 2%;
+}
+
+.available-days__rounded-scrollbar-wrapper {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background-color: var(--background-color);
+  border-radius: 0.5rem;
 }
 
 .available-days-box {
+  background-color: var(--background-color);
   width: 100%;
   height: 100%;
   padding: 0 2% 2% 2%;
@@ -30,7 +45,6 @@
       background: var(--light-color);
     }
   }
-
 
   .available-days-item {
     margin-top: 2.5%;
@@ -62,14 +76,11 @@
   }
 }
 
-
-
-
 .days-grid {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(6, minmax(calc((90%)/6), 1fr));
+  grid-template-columns:  repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
 
   &-item {
@@ -137,10 +148,6 @@
     }
   }
 }
-
-
-
-
 
 .measure-text-container {
   height: 1.6em;
