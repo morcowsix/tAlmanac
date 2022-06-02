@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
@@ -49,7 +49,6 @@ export class YaMapComponent implements OnInit {
   private mapState: MapState = "zoomOut"
   private dayPlacemarksMap: Map<ymaps.Placemark, DayPlacemark> = new Map<ymaps.Placemark, DayPlacemark>()
   private objectManagersMap: Map<ymaps.ObjectManager, DayPlacemark> = new Map<ymaps.ObjectManager, DayPlacemark>()
-  private dayPlacemarkBalloonFactory = new CustomDayPlacemarkBalloon()
 
   constructor(private readonly yaMapService: YaMapService,
               private readonly dateService: DateService,
@@ -58,7 +57,6 @@ export class YaMapComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initRoutingAnimationState();
-
     const dayPlacemarkDatasets: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
     this.initDayPlacemarksArray(dayPlacemarkDatasets);
     this.initCenterAndZoomByQueryParams();
@@ -98,8 +96,17 @@ export class YaMapComponent implements OnInit {
     this.dayPlacemarksMap.set(event.target, placemark)
   }
 
+  public onDayPlacemarkClick({target}: YaEvent<ymaps.Placemark>) {
+    //close balloon forced if user didn't it (open balloon and click on another placemark without don't close balloon)
+    this.closeMapBalloonIfHeOpen(target.getMap().balloon);
+  }
+
   public onObjectManagerReady({target}: YaReadyEvent<ymaps.ObjectManager>, placemark: DayPlacemark): void {
     this.objectManagersMap.set(target, placemark)
+  }
+
+  public onTimePlacemarkClick({target}: YaEvent<ymaps.ObjectManager>): void {
+    this.closeMapBalloonIfHeOpen(target.getMap().balloon)
   }
 
   private initDayPlacemarksArray(dataset: DayPlacemarkDataset[]): void {
@@ -107,7 +114,7 @@ export class YaMapComponent implements OnInit {
   }
 
   private setDayPlacemarkBalloonLayout(event: YaReadyEvent<ymaps.Placemark>, placemark: DayPlacemark): void {
-    const balloonContentLayout = this.dayPlacemarkBalloonFactory.create(event, placemark)
+    const balloonContentLayout = new CustomDayPlacemarkBalloon().create(event, placemark)
     event.target.options.set('balloonContentLayout', balloonContentLayout)
   }
 
@@ -288,6 +295,11 @@ export class YaMapComponent implements OnInit {
 
   private initRoutingAnimationState(): void {
     this.appRoutingService.completeAnimation$.subscribe(value => this.animationComplete = value)
+  }
+
+  private closeMapBalloonIfHeOpen(balloon: ymaps.map.Balloon): void {
+    if (balloon.isOpen())
+      balloon.close()
   }
 }
 

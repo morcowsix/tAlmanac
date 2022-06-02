@@ -24,10 +24,12 @@
           [properties]="placemark.properties"
           [options]="placemark.options"
           (ready)="onPlacemarkReady($event, placemark)"
+          (yaclick)="onDayPlacemarkClick($event)"
         >
           <ya-object-manager
             [options]="objectManagerOptions"
             (ready)="onObjectManagerReady($event, placemark)"
+            (yaclick)="onTimePlacemarkClick($event)"
           ></ya-object-manager>
         </ya-placemark>
       </ya-clusterer>
