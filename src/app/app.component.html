@@ -1,9 +1,11 @@
 <div class="page">
   <app-header class="header"></app-header>
   <div class="content">
-    <app-sidebar class="sidebar"></app-sidebar>
     <div class="calendar-card"
          [@moveFromRight]="getState(o)"
+         [@moveFromLeft]="getState(o)"
+         (@moveFromRight.start)="appRoutingService.setState(false)"
+         (@moveFromRight.done)="appRoutingService.setState(true)"
     >
       <router-outlet #o="outlet"></router-outlet>
     </div>

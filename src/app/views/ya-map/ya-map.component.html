@@ -4,7 +4,7 @@
   >
   </ng-lottie >
 
-  <div class="map-wrapper">
+  <div *ngIf="animationComplete" class="map-wrapper">
     <div class="blend-mode-overlay"></div>
     <ya-map class="ya-map"
             [center]=center

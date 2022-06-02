@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
@@ -8,6 +8,7 @@ import {CustomCloseButtonManager} from "./CustomCloseButtonManager";
 import {CustomDayPlacemarkBalloon} from "./CustomDayPlacemarkBalloon";
 import {DateService} from "../../service/date.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {AppRoutingService} from "../../app-routing.service";
 
 type MapState = 'zoomIn' | 'zoomOut'
 type FoundPlacemark = {manager: ymaps.ObjectManager, placemarkId: number}
@@ -22,6 +23,7 @@ const BASIC_ZOOM: number = 7
 })
 
 export class YaMapComponent implements OnInit {
+  public animationComplete: boolean = false
   public center: number[] = BASIC_CENTER
   public zoom: number = BASIC_ZOOM
   public options: AnimationOptions = {
@@ -51,9 +53,12 @@ export class YaMapComponent implements OnInit {
 
   constructor(private readonly yaMapService: YaMapService,
               private readonly dateService: DateService,
-              private readonly route: ActivatedRoute) {}
+              private readonly route: ActivatedRoute,
+              private readonly appRoutingService: AppRoutingService) {}
 
   public ngOnInit(): void {
+    this.initRoutingAnimationState();
+
     const dayPlacemarkDatasets: DayPlacemarkDataset[] = this.yaMapService.separateCoordinatesByDay()
     this.initDayPlacemarksArray(dayPlacemarkDatasets);
     this.initCenterAndZoomByQueryParams();
@@ -279,6 +284,10 @@ export class YaMapComponent implements OnInit {
     }
 
     return result
+  }
+
+  private initRoutingAnimationState(): void {
+    this.appRoutingService.completeAnimation$.subscribe(value => this.animationComplete = value)
   }
 }
 
