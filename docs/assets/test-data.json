@@ -1,0 +1,2096 @@
+[
+  {
+    "number": 27,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 17,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 18,
+        "time": "09:44",
+        "coordinates": {
+          "latitude": 68,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 4,
+        "time": "12:45",
+        "coordinates": {
+          "latitude": 51,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 29,
+        "time": "14:35",
+        "coordinates": {
+          "latitude": -47,
+          "longitude": -80
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 6,
+        "time": "15:52",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -5
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 23,
+        "time": "18:41",
+        "coordinates": {
+          "latitude": -36,
+          "longitude": 36
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 682,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 663,
+        "time": "09:44",
+        "coordinates": {
+          "latitude": 68,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 636,
+        "time": "12:45",
+        "coordinates": {
+          "latitude": 51,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 707,
+        "time": "14:35",
+        "coordinates": {
+          "latitude": -47,
+          "longitude": -80
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 654,
+        "time": "15:52",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -5
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 701,
+        "time": "18:41",
+        "coordinates": {
+          "latitude": -36,
+          "longitude": 36
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 53,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 47,
+        "time": "09:44",
+        "coordinates": {
+          "latitude": 68,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 32,
+        "time": "12:45",
+        "coordinates": {
+          "latitude": 51,
+          "longitude": 23
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 54,
+        "time": "14:35",
+        "coordinates": {
+          "latitude": -47,
+          "longitude": -80
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 70,
+        "time": "15:52",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -5
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 36,
+        "time": "18:41",
+        "coordinates": {
+          "latitude": -36,
+          "longitude": 36
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 17,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 682,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 53,
+        "time": "08:20",
+        "coordinates": {
+          "latitude": 78,
+          "longitude": 43
+        }
+      }
+    ]
+  },
+  {
+    "number": 30,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 8,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 10,
+        "time": "10:18",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": -86
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 22,
+        "time": "12:47",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 9,
+        "time": "14:59",
+        "coordinates": {
+          "latitude": -12,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 6,
+        "time": "16:32",
+        "coordinates": {
+          "latitude": -97,
+          "longitude": -26
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 0,
+        "time": "18:54",
+        "coordinates": {
+          "latitude": 89,
+          "longitude": -37
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 685,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 683,
+        "time": "10:18",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": -86
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 743,
+        "time": "12:47",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 650,
+        "time": "14:59",
+        "coordinates": {
+          "latitude": -12,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 631,
+        "time": "16:32",
+        "coordinates": {
+          "latitude": -97,
+          "longitude": -26
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 688,
+        "time": "18:54",
+        "coordinates": {
+          "latitude": 89,
+          "longitude": -37
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 55,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 40,
+        "time": "10:18",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": -86
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 76,
+        "time": "12:47",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 41,
+        "time": "14:59",
+        "coordinates": {
+          "latitude": -12,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 38,
+        "time": "16:32",
+        "coordinates": {
+          "latitude": -97,
+          "longitude": -26
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 59,
+        "time": "18:54",
+        "coordinates": {
+          "latitude": 89,
+          "longitude": -37
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 8,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 685,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 55,
+        "time": "08:45",
+        "coordinates": {
+          "latitude": -59,
+          "longitude": 32
+        }
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 12,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 2,
+        "time": "09:34",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 93
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 16,
+        "time": "12:31",
+        "coordinates": {
+          "latitude": 72,
+          "longitude": -30
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 27,
+        "time": "14:23",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 44
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 0,
+        "time": "15:39",
+        "coordinates": {
+          "latitude": -43,
+          "longitude": 11
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 15,
+        "time": "17:11",
+        "coordinates": {
+          "latitude": -41,
+          "longitude": -80
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 659,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 674,
+        "time": "09:34",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 93
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 701,
+        "time": "12:31",
+        "coordinates": {
+          "latitude": 72,
+          "longitude": -30
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 714,
+        "time": "14:23",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 44
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 608,
+        "time": "15:39",
+        "coordinates": {
+          "latitude": -43,
+          "longitude": 11
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 646,
+        "time": "17:11",
+        "coordinates": {
+          "latitude": -41,
+          "longitude": -80
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 64,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 37,
+        "time": "09:34",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 93
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 77,
+        "time": "12:31",
+        "coordinates": {
+          "latitude": 72,
+          "longitude": -30
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 63,
+        "time": "14:23",
+        "coordinates": {
+          "latitude": -89,
+          "longitude": 44
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 73,
+        "time": "15:39",
+        "coordinates": {
+          "latitude": -43,
+          "longitude": 11
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 66,
+        "time": "17:11",
+        "coordinates": {
+          "latitude": -41,
+          "longitude": -80
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 12,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 659,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 64,
+        "time": "08:28",
+        "coordinates": {
+          "latitude": -22,
+          "longitude": 76
+        }
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 14,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 9,
+        "time": "09:12",
+        "coordinates": {
+          "latitude": 97,
+          "longitude": 28
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 28,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -45,
+          "longitude": -52
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 27,
+        "time": "14:24",
+        "coordinates": {
+          "latitude": -2,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 0,
+        "time": "15:14",
+        "coordinates": {
+          "latitude": -32,
+          "longitude": -9
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 20,
+        "time": "18:20",
+        "coordinates": {
+          "latitude": 56,
+          "longitude": -83
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 691,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 677,
+        "time": "09:12",
+        "coordinates": {
+          "latitude": 97,
+          "longitude": 28
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 695,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -45,
+          "longitude": -52
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 709,
+        "time": "14:24",
+        "coordinates": {
+          "latitude": -2,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 686,
+        "time": "15:14",
+        "coordinates": {
+          "latitude": -32,
+          "longitude": -9
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 733,
+        "time": "18:20",
+        "coordinates": {
+          "latitude": 56,
+          "longitude": -83
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 62,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 45,
+        "time": "09:12",
+        "coordinates": {
+          "latitude": 97,
+          "longitude": 28
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 47,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -45,
+          "longitude": -52
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 75,
+        "time": "14:24",
+        "coordinates": {
+          "latitude": -2,
+          "longitude": -23
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 74,
+        "time": "15:14",
+        "coordinates": {
+          "latitude": -32,
+          "longitude": -9
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 67,
+        "time": "18:20",
+        "coordinates": {
+          "latitude": 56,
+          "longitude": -83
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 14,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 691,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 62,
+        "time": "07:25",
+        "coordinates": {
+          "latitude": -7,
+          "longitude": 55
+        }
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 12,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 4,
+        "time": "09:47",
+        "coordinates": {
+          "latitude": 31,
+          "longitude": -8
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 3,
+        "time": "12:28",
+        "coordinates": {
+          "latitude": 36,
+          "longitude": 22
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 0,
+        "time": "14:36",
+        "coordinates": {
+          "latitude": 33,
+          "longitude": 60
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 26,
+        "time": "16:31",
+        "coordinates": {
+          "latitude": -77,
+          "longitude": -24
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 23,
+        "time": "18:49",
+        "coordinates": {
+          "latitude": -100,
+          "longitude": -14
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 696,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 637,
+        "time": "09:47",
+        "coordinates": {
+          "latitude": 31,
+          "longitude": -8
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 726,
+        "time": "12:28",
+        "coordinates": {
+          "latitude": 36,
+          "longitude": 22
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 726,
+        "time": "14:36",
+        "coordinates": {
+          "latitude": 33,
+          "longitude": 60
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 737,
+        "time": "16:31",
+        "coordinates": {
+          "latitude": -77,
+          "longitude": -24
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 659,
+        "time": "18:49",
+        "coordinates": {
+          "latitude": -100,
+          "longitude": -14
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 65,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 63,
+        "time": "09:47",
+        "coordinates": {
+          "latitude": 31,
+          "longitude": -8
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 38,
+        "time": "12:28",
+        "coordinates": {
+          "latitude": 36,
+          "longitude": 22
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 74,
+        "time": "14:36",
+        "coordinates": {
+          "latitude": 33,
+          "longitude": 60
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 74,
+        "time": "16:31",
+        "coordinates": {
+          "latitude": -77,
+          "longitude": -24
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 66,
+        "time": "18:49",
+        "coordinates": {
+          "latitude": -100,
+          "longitude": -14
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 12,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 696,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 65,
+        "time": "08:10",
+        "coordinates": {
+          "latitude": 0,
+          "longitude": -55
+        }
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "month": "апрель",
+    "year": 2022,
+    "temperatures": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 17,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 29,
+        "time": "10:36",
+        "coordinates": {
+          "latitude": 1,
+          "longitude": -27
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 21,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -55,
+          "longitude": -69
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 7,
+        "time": "14:21",
+        "coordinates": {
+          "latitude": -61,
+          "longitude": 18
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 11,
+        "time": "15:40",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -17
+        }
+      },
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 9,
+        "time": "17:08",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -3
+        }
+      }
+    ],
+    "pressures": [
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 691,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 742,
+        "time": "10:36",
+        "coordinates": {
+          "latitude": 1,
+          "longitude": -27
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 665,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -55,
+          "longitude": -69
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 668,
+        "time": "14:21",
+        "coordinates": {
+          "latitude": -61,
+          "longitude": 18
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 617,
+        "time": "15:40",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -17
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 744,
+        "time": "17:08",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -3
+        }
+      }
+    ],
+    "humidities": [
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 59,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 56,
+        "time": "10:36",
+        "coordinates": {
+          "latitude": 1,
+          "longitude": -27
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 79,
+        "time": "11:24",
+        "coordinates": {
+          "latitude": -55,
+          "longitude": -69
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 66,
+        "time": "14:21",
+        "coordinates": {
+          "latitude": -61,
+          "longitude": 18
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 61,
+        "time": "15:40",
+        "coordinates": {
+          "latitude": -44,
+          "longitude": -17
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 58,
+        "time": "17:08",
+        "coordinates": {
+          "latitude": -51,
+          "longitude": -3
+        }
+      }
+    ],
+    "avgMeasurements": [
+      {
+        "type": "Temperature",
+        "symbol": "℃",
+        "chartColors": {
+          "pointBorderColor": "rgb(77,201,67)",
+          "pointBackgroundColor": "rgb(22,144,13)",
+          "borderColor": "rgb(77,201,67)",
+          "backgroundColor": "rgba(77,201,67, 0.30)"
+        },
+        "value": 17,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      },
+      {
+        "type": "Pressure",
+        "symbol": "hPa",
+        "chartColors": {
+          "pointBorderColor": "rgb(255,214,77)",
+          "pointBackgroundColor": "rgb(157,131,47)",
+          "borderColor": "rgb(255,214,77)",
+          "backgroundColor": "rgba(255,214,77, 0.30)"
+        },
+        "value": 691,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      },
+      {
+        "type": "Humidity",
+        "symbol": "φ",
+        "chartColors": {
+          "pointBorderColor": "rgb(64,114,238)",
+          "pointBackgroundColor": "rgb(34,61,128)",
+          "borderColor": "rgb(64,114,238)",
+          "backgroundColor": "rgba(64,114,238, 0.30)"
+        },
+        "value": 59,
+        "time": "08:07",
+        "coordinates": {
+          "latitude": -30,
+          "longitude": -34
+        }
+      }
+    ]
+  }
+]
