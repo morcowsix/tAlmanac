@@ -8,6 +8,7 @@
   background: var(--background-color);
   display: flex;
   flex-direction: column;
+  min-width: 600px;
 
   .content {
     height: 100%;
@@ -28,11 +29,7 @@
 
 }
 
-@media all and (min-width: 1300px) {
-  .page {
 
-  }
-}
 
 
 

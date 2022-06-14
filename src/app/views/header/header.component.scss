@@ -15,6 +15,7 @@
       display: inline-block;
       text-decoration: none;
 
+
       .second-letter {
         color: var(--acent-color);
       }
@@ -22,17 +23,15 @@
   }
 
   .nav-container {
+    width: 45%;
+    min-width: max-content;
     font-size: 1.3rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    justify-content: space-evenly;
 
     .nav-item {
       font-size: 1.3rem;
-      margin: 0 7%;
 
       &__link {
         display: flex;
@@ -57,6 +56,19 @@
 
   }
 
+  .settings-container {
+    min-width: 11%;
+
+    mat-icon {
+      float: right;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--acent-color);
+      }
+    }
+  }
+
   .settings-component-container {
     width: 20%;
     height: 30vh;
@@ -65,7 +77,4 @@
     right: 0;
     bottom: -30vh;
   }
-
 }
-
-
