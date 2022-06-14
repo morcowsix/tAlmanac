@@ -1,20 +1,8 @@
-:host  {
+:host {
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-.blend-mode-overlay {
-  z-index: 10;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-color: var(--background-color);
 }
 
 .map-container {
@@ -22,25 +10,78 @@
   width: 100%;
   height: 100%;
   padding: 1.4rem;
-}
 
-.map-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  &__hidden {
-    visibility: hidden;
+  .lottie-loading-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
-  &__visible {
-    visibility: visible;
+  .map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .blend-mode-overlay {
+      z-index: 10;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      background-color: var(--background-color);
+    }
   }
 }
 
-.lottie-loading-spinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+/*  yandex map dark mode  */
+:host ::ng-deep .dark-ground-pane {
+  filter: grayscale(100%) brightness(60%) invert(100%);
+  -webkit-filter: grayscale(100%) brightness(60%) invert(100%);
 }
+
+:host ::ng-deep .ymaps-2-1-79-balloon {
+  &__layout, &__content {
+    background: var(--balloon-layout-color) ;
+    color: var(--ballon-text-color);
+  }
+
+  .close-button {
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: 20px;
+    color: var(--ballon-text-color);
+    opacity: .5;
+
+    &:hover {
+      opacity: 1
+    }
+  }
+
+  &__tail::after {
+    background: var(--balloon-layout-coloral)
+  }
+
+  .balloon-content-container {
+
+    .menu-item {
+      border-radius: 5px 0 0 5px;
+      padding: 5px 5px;
+
+      &:hover:not(.menu-item__active) {
+        color: var(--acent-color);
+      }
+
+      &__active {
+        background-color: var(--balloon-selected-color);
+      }
+    }
+  }
+}
+

@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --background-color: #2A3550;
-  --primary-color: #35415E;
-  --secondary-color: #1C2333;
-  --light-color: #ADB9D8;
-  --wight-color: #FFFFFF;
-  --acent-color: #EC4E6E;
+  --background-color: #e3e9f4;
+  --primary-color: #f2f7ff;
+  --secondary-color: #ffffff;
+  --light-color: #454c5d;
+  --text-color: #000000;
+  --acent-color: #156efd;
   --selected-color: rgba(16, 255, 0, 0.20);
+
+  --balloon-layout-color: #e3e9f4 !important;
+  --ballon-text-color: #000000;
+  --balloon-selected-color: #ffffff;
 }
 
 * {
@@ -25,7 +29,20 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   background: var(--background-color);
-  color: var(--wight-color);
+  color: var(--text-color);
+
+  &.dark-theme {
+    --background-color: #2A3550;
+    --primary-color: #35415E;
+    --secondary-color: #1C2333;
+    --light-color: #ADB9D8;
+    --text-color: #FFFFFF;
+    --acent-color: #EC4E6E;
+
+    --balloon-layout-color: #747474 !important;
+    --ballon-text-color: #f3f6ff;
+    --balloon-selected-color: #b1b1b3 ;
+  }
 }
 
 mat-dialog-container, mat-dialog-content {
@@ -37,55 +54,6 @@ mat-dialog-container, mat-dialog-content {
 //dialog close button relative position
 .cdk-overlay-pane {
   position: relative !important;
-}
-
-//yandex map dark mode
-.ymaps-2-1-79-ground-pane {
-  filter: grayscale(100%) brightness(60%) invert(100%);
-  -webkit-filter: grayscale(100%) brightness(60%) invert(100%);
-}
-
-//yandex map balloon style
-.ymaps-2-1-79-balloon {
-  &__layout, &__content {
-    background: #747474 !important;
-    color: #f3f6ff;
-  }
-
-  .close-button {
-    position: absolute;
-    right: 5px;
-    top: 1px;
-    text-decoration: none;
-    font-size: 25px;
-    line-height: 20px;
-    color: #f3f6ff;
-    opacity: .5;
-
-    &:hover {
-      opacity: 1
-    }
-  }
-
-  &__tail::after {
-    background: #747474 !important;
-  }
-
-  .balloon-content-container {
-
-    .menu-item {
-      border-radius: 5px 0 0 5px;
-      padding: 5px 5px;
-
-      &:hover:not(&__active) {
-        color: #EC4E6E;
-      }
-
-      &__active {
-        background-color:  #b1b1b3;
-      }
-    }
-  }
 }
 
 

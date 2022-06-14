@@ -1,11 +1,7 @@
 <div class="map-container">
-  <ng-lottie class="lottie-loading-spinner"
-             [options]="options"
-  >
-  </ng-lottie >
-
-  <div *ngIf="animationComplete" class="map-wrapper">
-    <div class="blend-mode-overlay"></div>
+  <ng-lottie class="lottie-loading-spinner" [options]="options"></ng-lottie >
+  <div *ngIf="animationComplete"  class="map-wrapper">
+    <div *ngIf="isDarkMode()" class="blend-mode-overlay"></div>
     <ya-map class="ya-map"
             [center]=center
             [zoom]="zoom"

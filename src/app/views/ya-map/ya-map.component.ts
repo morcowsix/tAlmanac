@@ -1,4 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import {YaEvent, YaReadyEvent} from "angular8-yandex-maps";
 import {AnimationOptions} from "ngx-lottie";
 import {YaMapService} from "./ya-map.service";
@@ -9,6 +14,7 @@ import {CustomDayPlacemarkBalloon} from "./CustomDayPlacemarkBalloon";
 import {DateService} from "../../service/date.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {AppRoutingService} from "../../app-routing.service";
+import {DarkModeService} from "../../service/dark-mode.service";
 
 type MapState = 'zoomIn' | 'zoomOut'
 type FoundPlacemark = {manager: ymaps.ObjectManager, placemarkId: number}
@@ -19,7 +25,8 @@ const BASIC_ZOOM: number = 7
 @Component({
   selector: 'app-ya-map',
   templateUrl: './ya-map.component.html',
-  styleUrls: ['./ya-map.component.scss']
+  styleUrls: ['./ya-map.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 
 export class YaMapComponent implements OnInit {
@@ -53,7 +60,9 @@ export class YaMapComponent implements OnInit {
   constructor(private readonly yaMapService: YaMapService,
               private readonly dateService: DateService,
               private readonly route: ActivatedRoute,
-              private readonly appRoutingService: AppRoutingService) {}
+              private readonly appRoutingService: AppRoutingService,
+              private readonly elRef: ElementRef,
+              private readonly darkModeService: DarkModeService) {}
 
   public ngOnInit(): void {
     this.initRoutingAnimationState();
@@ -66,6 +75,7 @@ export class YaMapComponent implements OnInit {
     const currentZoom: number = event.target.getZoom()
     this.displayPlacemarksDependingOnZoom(currentZoom)
     this.openCentralMarkBalloonIfExists()
+    this.initDarkMode();
   }
 
   public onSizeChange(event: YaEvent<ymaps.Map>): void {
@@ -107,6 +117,10 @@ export class YaMapComponent implements OnInit {
 
   public onTimePlacemarkClick({target}: YaEvent<ymaps.ObjectManager>): void {
     this.closeMapBalloonIfHeOpen(target.getMap().balloon)
+  }
+
+  public isDarkMode(): boolean {
+    return document.body.classList.contains('dark-theme')
   }
 
   private initDayPlacemarksArray(dataset: DayPlacemarkDataset[]): void {
@@ -300,6 +314,13 @@ export class YaMapComponent implements OnInit {
   private closeMapBalloonIfHeOpen(balloon: ymaps.map.Balloon): void {
     if (balloon.isOpen())
       balloon.close()
+  }
+
+  private initDarkMode(): void {
+    this.darkModeService.darkMode$.subscribe(darkMode => {
+      const groundPane = this.elRef.nativeElement.querySelector('.ymaps-2-1-79-ground-pane')
+      darkMode ? groundPane.classList.add('dark-ground-pane') : groundPane.classList.remove('dark-ground-pane')
+    })
   }
 }
 
