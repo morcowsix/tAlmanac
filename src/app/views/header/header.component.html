@@ -32,6 +32,10 @@
     </div>
   </div>
   <div class="settings-container">
-      <mat-icon>settings</mat-icon>
+      <mat-icon (click)="onSettingsClick()">settings</mat-icon>
+  </div>
+  <div class="settings-component-container" *ngIf="showSettingsComponent">
+    <app-data-generator></app-data-generator>
   </div>
 </div>
+

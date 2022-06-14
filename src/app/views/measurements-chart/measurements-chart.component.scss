@@ -1,19 +1,11 @@
-//.temp-block {
-//  background-color: #38518b;
-//  margin: auto;
-//  height: 500px;
-//  width: 800px;
-//}
-
 .chart-container {
   position: relative;
   background-color: var(--primary-color);
-  border: 1px solid var(--secondary-color);
   border-radius: 0.2rem;
   padding: 0.5rem;
 
   .title {
-    color: var(--light-color);
+    color: var(--text-color);
     text-transform: uppercase;
     font-size: 100%;
     font-weight: 500;

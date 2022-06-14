@@ -4,12 +4,14 @@
   margin: 0 auto;
   background-color: var(--secondary-color);
   padding: 1.5% 3% 1.5% 3%;
+  position: relative;
 
   .logo-container {
     font-size: 2rem;
+    font-weight: 500;
 
     .logo {
-      color: var(--wight-color);
+      color: var(--text-color);
       display: inline-block;
       text-decoration: none;
 
@@ -23,7 +25,10 @@
     font-size: 1.3rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 
     .nav-item {
       font-size: 1.3rem;
@@ -33,7 +38,7 @@
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: var(--wight-color);
+        color: var(--text-color);
 
         &.active {
           color: var(--acent-color);
@@ -52,8 +57,15 @@
 
   }
 
-  .settings-container {
-    position: relative;
+  .settings-component-container {
+    width: 20%;
+    height: 30vh;
+    z-index: 999;
+    position: absolute;
+    right: 0;
+    bottom: -30vh;
   }
 
 }
+
+

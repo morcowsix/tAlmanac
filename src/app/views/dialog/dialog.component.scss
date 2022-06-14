@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   overflow: auto;
-  color: #FFFFFF;
+  color: var(--text-color);
   background-color: var(--background-color);
   scrollbar-color: var(--primary-color) var(--background-color) ;
   scrollbar-width: thin;
@@ -13,7 +13,7 @@
     right: 0;
     top: 0;
     transform: translate(100%, -100%);
-    color: #f3f6ff;
+    color: var(--text-color);
     opacity: .5;
 
     &:hover {

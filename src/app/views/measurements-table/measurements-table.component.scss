@@ -1,7 +1,5 @@
 .table-container {
-  //padding: 1rem;
   background-color: var(--background-color);
-  //border: 1px solid var(--secondary-color);
 
   .table-title {
     color: var(--acent-color);
@@ -19,12 +17,11 @@
   }
 
   .table-head {
-    color: var(--light-color);
+    color: var(--text-color);
     text-transform: uppercase;
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 1.2rem;
-    //padding: 0 1.3rem;
     display: flex;
     justify-content: space-around;
 
@@ -41,7 +38,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: 1px solid var(--secondary-color);
+    //border: 1px solid var(--secondary-color);
     border-radius: 0.2rem;
 
     .table-item {
@@ -60,6 +57,10 @@
         height: 1.4rem;
         fill: var(--light-color);
         cursor: pointer;
+
+        &:hover {
+          fill: var(--acent-color);
+        }
 
         &:focus {
           outline: none;

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartOptions, ChartType} from "chart.js";
 import {ChartDataset} from "./measurements-chart.model";
 
@@ -16,11 +16,11 @@ export class MeasurementsChartComponent implements OnInit{
   public lineChartOptions: ChartOptions;
   public lineChartData: ChartConfiguration['data']['datasets'];
 
-  constructor() { }
+  constructor(private readonly elementRef: ElementRef) { }
 
   public ngOnInit(): void {
-    const ticksColor: string = '#ADB9D8'
-    const gridColor: string = '#4E5677'
+    const ticksColor: string = this.getColorVariableFromCss('--light-color')
+    const gridColor: string = this.getColorVariableFromCss('--background-color')
     const tooltipTitlePrefix: string = 'Time: '
     const tooltipDataPrefix: string = this.dataset.type.slice(0, 4) + ': '
     let valueSymbol = this.dataset.symbol
@@ -78,10 +78,9 @@ export class MeasurementsChartComponent implements OnInit{
       },
       plugins: {
         tooltip: {
-          //TODO add tooltip colors to colors of dataset variables
-          backgroundColor:  'rgba(28,35,51,0.95)',
-          titleColor: '#ADB9D8',
-          bodyColor: '#ADB9D8',
+          backgroundColor:  this.getColorVariableFromCss('--background-color'),
+          titleColor: this.getColorVariableFromCss('--light-color'),
+          bodyColor: this.getColorVariableFromCss('--light-color'),
           displayColors: false,
           bodyFont: {
             weight: '600'
@@ -97,6 +96,10 @@ export class MeasurementsChartComponent implements OnInit{
         }
       }
     }
+  }
+
+  private getColorVariableFromCss(property: string): string {
+    return getComputedStyle(this.elementRef.nativeElement).getPropertyValue(property);
   }
 
 }

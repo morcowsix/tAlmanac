@@ -14,11 +14,9 @@
 
     .calendar-card {
       width: 100%;
-      //max-width: 100%;
       background-color: var(--primary-color);
-      color: var(--wight-color);
-      //margin: 2% 0 0 2%;
-      border: 1px solid var(--secondary-color);
+      color: var(--text-color);
+      border-radius: 0 0 1rem 1rem;
       overflow: hidden;
 
       position:  relative;
@@ -35,7 +33,6 @@
 
   }
 }
-
 
 
 
