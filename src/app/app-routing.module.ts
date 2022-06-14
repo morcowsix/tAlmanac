@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {YaMapComponent} from "./views/ya-map/ya-map.component";
 import {CalendarComponent} from "./views/calendar/calendar.component";
 import {OnlyAvailableDaysComponent} from "./views/only-available-days/only-available-days.component";
+import {YaMapComponent} from "./views/ya-map/ya-map.component";
 
 const routes: Routes = [
-  {path: '', component: CalendarComponent, data: {state: 'calendar'}},
+  {path: '', redirectTo: 'calendar', pathMatch: 'full'},
   {path: 'measurements', component: OnlyAvailableDaysComponent, data: {state: 'measurement'}},
   {path: 'calendar', component: CalendarComponent, data: {state: 'calendar'}},
   {path: 'map', component: YaMapComponent, data: {state: 'map'}}
