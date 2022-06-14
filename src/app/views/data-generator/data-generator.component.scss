@@ -1,0 +1,48 @@
+.data-generator-container {
+  display: flex;
+  flex-direction: column;
+  background: var(--background-color);
+  border-radius: 0.5rem;
+  border: 1px solid #1C2333;
+  padding: 3%;
+
+  .data-generator-title {
+    font-size: 1.2rem;
+    color: #EC4E6E;
+    margin-bottom: 3%;
+  }
+
+  .data-generator-input-container {
+
+    &__item {
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__item-name {
+      white-space: nowrap;
+    }
+
+    input {
+      background: var(--primary-color);
+      color: #FFFFFF;
+      border-radius: 0.3rem;
+      //border-color: var(--acent-color);
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-left: 3%;
+      width: 45px;
+
+      &:focus {
+        outline: none !important;
+        border:1px solid var(--acent-color);
+        //box-shadow: 0 0 10px #719ECE;
+      }
+
+    }
+
+  }
+
+}

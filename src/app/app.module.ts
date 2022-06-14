@@ -35,6 +35,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import {DecimalPipe} from "@angular/common";
+import { DataGeneratorComponent } from './views/data-generator/data-generator.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { MeasureBoxComponent } from './views/measure-box/measure-box.component';
 export function playerFactory() {return player;}
 
 @NgModule({
@@ -53,26 +57,30 @@ export function playerFactory() {return player;}
     SortDaysAscendingPipe,
     RussianMonthsDeclensionPipe,
     YearSelectorComponent,
-    YaMapComponent
+    YaMapComponent,
+    DataGeneratorComponent,
+    MeasureBoxComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        LayoutModule,
-        MatDialogModule,
-        NgChartsModule,
-        MatSlideToggleModule,
-        MatDividerModule,
-        AngularYandexMapsModule,
-        MatProgressSpinnerModule,
-        [LottieModule.forRoot({ player: playerFactory })],
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    MatDialogModule,
+    NgChartsModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    AngularYandexMapsModule,
+    MatProgressSpinnerModule,
+    [LottieModule.forRoot({player: playerFactory})],
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   providers: [
     DecimalPipe,
     RussianMonthsDeclensionPipe
