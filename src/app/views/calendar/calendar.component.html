@@ -21,19 +21,10 @@
             </span>
           </div>
         </li>
-        <li class="measure-box" *ngFor="let measure of day.avgMeasurements">
-          <div class="measure-box-icon" [ngClass]="{
-          'measure-box-icon_temperature': calendarService.checkInstanceTemperature(measure),
-          'measure-box-icon_pressure': calendarService.checkInstancePressure(measure),
-          'measure-box-icon_humidity': calendarService.checkInstanceHumidity(measure)
-          }"
-          >
-          </div>
-          <div class="measure-box-text">
-            <span class="measure-box-text__count">{{measure.value}}</span>
-            <span class="measure-box-text__symbol">{{measure.symbol}}</span>
-          </div>
-        </li>
+        <app-measure-box
+          *ngFor="let measure of day.avgMeasurements"
+          [measure]="measure">
+        </app-measure-box>
       </ul>
     </div>
   </div>

@@ -19,20 +19,11 @@
                   </span>
             </div>
             <div class="days-grid-item__divider"></div>
-            <div class="measure-box">
-              <div class="measure-box-item" *ngFor="let measure of day.avgMeasurements">
-                <div class="measure-icon" [ngClass]="{
-                    'measure-icon-temperature': calendarService.checkInstanceTemperature(measure),
-                    'measure-icon-pressure': calendarService.checkInstancePressure(measure),
-                    'measure-icon-humidity': calendarService.checkInstanceHumidity(measure)
-                  }"
-                >
-                </div>
-                <div class="measure-text-container">
-                  <span class="measure-count">{{measure.value}}</span>
-                  <span class="measure-symbol">{{measure.symbol}}</span>
-                </div>
-              </div>
+            <div class="measure-box-container">
+              <app-measure-box
+                *ngFor="let measure of day.avgMeasurements"
+                [measure]="measure">
+              </app-measure-box>
             </div>
           </mat-card>
         </div>

@@ -1,0 +1,39 @@
+.measure-box {
+  display: flex;
+  padding: 0 0.5rem 0 0.25rem;
+  justify-content: space-between;
+
+  &-icon {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      fill: var(--text-color);
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .measure-box-text {
+    height: 24px;
+    text-align: center;
+    padding: 5px 0 5px 0;
+
+    &__count {
+      width: auto;
+      font-size: 1rem;
+      text-align: left;
+      margin-right: 10%;
+    }
+
+    &__symbol {
+      width: auto;
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
